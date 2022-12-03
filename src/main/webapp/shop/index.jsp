@@ -120,9 +120,11 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="hero-slider-content-1 hero-slider-content-1-pt-1 slider-animated-1">
-                                    <h4 class="animated">New Arrivals</h4>
-                                    <h1 class="animated">Leather Simple <br>Backpacks</h1>
-                                    <p class="animated">Discover our collection with leather simple backpacks. Less is more never out trend.</p>
+                                    <div class="deal-content-1  ">
+                                        <h4 class="animated">Special Offer</h4>
+                                    </div>
+                                    <h1 class="animated" style="color: #ff2f2f">Christmas Holiday<br>Sale</h1>
+                                    <p class="animated">25 Days of Christmas Deals starts now. Celebrate the season with us.</p>
                                     <div class="btn-style-1">
                                         <a class="animated btn-1-padding-1" href="shop.jsp">Shop Now</a>
                                     </div>
