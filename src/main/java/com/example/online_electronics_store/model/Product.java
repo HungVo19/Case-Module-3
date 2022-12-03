@@ -7,7 +7,7 @@ public class Product {
    private String description;
    private String image;
    private Boolean stockStatus;
-   private Boolean status;
+
    private Category categories;
 
    public Product() {
@@ -20,7 +20,6 @@ public class Product {
       this.description = description;
       this.image = image;
       this.stockStatus = stock_status;
-      this.status = status;
       this.categories = categories;
    }
 
@@ -74,13 +73,6 @@ public class Product {
       this.stockStatus = stock_status;
    }
 
-   public Boolean getStatus() {
-      return status;
-   }
-
-   public void setStatus(Boolean status) {
-      this.status = status;
-   }
 
    public Category getCategories() {
       return categories;
