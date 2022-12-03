@@ -62,7 +62,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                                    <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-7">
@@ -73,7 +73,7 @@
                                             </li>
                                             <li><a href="shop.jsp">SHOP </a>
                                             </li>
-                                            <li><a href="#">ABOUT US </a>
+                                            <li><a href="#aboutUs">ABOUT US </a>
                                             </li>
                                             <li><a href="#contacInfo">CONTACT </a></li>
                                         </ul>
@@ -129,13 +129,14 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-fixed-img">
+
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product-details/b-large-1.jpg">
-                                        <img src="assets/images/product-details/large-1.jpg" alt="">
+                                    <a href="assets/images/product/Simple-Black-T-Shirt.jpg">
+                                        <img src="assets/images/product/Simple-Black-T-Shirt.jpg" alt="">
                                     </a>
                                 </div>
-                                <a class="easyzoom-pop-up img-popup" href="assets/images/product-details/b-large-1.jpg"><i class="icon-size-fullscreen"></i></a>
+                                <a class="easyzoom-pop-up img-popup" href="assets/images/product/Simple-Black-T-Shirt.jpg"><i class="icon-size-fullscreen"></i></a>
                             </div>
                         </div>
                     </div>
@@ -268,9 +269,6 @@
                                 <div class="review-wrapper">
                                     <h2>1 review for Sleeve Button Cowl Neck</h2>
                                     <div class="single-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/product-details/client-1.png" alt="">
-                                        </div>
                                         <div class="review-content">
                                             <div class="review-top-wrap">
                                                 <div class="review-name">
@@ -366,7 +364,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/product-13.jpg" alt="">
+                                    <img src="assets/images/product/GRONE-Simple-Backpack.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -410,7 +408,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/product-13.jpg" alt="">
+                                    <img src="assets/images/product/Simple-Blue-T-Shirt.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -454,7 +452,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/product-13.jpg" alt="">
+                                    <img src="assets/images/product/GRONE-Rounded-Sunglasses.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -498,7 +496,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/product-13.jpg" alt="">
+                                    <img src="assets/images/product/Basic-Sneaker.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -534,6 +532,30 @@
                                 </div>
                                 <div class="pro-add-to-cart">
                                     <button title="Add to Cart">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-us-area pt-85">
+            <div class="container">
+                <div class="border-bottom-1 about-content-pb">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="about-us-logo">
+                                <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="about-us-content" id="aboutUs">
+                                <h3>Introduce</h3>
+                                <p>GrOne store is a business concept is to offer fashion and quality at the best price.
+                                    It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
+                                    Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
+                                <div class="signature">
+                                    <h2>Dien Hung Truong</h2>
                                 </div>
                             </div>
                         </div>
@@ -574,7 +596,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="contact-info-wrap" id="contacInfo">
                             <div class="footer-logo">
-                                <a href="#"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                                <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                             <div class="single-contact-info">
                                 <span>Our Location</span>
@@ -606,7 +628,7 @@
                                 <a href="#"><i class="social_youtube"></i></a>
                             </div>
                             <div class="copyright">
-                                <p>Copyright @ 2022 HasThemes | <a href="https://hasthemes.com/">Built with <span>Norda</span> by HasThemes</a>.</p>
+                                <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with <span>Norda</span> by HasThemes</a>.</p>
                             </div>
                         </div>
                     </div>
