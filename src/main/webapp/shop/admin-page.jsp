@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
   <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
 </head>
 
@@ -62,7 +63,7 @@
           <div class="row align-items-center">
             <div class="col-xl-2 col-lg-9">
               <div class="logo">
-                <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
               </div>
             </div>
             <div class="col-xl-8 col-lg-7">
@@ -158,7 +159,11 @@
                             <td>Aug 22, 2022</td>
                             <td>Pending</td>
                             <td>$3000</td>
-                            <td><a href="#">View</a></td>
+                            <td>
+                              <a href="#" class="me-2"><i class="fas fa-eye"></i></a>
+                              <a href="#" class="me-2"><i class="fas fa-edit"></i></a>
+                              <a href="#" class="me-2"><i class="fas fa-trash-alt"></i></a>
+                            </td>
                           </tr>
                           </tbody>
                         </table>
@@ -183,7 +188,7 @@
         <div class="col-lg-6 col-md-6">
           <div class="contact-info-wrap" id="contacInfo">
             <div class="footer-logo">
-              <a href="#"><img src="assets/images/logo/logo.png" alt="logo"></a>
+              <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
             </div>
             <div class="single-contact-info">
               <span>Our Location</span>
