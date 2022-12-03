@@ -124,7 +124,7 @@
                                         <h4 class="animated">Special Offer</h4>
                                     </div>
                                     <h1 class="animated" style="color: #ff2f2f">Christmas Holiday<br>Sale</h1>
-                                    <p class="animated">25 Days of Christmas Deals starts now. Celebrate the season with us.</p>
+                                    <p class="animated">Celebrate the season with us.</p>
                                     <div class="btn-style-1">
                                         <a class="animated btn-1-padding-1" href="shop.jsp">Shop Now</a>
                                     </div>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="hero-slider-img-1 slider-animated-1">
-                                    <img class="animated" src="assets/images/slider/hm-1-slider-2.png" alt="">
+                                    <img class="animated" src="assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="hero-slider-img-1 slider-animated-1">
-                                    <img class="animated" src="assets/images/slider/hm-1-slider-1.png" alt="">
+                                    <img class="animated" src="assets/images/slider/hm-1-slider-2.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -239,19 +239,19 @@
             <div class="container">
                 <div class="brand-logo-wrap brand-logo-mrg">
                     <div class="single-brand-logo mb-10">
-                        <img src="assets/images/brand-logo/brand-logo-1.png" alt="brand-logo">
+                        <img src="assets/images/brand-logo/brand-logo-1-ver-1.png" alt="brand-logo">
                     </div>
                     <div class="single-brand-logo mb-10">
-                        <img src="assets/images/brand-logo/brand-logo-2.png" alt="brand-logo">
+                        <img src="assets/images/brand-logo/brand-logo-2-ver-1.png" alt="brand-logo">
                     </div>
                     <div class="single-brand-logo mb-10">
-                        <img src="assets/images/brand-logo/brand-logo-3.png" alt="brand-logo">
+                        <img src="assets/images/brand-logo/brand-logo-3-ver-1.png" alt="brand-logo">
                     </div>
                     <div class="single-brand-logo mb-10">
-                        <img src="assets/images/brand-logo/brand-logo-4.png" alt="brand-logo">
+                        <img src="assets/images/brand-logo/brand-logo-4-ver-1.png" alt="brand-logo">
                     </div>
                     <div class="single-brand-logo mb-10">
-                        <img src="assets/images/brand-logo/brand-logo-5.png" alt="brand-logo">
+                        <img src="assets/images/brand-logo/brand-logo-5-ver-1.png" alt="brand-logo">
                     </div>
                 </div>
             </div>
