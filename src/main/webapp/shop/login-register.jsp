@@ -16,19 +16,19 @@
     <!-- All CSS is here
 	============================================ -->
 
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 </head>
@@ -119,6 +119,7 @@
     <div class="login-register-area pt-115 pb-120">
         <div class="container">
             <div class="row">
+<%--                <p class="text-center text-danger">Mess here</p>--%>
                 <div class="col-lg-7 col-md-12 ms-auto me-auto">
                     <div class="login-register-wrapper">
                         <div class="login-register-tab-list nav">
@@ -133,16 +134,17 @@
                             <div id="lg1" class="tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="#" method="post">
-                                            <input type="text" name="user-name" placeholder="Username or Email"
+                                        <form action="/user?action=login" method="post">
+                                            <input type="text" name="account" placeholder="Username or Email"
                                                    required>
-                                            <input type="password" name="user-password" id="loginPass"
+                                            <input type="password" name="password" id="Password"
                                                    placeholder="Password" required>
                                             <span>
-                                                    <i class="fa fa-eye fa-lg" id="toggleLoginPass"
+                                                <i class="fa fa-eye fa-lg" id="toggleLoginPass"
                                                        style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
-                                                       onclick="showLoginPass()"></i>
-                                                </span>
+                                                       onclick="showLoginPass()">
+                                                </i>
+                                            </span>
                                             <div class="button-box">
                                                 <%--                                                    <div class="login-toggle-btn">--%>
                                                 <%--                                                        <input type="checkbox">--%>
@@ -158,7 +160,7 @@
                             <div id="lg2" class="tab-pane">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="#" method="post">
+                                        <form action="/user?action=register" method="post">
                                             <input type="text" name="user-name" pattern="^\S*$" title="User name can not contain space" placeholder="Username" required>
                                             <input type="password" pattern="^\S*{6,8}$"
                                                    title="Password must be 6 -8 characters without space"
@@ -306,21 +308,21 @@
 <!-- All JS is here
 ============================================ -->
 
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-<script src="assets/js/vendor/popper.min.js"></script>
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<script src="assets/js/plugins/slick.js"></script>
-<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-<script src="assets/js/plugins/wow.js"></script>
-<script src="assets/js/plugins/jquery-ui.js"></script>
-<script src="assets/js/plugins/magnific-popup.js"></script>
-<script src="assets/js/plugins/sticky-sidebar.js"></script>
-<script src="assets/js/plugins/easyzoom.js"></script>
-<script src="assets/js/plugins/scrollup.js"></script>
-<script src="assets/js/plugins/ajax-mail.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/vendor/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/vendor/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/slick.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/wow.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/magnific-popup.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/sticky-sidebar.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/easyzoom.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/scrollup.js"></script>
+<script src="${pageContext.request.contextPath}/shop/assets/js/plugins/ajax-mail.js"></script>
 <script>
     function confirmPassword() {
         const password = document.querySelector('#createPass');

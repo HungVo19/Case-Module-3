@@ -17,19 +17,19 @@
     <!-- All CSS is here
 	============================================ -->
 
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/style.css">
 
 </head>
 
@@ -153,53 +153,53 @@
                             <div class="tab-content jump">
                                 <div id="shop-1" class="tab-pane active">
                                     <div class="row">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                            <div class="single-product-wrap mb-35">
-                                                <div class="product-img product-img-zoom mb-15">
-                                                    <a href="product-details-fixed-img.jsp">
-                                                        <img src="assets/images/product/Make-Thing-Happen-T-Shirt.jpg" alt="">
-                                                    </a>
-                                                    <span class="pro-badge left bg-red">-20%</span>
-                                                </div>
-                                                <div class="product-content-wrap-2 text-center">
-                                                    <div class="product-rating-wrap">
-                                                        <div class="product-rating">
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
+                                        <c:forEach items="${products}" var="p">
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                <div class="single-product-wrap mb-35">
+                                                    <div class="product-img product-img-zoom mb-15">
+                                                        <a href="product-details-fixed-img.jsp">
+                                                            <img src="${pageContext.request.contextPath}/shop/assets/images/product/Basic-Sneaker.jpg" alt="">
+                                                        </a>
+                                                        <span class="pro-badge left bg-red">-20%</span>
+                                                    </div>
+                                                    <div class="product-content-wrap-2 text-center">
+                                                        <div class="product-rating-wrap">
+                                                            <div class="product-rating">
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                            </div>
+                                                            <span>(5)</span>
                                                         </div>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                    <h3><a href="product-details-fixed-img.jsp">Make Thing Happen T-Shirt</a></h3>
-                                                    <div class="product-price-2">
-                                                        <span class="new-price">$35.45</span>
-                                                        <span class="old-price">$45.80</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap-2 product-content-position text-center">
-                                                    <div class="product-rating-wrap">
-                                                        <div class="product-rating">
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
+                                                        <h3><a href="product-details.html"><c:out value="${p.getName()}"/></a></h3>
+                                                        <div class="product-price-2">
+                                                            <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
                                                         </div>
-                                                        <span>(5)</span>
                                                     </div>
-                                                    <h3><a href="product-details-fixed-img.jsp">Make Thing Happen T-Shirt</a></h3>
-                                                    <div class="product-price-2">
-                                                        <span class="new-price">$35.45</span>
-                                                        <span class="old-price">$45.80</span>
-                                                    </div>
-                                                    <div class="pro-add-to-cart">
-                                                        <button title="Add to Cart">Add To Cart</button>
+                                                    <div class="product-content-wrap-2 product-content-position text-center">
+                                                        <div class="product-rating-wrap">
+                                                            <div class="product-rating">
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                            </div>
+                                                            <span>(5)</span>
+                                                        </div>
+                                                        <h3><a href="product-details-fixed-img.jsp"><c:out value="${p.getName()}"/></a></h3>
+                                                        <div class="product-price-2">
+                                                            <span class="new-price"><c:out value="${p.getPrice()}"/></span>
+                                                        </div>
+                                                        <div class="pro-add-to-cart">
+                                                            <button title="Add to Cart">Add To Cart</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

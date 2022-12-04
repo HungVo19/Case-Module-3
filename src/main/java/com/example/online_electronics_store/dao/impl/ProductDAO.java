@@ -130,7 +130,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public List<Product> pagingProduct(int index) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_INDEX)) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_INDEX)) {
             statement.setInt(1, index);
             ResultSet result = statement.executeQuery();
             return getList(result);
