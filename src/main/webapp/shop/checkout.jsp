@@ -63,7 +63,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                                <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7">
@@ -74,7 +74,7 @@
                                         </li>
                                         <li><a href="shop.jsp">SHOP </a>
                                         </li>
-                                        <li><a href="#">ABOUT US </a>
+                                        <li><a href="#aboutUs">ABOUT US </a>
                                         </li>
                                         <li><a href="#contacInfo">CONTACT </a></li>
                                     </ul>
@@ -165,6 +165,30 @@
             </div>
         </div>
     </div>
+    <div class="about-us-area pt-85">
+        <div class="container">
+            <div class="border-bottom-1 about-content-pb">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="about-us-logo">
+                            <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="about-us-content" id="aboutUs">
+                            <h3>Introduce</h3>
+                            <p>GrOne store is a business concept is to offer fashion and quality at the best price.
+                                It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
+                                Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
+                            <div class="signature">
+                                <h2>Dien Hung Truong</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="subscribe-area bg-gray pt-115 pb-115">
         <div class="container">
             <div class="row">
@@ -176,19 +200,14 @@
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div id="mc_embed_signup" class="subscribe-form">
-                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
-                              target="_blank" name="mc-embedded-subscribe-form" method="post"
-                              action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
                             <div id="mc_embed_signup_scroll" class="mc-form">
-                                <input class="email" type="email" required="" placeholder="Enter your email address"
-                                       name="EMAIL" value="">
+                                <input class="email" type="email" required="" placeholder="Enter your email address" name="EMAIL" value="">
                                 <div class="mc-news" aria-hidden="true">
-                                    <input type="text" value="" tabindex="-1"
-                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                    <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
                                 </div>
                                 <div class="clear">
-                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
-                                           value="Subscribe">
+                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Subscribe">
                                 </div>
                             </div>
                         </form>
@@ -203,7 +222,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="contact-info-wrap" id="contacInfo">
                         <div class="footer-logo">
-                            <a href="#"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                            <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                         </div>
                         <div class="single-contact-info">
                             <span>Our Location</span>
@@ -235,8 +254,7 @@
                             <a href="#"><i class="social_youtube"></i></a>
                         </div>
                         <div class="copyright">
-                            <p>Copyright @ 2022 HasThemes | <a href="https://hasthemes.com/">Built with
-                                <span>Norda</span> by HasThemes</a>.</p>
+                            <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with <span>Norda</span> by HasThemes</a>.</p>
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,6 @@ public class CategoryDAO implements ICategoryDAO{
             while (resultSet.next()){
                 Long id = resultSet.getLong("id");
                 String name = resultSet.getString("name");
-                return new Category(id, name);
             }
 
         }catch (SQLException e){
