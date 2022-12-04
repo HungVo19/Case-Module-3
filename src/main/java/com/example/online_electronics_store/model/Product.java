@@ -10,19 +10,18 @@ public class Product {
    private Category category;
 
    public Product() {
+
    }
 
-   public Product(Long id, String name, Double price, String description, String image, Boolean stock_status, Boolean status, Category categories) {
+   public Product(Long id, String name, Double price, String description, String image, Boolean stockStatus, Category category) {
       this.id = id;
       this.name = name;
       this.price = price;
       this.description = description;
       this.image = image;
-      this.stockStatus = stock_status;
-      this.category = categories;
+      this.stockStatus = stockStatus;
+      this.category = category;
    }
-
-
 
    public Long getId() {
       return id;
