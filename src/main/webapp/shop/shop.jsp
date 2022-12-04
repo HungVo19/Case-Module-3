@@ -63,7 +63,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                    <a href="index.jsp"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-7">
@@ -205,10 +205,18 @@
                             </div>
                             <div class="pro-pagination-style text-center mt-10">
                                 <ul>
-                                    <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>
-                                    <li><a class="active" href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>
+<%--                                    <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>--%>
+                                    <c:forEach begin="1" end="${pages}" var="i">
+                                        <c:if test="${i == index}">
+                                            <li><a class="active" href="/product?action=view&page=${i}">${i}</a></li>
+                                        </c:if>
+                                        <c:if test="${i != index}">
+                                            <li><a href="/product?action=view&page=${i}">${i}</a></li>
+                                        </c:if>
+
+                                    </c:forEach>
+
+<%--                                    <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>--%>
                                 </ul>
                             </div>
                         </div>
@@ -230,7 +238,11 @@
                                 <h4 class="sidebar-widget-title">Categories </h4>
                                 <div class="shop-catigory">
                                     <ul>
-                                        <li><a href="shop.jsp">T-Shirt</a></li>
+                                        <c:forEach items="${categories}" var="c">
+                                            <li><a href="#!">
+                                                <c:out value="${c.getName()}"/>
+                                            </a></li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </div>
@@ -258,7 +270,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3">
                             <div class="about-us-logo">
-                                <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                                <img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">

@@ -50,16 +50,27 @@ public class ProductService implements IProductService {
 
     public String renderPage(HttpServletRequest request) throws SQLException {
         int index = Integer.parseInt(request.getParameter("page"));
-        List<Product> productsPage = ProductDAO.getInstance().pagingProduct(index);
+        List<Product> productsPage = ProductDAO.getInstance().pagingProduct((index - 1) * 3);
+        return render(request, index, productsPage);
+    }
+
+    public String renderDefault(HttpServletRequest request) throws SQLException {
+        int index = 1;
+        List<Product> productsPage = ProductDAO.getInstance().pagingProduct(0);
+        return render(request, index, productsPage);
+    }
+
+    private String render(HttpServletRequest request, int index, List<Product> productsPage) throws SQLException {
         int count = ProductDAO.getInstance().getTotalCount();
         int pages = count / 3;
         if (count % 3 != 0) {
             pages++;
         }
         List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("index", index);
         request.setAttribute("products", productsPage);
         request.setAttribute("pages", pages);
         request.setAttribute("categories", categories);
-        return  "/product?action=view&page=" + index;
+        return  "/shop/shop.jsp";
     }
 }

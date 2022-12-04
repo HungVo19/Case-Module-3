@@ -22,7 +22,8 @@ public class ProductServlet extends HttpServlet {
         try {
             switch (action) {
                 case "view":
-
+                    displayByPage(request, response);
+                    break;
 //                case "signup":
 //                    signup(request, response);
 //                    break;
@@ -33,7 +34,7 @@ public class ProductServlet extends HttpServlet {
 //                    // update
 //                    break;
                 default:
-                    displayAll(request, response);
+                    displayDefault(request, response);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -45,10 +46,9 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-    private void displayAll(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        List<Product> products = ProductDAO.getInstance().findAll();
-        request.setAttribute("products", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/shop.jsp");
+    private void displayDefault(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String path = ProductService.getInstance().renderDefault(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
         dispatcher.forward(request, response);
     }
 
