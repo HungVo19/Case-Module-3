@@ -2,18 +2,28 @@ package com.example.online_electronics_store.model;
 
 public class User {
     private Long id;
-    private String name;
+    private String role;
+    private String username;
     private String password;
-    private String phone;
+    private String phoneNumber;
     private String email;
     private String address;
-    private String role;
 
     public User() {
     }
 
-    public User(String name, String password, String email) {
-        this.name = name;
+    public User(Long id, String role, String username, String password, String phoneNumber, String email, String address) {
+        this.id = id;
+        this.role = role;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
@@ -26,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -42,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

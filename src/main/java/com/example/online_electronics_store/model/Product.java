@@ -7,23 +7,21 @@ public class Product {
    private String description;
    private String image;
    private Boolean stockStatus;
-
-   private Category categories;
+   private Category category;
 
    public Product() {
+
    }
 
-   public Product(Long id, String name, Double price, String description, String image, Boolean stock_status, Boolean status, Category categories) {
+   public Product(Long id, String name, Double price, String description, String image, Boolean stockStatus, Category category) {
       this.id = id;
       this.name = name;
       this.price = price;
       this.description = description;
       this.image = image;
-      this.stockStatus = stock_status;
-      this.categories = categories;
+      this.stockStatus = stockStatus;
+      this.category = category;
    }
-
-
 
    public Long getId() {
       return id;
@@ -65,20 +63,20 @@ public class Product {
       this.image = image;
    }
 
-   public Boolean getStock_status() {
+   public Boolean isStockStatus() {
       return stockStatus;
    }
 
-   public void setStock_status(Boolean stock_status) {
+   public void setStockStatus(Boolean stock_status) {
       this.stockStatus = stock_status;
    }
 
 
-   public Category getCategories() {
-      return categories;
+   public Category getCategory() {
+      return category;
    }
 
-   public void setCategories(Category categories) {
-      this.categories = categories;
+   public void setCategory(Category category) {
+      this.category = category;
    }
 }

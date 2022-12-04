@@ -1,25 +1,25 @@
 package com.example.online_electronics_store.model;
 
 public class OrderDetails {
-    private User user;
+    private Order order;
     private Product product;
     private Integer quantity;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(User user, Product product, Integer quantity) {
-        this.user = user;
+    public OrderDetails(Order order, Product product, Integer quantity) {
+        this.order = order;
         this.product = product;
         this.quantity = quantity;
     }
 
-    public User getUser() {
-        return user;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Product getProduct() {

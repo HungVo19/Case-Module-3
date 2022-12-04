@@ -10,6 +10,12 @@ public class Order {
     public Order() {
     }
 
+    public Order(Long id, User user, LocalDateTime date) {
+        this.id = id;
+        this.user = user;
+        this.date = date;
+    }
+
     public Order(Long id, User user) {
         this.id = id;
         this.user = user;
