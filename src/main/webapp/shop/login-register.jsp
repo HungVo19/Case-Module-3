@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Norda - Minimal eCommerce HTML Template</title>
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
@@ -29,259 +29,347 @@
     <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 </head>
 
 <body>
 
-    <div class="main-wrapper">
-        <header class="header-area">
-            <div class="container">
-                <div class="header-large-device">
-                    <div class="header-top header-top-ptb-1 border-bottom-1">
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="header-offer-wrap">
-                                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
-                                </div>
-                            </div>
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="header-top-right">
-                                    <div class="social-style-1 social-style-1-mrg">
-                                        <a href="#"><i class="icon-social-twitter"></i></a>
-                                        <a href="#"><i class="icon-social-facebook"></i></a>
-                                        <a href="#"><i class="icon-social-instagram"></i></a>
-                                        <a href="#"><i class="icon-social-youtube"></i></a>
-                                        <a href="#"><i class="icon-social-pinterest"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-bottom">
-                        <div class="row align-items-center">
-                            <div class="col-xl-2 col-lg-2">
-                                <div class="logo">
-                                    <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="main-menu main-menu-padding-1 main-menu-lh-1">
-                                    <nav>
-                                        <ul>
-                                            <li><a href="index.jsp">HOME </a>
-                                            </li>
-                                            <li><a href="shop.jsp">SHOP </a>
-                                            </li>
-                                            <li><a href="#aboutUs">ABOUT US </a>
-                                            </li>
-                                            <li><a href="#contacInfo">CONTACT </a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3">
-                                <div class="header-action header-action-flex header-action-mrg-right">
-                                    <div class="same-style-2">
-                                        <a href="login-register.jsp"><i class="icon-user"></i></a>
-                                        <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
-                                    </div>
-                                    <div class="same-style-2 header-cart">
-                                        <a href="cart.jsp">
-                                            <i class="icon-basket-loaded"></i>
-                                            <%--                                            <span class="pro-count red">02</span>--%>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </header>
-        <div class="breadcrumb-area bg-gray">
-            <div class="container">
-                <div class="breadcrumb-content text-center">
-                    <ul>
-                        <li>
-                            <a href="index.jsp">Home</a>
-                        </li>
-                        <li class="active">login - register </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="login-register-area pt-115 pb-120">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-12 ms-auto me-auto">
-                        <div class="login-register-wrapper">
-                            <div class="login-register-tab-list nav">
-                                <a class="active" data-bs-toggle="tab" href="#lg1">
-                                    <h4> login </h4>
-                                </a>
-                                <a data-bs-toggle="tab" href="#lg2">
-                                    <h4> register </h4>
-                                </a>
-                            </div>
-                            <div class="tab-content">
-                                <div id="lg1" class="tab-pane active">
-                                    <div class="login-form-container">
-                                        <div class="login-register-form">
-                                            <form action="#" method="post">
-                                                <input type="text" name="user-name" placeholder="Username">
-                                                <input type="password" name="user-password" placeholder="Password">
-                                                <div class="button-box">
-                                                    <div class="login-toggle-btn">
-                                                        <input type="checkbox">
-                                                        <label>Remember me</label>
-                                                        <a href="#">Forgot Password?</a>
-                                                    </div>
-                                                    <button type="submit">Login</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="lg2" class="tab-pane">
-                                    <div class="login-form-container">
-                                        <div class="login-register-form">
-                                            <form action="#" method="post">
-                                                <input type="text" name="user-name" placeholder="Username">
-                                                <input type="password" name="user-password" placeholder="Password">
-                                                <input name="user-email" placeholder="Email" type="email">
-                                                <div class="button-box">
-                                                    <button type="submit">Register</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="about-us-area pt-85">
-            <div class="container">
-                <div class="border-bottom-1 about-content-pb">
+<div class="main-wrapper">
+    <header class="header-area">
+        <div class="container">
+            <div class="header-large-device">
+                <div class="header-top header-top-ptb-1 border-bottom-1">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                            <div class="about-us-logo">
-                                <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="header-offer-wrap">
+                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="about-us-content" id="aboutUs">
-                                <h3>Introduce</h3>
-                                <p>GrOne store is a business concept is to offer fashion and quality at the best price.
-                                    It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
-                                    Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
-                                <div class="signature">
-                                    <h2>Dien Hung Truong</h2>
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="header-top-right">
+                                <div class="social-style-1 social-style-1-mrg">
+                                    <a href="#"><i class="icon-social-twitter"></i></a>
+                                    <a href="#"><i class="icon-social-facebook"></i></a>
+                                    <a href="#"><i class="icon-social-instagram"></i></a>
+                                    <a href="#"><i class="icon-social-youtube"></i></a>
+                                    <a href="#"><i class="icon-social-pinterest"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="subscribe-area bg-gray pt-115 pb-115">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-md-5">
-                        <div class="section-title">
-                            <h2>keep connected</h2>
-                            <p>Get updates by subscribe our weekly newsletter</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div id="mc_embed_signup" class="subscribe-form">
-                            <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                                <div id="mc_embed_signup_scroll" class="mc-form">
-                                    <input class="email" type="email" required="" placeholder="Enter your email address" name="EMAIL" value="">
-                                    <div class="mc-news" aria-hidden="true">
-                                        <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                    </div>
-                                    <div class="clear">
-                                        <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Subscribe">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="footer-area bg-gray pb-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="contact-info-wrap" id="contacInfo">
-                            <div class="footer-logo">
-                                <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
-                            </div>
-                            <div class="single-contact-info">
-                                <span>Our Location</span>
-                                <p>Kent Class, Code Gym My Dinh, HD Mon City</p>
-                            </div>
-                            <div class="single-contact-info">
-                                <span>24/7 hotline:</span>
-                                <p>(+84) 966778899</p>
+                <div class="header-bottom">
+                    <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.jsp"><img
+                                        src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
+                                        alt="logo"></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer-right-wrap">
-                            <div class="footer-menu">
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-1">
                                 <nav>
                                     <ul>
-                                        <li><a href="#">home</a></li>
-                                        <li><a href="#">Shop</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="index.jsp">HOME </a>
+                                        </li>
+                                        <li><a href="shop.jsp">SHOP </a>
+                                        </li>
+                                        <li><a href="#aboutUs">ABOUT US </a>
+                                        </li>
+                                        <li><a href="#contacInfo">CONTACT </a></li>
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="social-style-2 social-style-2-mrg">
-                                <a href="#"><i class="social_twitter"></i></a>
-                                <a href="#"><i class="social_facebook"></i></a>
-                                <a href="#"><i class="social_googleplus"></i></a>
-                                <a href="#"><i class="social_instagram"></i></a>
-                                <a href="#"><i class="social_youtube"></i></a>
-                            </div>
-                            <div class="copyright">
-                                <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with <span>Norda</span> by HasThemes</a>.</p>
+                        </div>
+                        <div class="col-xl-2 col-lg-3">
+                            <div class="header-action header-action-flex header-action-mrg-right">
+                                <div class="same-style-2">
+                                    <a href="login-register.jsp"><i class="icon-user"></i></a>
+                                    <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                </div>
+                                <div class="same-style-2 header-cart">
+                                    <a href="cart.jsp">
+                                        <i class="icon-basket-loaded"></i>
+                                        <%--                                            <span class="pro-count red">02</span>--%>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
 
-    <!-- All JS is here
+        </div>
+    </header>
+    <div class="breadcrumb-area bg-gray">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="index.jsp">Home</a>
+                    </li>
+                    <li class="active">login - register</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area pt-115 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ms-auto me-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-bs-toggle="tab" href="#lg1">
+                                <h4> login </h4>
+                            </a>
+                            <a data-bs-toggle="tab" href="#lg2">
+                                <h4> register </h4>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="#" method="post">
+                                            <input type="text" name="user-name" placeholder="Username or Email"
+                                                   required>
+                                            <input type="password" name="user-password" id="loginPass"
+                                                   placeholder="Password" required>
+                                            <span>
+                                                    <i class="fa fa-eye fa-lg" id="toggleLoginPass"
+                                                       style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
+                                                       onclick="showLoginPass()"></i>
+                                                </span>
+                                            <div class="button-box">
+                                                <%--                                                    <div class="login-toggle-btn">--%>
+                                                <%--                                                        <input type="checkbox">--%>
+                                                <%--                                                        <label>Show password</label>--%>
+                                                <%--                                                        <a href="#">Forgot Password?</a>--%>
+                                                <%--                                                    </div>--%>
+                                                <button type="submit">Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lg2" class="tab-pane">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="#" method="post">
+                                            <input type="text" name="user-name" pattern="^\S*$" title="User name can not contain space" placeholder="Username" required>
+                                            <input type="password" pattern="^\S*{6,8}$"
+                                                   title="Password must be 6 -8 characters without space"
+                                                   id="createPass"
+                                                   name="user-password" placeholder="Password" required
+                                                   onchange="confirmPassword()">
+                                            </span>
+                                            <i class="fa fa-eye fa-lg" id="toggleCreatePass"
+                                               style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
+                                               onclick="showCreatePass()"></i>
+                                            </span>
+                                            <input type="password" name="confirm-user-password" id="confirmPass"
+                                                   placeholder="Confirm password" required
+                                                   onchange="confirmPassword()">
+                                            </span>
+                                            <i class="fa fa-eye fa-lg" id="toggleConfirmPass"
+                                               style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
+                                               onclick="showConfirmPass()"></i>
+                                            </span>
+                                            <input type="tel" name="user-phone-number"
+                                                   pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
+                                                   title="Not a valid phone number"
+                                                   placeholder="Phone number"
+                                                   required>
+                                            <input type="email" name="user-email" placeholder="Email" required>
+                                            <input type="text" name="user-address" placeholder="Address" required>
+                                            <div class="button-box">
+                                                <button type="submit">Register</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-us-area pt-85">
+        <div class="container">
+            <div class="border-bottom-1 about-content-pb">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="about-us-logo">
+                            <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="about-us-content" id="aboutUs">
+                            <h3>Introduce</h3>
+                            <p>GrOne store is a business concept is to offer fashion and quality at the best price.
+                                It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
+                                Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
+                            <div class="signature">
+                                <h2>Dien Hung Truong</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subscribe-area bg-gray pt-115 pb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5">
+                    <div class="section-title">
+                        <h2>keep connected</h2>
+                        <p>Get updates by subscribe our weekly newsletter</p>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div id="mc_embed_signup" class="subscribe-form">
+                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
+                              target="_blank" name="mc-embedded-subscribe-form" method="post"
+                              action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                            <div id="mc_embed_signup_scroll" class="mc-form">
+                                <input class="email" type="email" required="" placeholder="Enter your email address"
+                                       name="EMAIL" value="">
+                                <div class="mc-news" aria-hidden="true">
+                                    <input type="text" value="" tabindex="-1"
+                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                </div>
+                                <div class="clear">
+                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
+                                           value="Subscribe">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-area bg-gray pb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact-info-wrap" id="contacInfo">
+                        <div class="footer-logo">
+                            <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
+                                             alt="logo"></a>
+                        </div>
+                        <div class="single-contact-info">
+                            <span>Our Location</span>
+                            <p>Kent Class, Code Gym My Dinh, HD Mon City</p>
+                        </div>
+                        <div class="single-contact-info">
+                            <span>24/7 hotline:</span>
+                            <p>(+84) 966778899</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-right-wrap">
+                        <div class="footer-menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="#">home</a></li>
+                                    <li><a href="#">Shop</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="social-style-2 social-style-2-mrg">
+                            <a href="#"><i class="social_twitter"></i></a>
+                            <a href="#"><i class="social_facebook"></i></a>
+                            <a href="#"><i class="social_googleplus"></i></a>
+                            <a href="#"><i class="social_instagram"></i></a>
+                            <a href="#"><i class="social_youtube"></i></a>
+                        </div>
+                        <div class="copyright">
+                            <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with
+                                <span>Norda</span> by HasThemes</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- All JS is here
 ============================================ -->
 
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/slick.js"></script>
-    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/jquery-ui.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/sticky-sidebar.js"></script>
-    <script src="assets/js/plugins/easyzoom.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/ajax-mail.js"></script>
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="assets/js/vendor/popper.min.js"></script>
+<script src="assets/js/vendor/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slick.js"></script>
+<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="assets/js/plugins/wow.js"></script>
+<script src="assets/js/plugins/jquery-ui.js"></script>
+<script src="assets/js/plugins/magnific-popup.js"></script>
+<script src="assets/js/plugins/sticky-sidebar.js"></script>
+<script src="assets/js/plugins/easyzoom.js"></script>
+<script src="assets/js/plugins/scrollup.js"></script>
+<script src="assets/js/plugins/ajax-mail.js"></script>
+<script>
+    function confirmPassword() {
+        const password = document.querySelector('#createPass');
+        const confirm = document.querySelector('#confirmPass');
+        if (confirm.value === password.value) {
+            confirm.setCustomValidity('');
+        } else {
+            confirm.setCustomValidity('Passwords do not match');
+        }
+    }
+
+    function showLoginPass() {
+        let pass = document.getElementById('loginPass');
+        let togglePass = document.getElementById('toggleLoginPass');
+        if (pass.type === 'password') {
+            pass.type = 'text';
+            togglePass.className = 'fa fa-eye-slash fa-lg';
+        } else {
+            pass.type = 'password';
+            togglePass.className = 'fa fa-eye fa-lg';
+        }
+    }
+
+    function showCreatePass() {
+        let pass = document.getElementById('createPass');
+        let togglePass = document.getElementById('toggleCreatePass');
+        if (pass.type === 'password') {
+            pass.type = 'text';
+            togglePass.className = 'fa fa-eye-slash fa-lg';
+        } else {
+            pass.type = 'password';
+            togglePass.className = 'fa fa-eye fa-lg';
+        }
+    }
+
+    function showConfirmPass() {
+        let pass = document.getElementById('confirmPass');
+        let togglePass = document.getElementById('toggleConfirmPass');
+        if (pass.type === 'password') {
+            pass.type = 'text';
+            togglePass.className = 'fa fa-eye-slash fa-lg';
+        } else {
+            pass.type = 'password';
+            togglePass.className = 'fa fa-eye fa-lg';
+        }
+    }
+</script>
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
 
 </body>
 
