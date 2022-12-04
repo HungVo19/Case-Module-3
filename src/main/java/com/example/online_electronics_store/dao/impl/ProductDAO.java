@@ -17,6 +17,7 @@ public class ProductDAO implements IProductDAO {
     private final String SELECT_PRODUCT_BY_NAME = "select * from product where name = ?;";
     private final String SELECT_ALL_PRODUCT = "select * from product;";
     private final String SELECT_PRODUCT_BY_INDEX = "select * from product order by id limit ?,3;";
+    private final String SELECT_COUNT = "select count(id) from product;";
     private final String INSERT_PRODUCT = "insert into product (name, price, description, image, stock_status, category_id) values (?,?,?,?,?,?);";
     private final String UPDATE_PRODUCT = "update product set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?);";
     private final String DELETE_PRODUCT = "delete from product where id = ?;";
@@ -101,7 +102,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public Product findByName(String name) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME)) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME)) {
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
             return getList(result).get(0);
@@ -112,7 +113,7 @@ public class ProductDAO implements IProductDAO {
     public List<Product> sort(String condition) throws SQLException {
         final String FULL_SORT_SQL = SORT_BY_CONDITION + condition + ";";
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FULL_SORT_SQL)) {
+            PreparedStatement statement = connection.prepareStatement(FULL_SORT_SQL)) {
             ResultSet result = statement.executeQuery();
             return getList(result);
         }
@@ -134,6 +135,19 @@ public class ProductDAO implements IProductDAO {
             statement.setInt(1, index);
             ResultSet result = statement.executeQuery();
             return getList(result);
+        }
+    }
+
+    @Override
+    public int getTotalCount() throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_COUNT)) {
+            ResultSet result = statement.executeQuery();
+            int count = 0;
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+            return count;
         }
     }
 }

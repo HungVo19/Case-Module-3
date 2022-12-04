@@ -2,6 +2,7 @@ package com.example.online_electronics_store.controller;
 
 import com.example.online_electronics_store.dao.impl.ProductDAO;
 import com.example.online_electronics_store.model.Product;
+import com.example.online_electronics_store.service.impl.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -51,7 +52,9 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void displayByPage(HttpServletRequest request, HttpServletResponse response) {
-        int index = Integer.parseInt(request.getParameter("page"));
+    private void displayByPage(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String path = ProductService.getInstance().renderPage(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+        dispatcher.forward(request, response);
     }
 }

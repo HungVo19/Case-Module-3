@@ -1,6 +1,8 @@
 package com.example.online_electronics_store.service.impl;
 
+import com.example.online_electronics_store.dao.impl.CategoryDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
+import com.example.online_electronics_store.model.Category;
 import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.service.IProductService;
 
@@ -10,6 +12,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProductService implements IProductService {
+    private static ProductService instance;
+    private ProductService() {
+    }
+
+    public static ProductService getInstance() {
+        if (instance == null) {
+            instance = new ProductService();
+        }
+        return instance;
+    }
+
     @Override
     public boolean create(HttpServletRequest request) {
         return false;
@@ -35,10 +48,18 @@ public class ProductService implements IProductService {
         return null;
     }
 
-    public void renderPage(HttpServletRequest request) throws SQLException {
-        int index = (Integer.parseInt(request.getParameter("index")) - 1) * 3;
+    public String renderPage(HttpServletRequest request) throws SQLException {
+        int index = Integer.parseInt(request.getParameter("page"));
         List<Product> productsPage = ProductDAO.getInstance().pagingProduct(index);
+        int count = ProductDAO.getInstance().getTotalCount();
+        int pages = count / 3;
+        if (count % 3 != 0) {
+            pages++;
+        }
+        List<Category> categories = CategoryDAO.getInstance().findAll();
         request.setAttribute("products", productsPage);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product?action=view&page=" + index);
+        request.setAttribute("pages", pages);
+        request.setAttribute("categories", categories);
+        return  "/product?action=view&page=" + index;
     }
 }

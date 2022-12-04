@@ -60,7 +60,7 @@ public class UserServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            response.sendRedirect("/product");
+            response.sendRedirect("/product?action=view&page=1");
         } else {
             response.sendRedirect("/user?login=error");
         }
