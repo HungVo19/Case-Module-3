@@ -1,3 +1,4 @@
+<%@ page import="com.example.online_electronics_store.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -22,19 +23,19 @@
 <!-- All CSS is here
 ============================================ -->
 
-<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-<link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-<link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-<link rel="stylesheet" href="assets/css/vendor/elegant.css">
-<link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-<link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-<link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-<link rel="stylesheet" href="assets/css/plugins/slick.css">
-<link rel="stylesheet" href="assets/css/plugins/animate.css">
-<link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+<link rel="stylesheet" href="/shop/assets/css/style.css">
 <div class="main-wrapper">
     <header class="header-area transparent-bar section-padding-1">
         <div class="container-fluid">
@@ -73,7 +74,15 @@
                                     <ul>
                                         <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
                                         </li>
-                                        <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
+                                        <%
+                                            Object userObj = session.getAttribute("user");
+                                            User user = (User) userObj;
+                                            if (user == null) {
+                                        %>
+                                            <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
+                                        <% } else if (user.getRole().equals("user")) { %>
+                                            <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
+                                        <% } %>
                                         </li>
                                         <li><a href="#aboutUs">ABOUT US </a>
                                         </li>
@@ -97,8 +106,15 @@
                                     </div>
                                 </div>
                                 <div class="same-style-2">
-                                    <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
-                                    <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                    <%
+                                        if (userObj == null) {
+                                    %>
+                                        <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
+                                    <% } else if (user.getRole().equals("user")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>
+                                    <% } else if (user.getRole().equals("admin")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=admin"><i class="icon-user"></i></a>
+                                    <% } %>
                                 </div>
                                 <div class="same-style-2 header-cart">
                                     <a href="cart.jsp">

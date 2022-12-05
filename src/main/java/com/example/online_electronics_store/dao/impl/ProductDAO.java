@@ -16,7 +16,7 @@ public class ProductDAO implements IProductDAO {
     private final String SELECT_PRODUCT_BY_ID = "select * from product where id = ?;";
     private final String SELECT_PRODUCT_BY_NAME = "select * from product where name = ?;";
     private final String SELECT_ALL_PRODUCT = "select * from product;";
-    private final String SELECT_PRODUCT_BY_INDEX = "select * from product order by id limit ?,3;";
+    private final String SELECT_PRODUCT_BY_INDEX = "select * from product order by id limit ?,6;";
     private final String SELECT_COUNT = "select count(id) from product;";
     private final String INSERT_PRODUCT = "insert into product (name, price, description, image, stock_status, category_id) values (?,?,?,?,?,?);";
     private final String UPDATE_PRODUCT = "update product set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?);";

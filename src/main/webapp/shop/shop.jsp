@@ -111,7 +111,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </header>
 
@@ -159,9 +158,12 @@
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
                                                         <a href="product-details-fixed-img.jsp">
-                                                            <img src="/shop/assets/images/product/product-1.jpg" alt="">
+                                                            <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
-                                                        <span class="pro-badge left bg-red">-20%</span>
+                                                        <c:if test="${!p.isStockStatus()}">
+                                                            <span class="pro-badge left bg-red">Out of stock</span>
+                                                        </c:if>
+
                                                     </div>
                                                     <div class="product-content-wrap-2 text-center">
                                                         <div class="product-rating-wrap">

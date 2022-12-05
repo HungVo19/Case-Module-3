@@ -13,17 +13,22 @@ import java.sql.SQLException;
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        toLoginPage(response);
+        controller(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void controller(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         try {
             switch (action) {
+                case "admin":
+                    toAdmin(request, response);
+                    break;
+                case "account":
+                    toAccount(request, response);
+                    break;
                 case "register":
                     register(request, response);
                     break;
@@ -41,6 +46,11 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        controller(request, response);
     }
 
     private void toLoginPage(HttpServletResponse response) throws IOException {
@@ -70,5 +80,13 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("shop/login-register.jsp");
             dispatcher.forward(request, response);
         }
+    }
+
+    private void toAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("shop/admin-page.jsp");
+    }
+
+    private void toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("shop/my-account.jsp");
     }
 }
