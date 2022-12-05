@@ -12,29 +12,29 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
-    <!-- All CSS is here
-	============================================ -->
-
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
+<!-- All CSS is here
+============================================ -->
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+<link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+<link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+<link rel="stylesheet" href="/shop/assets/css/style.css">
 <div class="main-wrapper">
     <header class="header-area transparent-bar section-padding-1">
         <div class="container-fluid">
@@ -50,11 +50,11 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="header-top-right">
                                 <div class="social-style-1 social-style-1-mrg">
-                                    <a href="#"><i class="icon-social-twitter"></i></a>
-                                    <a href="#"><i class="icon-social-facebook"></i></a>
-                                    <a href="#"><i class="icon-social-instagram"></i></a>
-                                    <a href="#"><i class="icon-social-youtube"></i></a>
-                                    <a href="#"><i class="icon-social-pinterest"></i></a>
+                                    <a href="#!"><i class="icon-social-twitter"></i></a>
+                                    <a href="#!"><i class="icon-social-facebook"></i></a>
+                                    <a href="#!"><i class="icon-social-instagram"></i></a>
+                                    <a href="#!"><i class="icon-social-youtube"></i></a>
+                                    <a href="#!"><i class="icon-social-pinterest"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -64,16 +64,16 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7">
                             <div class="main-menu main-menu-padding-1 main-menu-lh-1">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.jsp">HOME </a>
+                                        <li><a href="${pageContext.request.contextPath}/">HOME </a>
                                         </li>
-                                        <li><a href="shop.jsp">SHOP </a>
+                                        <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
                                         </li>
                                         <li><a href="#aboutUs">ABOUT US </a>
                                         </li>
@@ -125,13 +125,13 @@
                                 <h1 class="animated" style="color: #ff2f2f">Christmas Holiday<br>Sale</h1>
                                 <p class="animated">Celebrate the season with us.</p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-1" href="shop.jsp">Shop Now</a>
+                                    <a class="animated btn-1-padding-1" href="${pageContext.request.contextPath}/product">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
+                                <img class="animated" src="/shop/assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -147,13 +147,13 @@
                                 <p class="animated">Discover our collection with leather simple backpacks. Less is more
                                     never out trend.</p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-1" href="shop.jsp">Shop Now</a>
+                                    <a class="animated btn-1-padding-1" href="${pageContext.request.contextPath}/product">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="assets/images/slider/hm-1-slider-2.png" alt="">
+                                <img class="animated" src="${pageContext.request.contextPath}/shop/assets/images/slider/hm-1-slider-2.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -241,19 +241,19 @@
         <div class="container">
             <div class="brand-logo-wrap brand-logo-mrg">
                 <div class="single-brand-logo mb-10">
-                    <img src="assets/images/brand-logo/brand-logo-1-ver-1.png" alt="brand-logo">
+                    <img src="${pageContext.request.contextPath}/shop/assets/images/brand-logo/brand-logo-1-ver-1.png" alt="brand-logo">
                 </div>
                 <div class="single-brand-logo mb-10">
-                    <img src="assets/images/brand-logo/brand-logo-2-ver-1.png" alt="brand-logo">
+                    <img src="${pageContext.request.contextPath}/shop/assets/images/brand-logo/brand-logo-2-ver-1.png" alt="brand-logo">
                 </div>
                 <div class="single-brand-logo mb-10">
-                    <img src="assets/images/brand-logo/brand-logo-3-ver-1.png" alt="brand-logo">
+                    <img src="${pageContext.request.contextPath}/shop/assets/images/brand-logo/brand-logo-3-ver-1.png" alt="brand-logo">
                 </div>
                 <div class="single-brand-logo mb-10">
-                    <img src="assets/images/brand-logo/brand-logo-4-ver-1.png" alt="brand-logo">
+                    <img src="${pageContext.request.contextPath}/shop/assets/images/brand-logo/brand-logo-4-ver-1.png" alt="brand-logo">
                 </div>
                 <div class="single-brand-logo mb-10">
-                    <img src="assets/images/brand-logo/brand-logo-5-ver-1.png" alt="brand-logo">
+                    <img src="${pageContext.request.contextPath}/shop/assets/images/brand-logo/brand-logo-5-ver-1.png" alt="brand-logo">
                 </div>
             </div>
         </div>
