@@ -49,10 +49,14 @@ public class UserServlet extends HttpServlet {
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
         if (UserService.getInstance().create(request)) {
-            toLoginPage(response);
-            return;
+            request.setAttribute("regMess", "Register successfully");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("shop/login-register.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("regMess", "Username / Email / Phone number exist");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("shop/login-register.jsp");
+            dispatcher.forward(request, response);
         }
-        response.sendRedirect("/user?register=error");
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
@@ -62,7 +66,9 @@ public class UserServlet extends HttpServlet {
             session.setAttribute("user", user);
             response.sendRedirect("/product");
         } else {
-            response.sendRedirect("/user?login=error");
+            request.setAttribute("logMess", "Wrong username / email or password");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("shop/login-register.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

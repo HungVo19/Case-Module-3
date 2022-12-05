@@ -23,7 +23,8 @@ public class Verify {
     public boolean verifyRegister(User user) throws SQLException {
         List<User> users = UserDAO.getInstance().findAll();
         for (User u : users) {
-            if (u.getUsername().equals(user.getUsername()) || u.getEmail().equals(user.getEmail())) {
+            if (u.getUsername().equals(user.getUsername()) || u.getEmail().equals(user.getEmail()) ||
+                u.getPhoneNumber().equals(user.getPhoneNumber())) {
                 return false;
             }
         }
