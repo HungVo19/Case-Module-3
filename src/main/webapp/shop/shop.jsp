@@ -30,6 +30,13 @@
     <link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
     <link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="/shop/assets/css/style.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 
 </head>
 
@@ -219,97 +226,48 @@
 
                                     </c:forEach>
 
-<%--                                    <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>--%>
+                                <%--                                    <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>--%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="sidebar-wrapper sidebar-wrapper-mrg-right">
+                        <div class="sidebar-widget mb-40">
+                            <h4 class="sidebar-widget-title">Search </h4>
+                            <div class="sidebar-search">
+                                <form class="sidebar-search-form" action="#">
+                                    <input type="text" placeholder="Search here...">
+                                    <button>
+                                        <i class="icon-magnifier"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="sidebar-widget shop-sidebar-border mb-35 pt-40">
+                            <h4 class="sidebar-widget-title">Categories </h4>
+                            <div class="shop-catigory">
+                                <ul>
+                                    <c:forEach items="${categories}" var="c">
+                                        <li><a href="#!">
+                                            <c:out value="${c.getName()}"/>
+                                        </a></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="sidebar-wrapper sidebar-wrapper-mrg-right">
-                            <div class="sidebar-widget mb-40">
-                                <h4 class="sidebar-widget-title">Search </h4>
-                                <div class="sidebar-search">
-                                    <form class="sidebar-search-form" action="#">
-                                        <input type="text" placeholder="Search here...">
-                                        <button>
-                                            <i class="icon-magnifier"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="sidebar-widget shop-sidebar-border mb-35 pt-40">
-                                <h4 class="sidebar-widget-title">Categories </h4>
-                                <div class="shop-catigory">
-                                    <ul>
-                                        <c:forEach items="${categories}" var="c">
-                                            <li><a href="#!">
-                                                <c:out value="${c.getName()}"/>
-                                            </a></li>
-                                        </c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="sidebar-widget shop-sidebar-border mb-40 pt-40">
+                        <div class="sidebar-widget shop-sidebar-border mb-40 pt-40">
+                            <form action="#" method="post">
                                 <h4 class="sidebar-widget-title">Price Filter </h4>
                                 <div class="price-filter">
                                     <span>Range:  $100.00 - 1.300.00 </span>
                                     <div id="slider-range"></div>
                                     <div class="price-slider-amount">
-                                        <div class="label-input">
-                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                        </div>
-                                        <button type="button">Filter</button>
+                                        <label for="minPrice"></label><input type="number" id="minPrice" name="minPrice" placeholder="$0"/>
+                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="maxPrice" placeholder="$100" />
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="about-us-area pt-85">
-            <div class="container">
-                <div class="border-bottom-1 about-content-pb">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                            <div class="about-us-logo">
-                                <img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="about-us-content" id="aboutUs">
-                                <h3>Introduce</h3>
-                                <p>GrOne store is a business concept is to offer fashion and quality at the best price.
-                                    It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
-                                    Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
-                                <div class="signature">
-                                    <h2>Dien Hung Truong</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="subscribe-area bg-gray pt-115 pb-115">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-md-5">
-                        <div class="section-title">
-                            <h2>keep connected</h2>
-                            <p>Get updates by subscribe our weekly newsletter</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div id="mc_embed_signup" class="subscribe-form">
-                            <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                                <div id="mc_embed_signup_scroll" class="mc-form">
-                                    <input class="email" type="email" required="" placeholder="Enter your email address" name="EMAIL" value="">
-                                    <div class="mc-news" aria-hidden="true">
-                                        <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                    </div>
-                                    <div class="clear">
-                                        <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Subscribe">
+                                    <div class="price-slider-amount">
+                                        <button type="submit">Filter</button>
                                     </div>
                                 </div>
                             </form>
@@ -318,73 +276,133 @@
                 </div>
             </div>
         </div>
-        <footer class="footer-area bg-gray pb-30">
-            <div class="container">
+    </div>
+    <div class="about-us-area pt-85">
+        <div class="container">
+            <div class="border-bottom-1 about-content-pb">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="contact-info-wrap" id="contacInfo">
-                            <div class="footer-logo">
-                                <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
-                            </div>
-                            <div class="single-contact-info">
-                                <span>Our Location</span>
-                                <p>Kent Class, Code Gym My Dinh, HD Mon City</p>
-                            </div>
-                            <div class="single-contact-info">
-                                <span>24/7 hotline:</span>
-                                <p>(+84) 966778899</p>
-                            </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="about-us-logo">
+                            <img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7.png"
+                                 alt="logo">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer-right-wrap">
-                            <div class="footer-menu">
-                                <nav>
-                                    <ul>
-                                        <li><a href="#">home</a></li>
-                                        <li><a href="#">Shop</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="social-style-2 social-style-2-mrg">
-                                <a href="#"><i class="social_twitter"></i></a>
-                                <a href="#"><i class="social_facebook"></i></a>
-                                <a href="#"><i class="social_googleplus"></i></a>
-                                <a href="#"><i class="social_instagram"></i></a>
-                                <a href="#"><i class="social_youtube"></i></a>
-                            </div>
-                            <div class="copyright">
-                                <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with <span>Norda</span> by HasThemes</a>.</p>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="about-us-content" id="aboutUs">
+                            <h3>Introduce</h3>
+                            <p>GrOne store is a business concept is to offer fashion and quality at the best price.
+                                It has since it was founded in 2022 grown into one of the best WooCommerce Fashion
+                                Theme. The shop was built and developed by Dien, Hung, Truong from C0822I1.</p>
+                            <div class="signature">
+                                <h2>Dien Hung Truong</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
     </div>
+    <div class="subscribe-area bg-gray pt-115 pb-115">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5">
+                    <div class="section-title">
+                        <h2>keep connected</h2>
+                        <p>Get updates by subscribe our weekly newsletter</p>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div id="mc_embed_signup" class="subscribe-form">
+                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
+                              target="_blank" name="mc-embedded-subscribe-form" method="post"
+                              action="https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                            <div id="mc_embed_signup_scroll" class="mc-form">
+                                <input class="email" type="email" required="" placeholder="Enter your email address"
+                                       name="EMAIL" value="">
+                                <div class="mc-news" aria-hidden="true">
+                                    <input type="text" value="" tabindex="-1"
+                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                </div>
+                                <div class="clear">
+                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
+                                           value="Subscribe">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-area bg-gray pb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact-info-wrap" id="contacInfo">
+                        <div class="footer-logo">
+                            <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
+                                             alt="logo"></a>
+                        </div>
+                        <div class="single-contact-info">
+                            <span>Our Location</span>
+                            <p>Kent Class, Code Gym My Dinh, HD Mon City</p>
+                        </div>
+                        <div class="single-contact-info">
+                            <span>24/7 hotline:</span>
+                            <p>(+84) 966778899</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-right-wrap">
+                        <div class="footer-menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="#">home</a></li>
+                                    <li><a href="#">Shop</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="social-style-2 social-style-2-mrg">
+                            <a href="#"><i class="social_twitter"></i></a>
+                            <a href="#"><i class="social_facebook"></i></a>
+                            <a href="#"><i class="social_googleplus"></i></a>
+                            <a href="#"><i class="social_instagram"></i></a>
+                            <a href="#"><i class="social_youtube"></i></a>
+                        </div>
+                        <div class="copyright">
+                            <p>Copyright © 2022 HasThemes | <a href="https://hasthemes.com/">Built with
+                                <span>Norda</span> by HasThemes</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
-    <!-- All JS is here
+<!-- All JS is here
 ============================================ -->
 
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/slick.js"></script>
-    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/jquery-ui.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/sticky-sidebar.js"></script>
-    <script src="assets/js/plugins/easyzoom.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/ajax-mail.js"></script>
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="assets/js/vendor/popper.min.js"></script>
+<script src="assets/js/vendor/bootstrap.min.js"></script>
+<script src="assets/js/plugins/slick.js"></script>
+<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="assets/js/plugins/wow.js"></script>
+<script src="assets/js/plugins/jquery-ui.js"></script>
+<script src="assets/js/plugins/magnific-popup.js"></script>
+<script src="assets/js/plugins/sticky-sidebar.js"></script>
+<script src="assets/js/plugins/easyzoom.js"></script>
+<script src="assets/js/plugins/scrollup.js"></script>
+<script src="assets/js/plugins/ajax-mail.js"></script>
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
 
 </body>
 
