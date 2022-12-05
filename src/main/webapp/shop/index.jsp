@@ -106,8 +106,13 @@
                                     </div>
                                 </div>
                                 <div class="same-style-2">
-                                    <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
-                                    <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                    <% if (user == null) { %>
+                                        <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
+                                    <% } else if (user.getRole().equals("user")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>
+                                    <% } else if (user.getRole().equals("admin")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=admin"><i class="icon-user"></i></a>
+                                    <% } %>
                                 </div>
                                 <div class="same-style-2 header-cart">
                                     <a href="cart.jsp">

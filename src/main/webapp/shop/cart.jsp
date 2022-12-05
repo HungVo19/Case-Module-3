@@ -1,3 +1,4 @@
+<%@ page import="com.example.online_electronics_store.model.User" %>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -43,9 +44,17 @@
                                     <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="header-top-right">
-                                    <div class="social-style-1 social-style-1-mrg">
+                            <div class="col-xl-8 col-lg-7 d-flex justify-content-end">
+                                <%
+                                    Object userObj = session.getAttribute("user");
+                                    User user = (User) userObj;
+                                    if (user != null) { %>
+                                <p style="color: red; margin: auto; display: inline-block">
+                                    <%= "Welcome " + user.getUsername() + "!" %>
+                                </p>
+                                <% } %>
+                                <div class="header-top-right d-flex align-items-center">
+                                    <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
                                         <a href="#"><i class="icon-social-twitter"></i></a>
                                         <a href="#"><i class="icon-social-facebook"></i></a>
                                         <a href="#"><i class="icon-social-instagram"></i></a>
@@ -94,8 +103,13 @@
                                         </div>
                                     </div>
                                     <div class="same-style-2">
+                                        <% if (user == null) { %>
                                         <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
-                                        <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                        <% } else if (user.getRole().equals("user")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>
+                                        <% } else if (user.getRole().equals("admin")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=admin"><i class="icon-user"></i></a>
+                                        <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
                                         <a href="cart.jsp">

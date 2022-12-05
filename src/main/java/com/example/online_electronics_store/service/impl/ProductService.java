@@ -73,4 +73,10 @@ public class ProductService implements IProductService {
         request.setAttribute("categories", categories);
         return  "/shop/shop.jsp";
     }
+
+    public void renderDetails(HttpServletRequest request) throws SQLException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Product product = ProductDAO.getInstance().findById(id);
+        request.setAttribute("product", product);
+    }
 }

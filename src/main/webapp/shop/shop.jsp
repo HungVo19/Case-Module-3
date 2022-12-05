@@ -37,6 +37,12 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        .add-to-cart-link, .add-to-cart-link:hover {
+            color: white;
+            text-decoration: none;
+            padding: 8px 28px;
+            display: block;
+        }
     </style>
 
 </head>
@@ -59,9 +65,9 @@
                                     Object userObj = session.getAttribute("user");
                                     User user = (User) userObj;
                                     if (user != null) { %>
-                                    <p style="color: red; margin: auto; display: inline-block">
-                                        <%= "Welcome " + user.getUsername() + "!" %>
-                                    </p>
+                                <p style="color: red; margin: auto; display: inline-block">
+                                    <%= "Welcome " + user.getUsername() + "!" %>
+                                </p>
                                 <% } %>
                                 <div class="header-top-right d-flex align-items-center">
                                     <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
@@ -113,13 +119,18 @@
                                         </div>
                                     </div>
                                     <div class="same-style-2">
+                                        <% if (user == null) { %>
                                         <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
-<%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                        <% } else if (user.getRole().equals("user")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>
+                                        <% } else if (user.getRole().equals("admin")) { %>
+                                        <a href="${pageContext.request.contextPath}/user?action=admin"><i class="icon-user"></i></a>
+                                        <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
                                         <a href="cart.jsp">
                                             <i class="icon-basket-loaded"></i>
-<%--                                            <span class="pro-count red">02</span>--%>
+                                            <%--                                            <span class="pro-count red">02</span>--%>
                                         </a>
                                     </div>
                                 </div>
@@ -173,7 +184,7 @@
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
-                                                        <a href="product-details.jsp">
+                                                        <a href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}">
                                                             <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
                                                         <c:if test="${!p.isStockStatus()}">
@@ -192,7 +203,7 @@
                                                             </div>
                                                             <span>(5)</span>
                                                         </div>
-                                                        <h3><a href="product-details.html"><c:out value="${p.getName()}"/></a></h3>
+                                                        <h3><a href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
                                                         <div class="product-price-2">
                                                             <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
                                                         </div>
@@ -213,7 +224,9 @@
                                                             <span class="new-price"><c:out value="${p.getPrice()}"/></span>
                                                         </div>
                                                         <div class="pro-add-to-cart">
-                                                            <button title="Add to Cart">Add To Cart</button>
+                                                            <button style="border-radius: 50px" class="p-0" title="Add to Cart">
+                                                                <a class="add-to-cart-link" href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}">Add To Cart</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,7 +245,6 @@
                                         <c:if test="${i != index}">
                                             <li><a href="/product?action=view&page=${i}">${i}</a></li>
                                         </c:if>
-
                                     </c:forEach>
 
                                 <%--                                    <li><a class="next" href="#"><i class="icon-arrow-right"></i></a></li>--%>

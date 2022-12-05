@@ -44,18 +44,25 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-5">
                             <div class="header-offer-wrap">
-                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
-                                </p>
+                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
                             </div>
                         </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="header-top-right">
-                                <div class="social-style-1 social-style-1-mrg">
-                                    <a href="#!"><i class="icon-social-twitter"></i></a>
-                                    <a href="#!"><i class="icon-social-facebook"></i></a>
-                                    <a href="#!"><i class="icon-social-instagram"></i></a>
-                                    <a href="#!"><i class="icon-social-youtube"></i></a>
-                                    <a href="#!"><i class="icon-social-pinterest"></i></a>
+                        <div class="col-xl-8 col-lg-7 d-flex justify-content-end">
+                            <%
+                                Object userObj = session.getAttribute("user");
+                                User user = (User) userObj;
+                                if (user != null) { %>
+                            <p style="color: red; margin: auto; display: inline-block">
+                                <%= "Welcome " + user.getUsername() + "!" %>
+                            </p>
+                            <% } %>
+                            <div class="header-top-right d-flex align-items-center">
+                                <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
+                                    <a href="#"><i class="icon-social-twitter"></i></a>
+                                    <a href="#"><i class="icon-social-facebook"></i></a>
+                                    <a href="#"><i class="icon-social-instagram"></i></a>
+                                    <a href="#"><i class="icon-social-youtube"></i></a>
+                                    <a href="#"><i class="icon-social-pinterest"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +72,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="${pageContext.request.contextPath}/product?action=home"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                <a href="${pageContext.request.contextPath}/product?action=home"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7">
@@ -74,15 +81,8 @@
                                     <ul>
                                         <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
                                         </li>
-                                        <%
-                                            Object userObj = session.getAttribute("user");
-                                            User user = (User) userObj;
-                                            if (user == null) {
-                                        %>
                                         <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
-                                                <% } else if (user.getRole().equals("user")) { %>
-                                        <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
-                                            <% } %>
+                                        </li>
                                         </li>
                                         <li><a href="#aboutUs">ABOUT US </a>
                                         </li>
@@ -106,9 +106,7 @@
                                     </div>
                                 </div>
                                 <div class="same-style-2">
-                                    <%
-                                        if (userObj == null) {
-                                    %>
+                                    <% if (user == null) { %>
                                     <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
                                     <% } else if (user.getRole().equals("user")) { %>
                                     <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>

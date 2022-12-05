@@ -27,15 +27,9 @@ public class ProductServlet extends HttpServlet {
                 case "view":
                     displayByPage(request, response);
                     break;
-//                case "signup":
-//                    signup(request, response);
-//                    break;
-//                case "login":
-//                    login(request, response);
-//                    break;
-//                case "update":
-//                    // update
-//                    break;
+                case "detail":
+                    displayDetail(request, response);
+                    break;
                 default:
                     displayDefault(request, response);
             }
@@ -58,6 +52,12 @@ public class ProductServlet extends HttpServlet {
     private void displayByPage(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String path = ProductService.getInstance().renderPage(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+        dispatcher.forward(request, response);
+    }
+
+    private void displayDetail(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ProductService.getInstance().renderDetails(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/product-details.jsp");
         dispatcher.forward(request, response);
     }
 

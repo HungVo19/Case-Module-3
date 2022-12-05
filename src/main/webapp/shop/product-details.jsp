@@ -17,20 +17,33 @@
     <!-- All CSS is here
 	============================================ -->
 
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="/shop/assets/css/style.css">
+    <style>
+        .add-to-cart-btn {
+            color: white;
+            background-color: black;
+            border: none;
+            padding: 14px 50px 13px 50px;
+            border-radius: 0;
+            font-size: 16px;
+        }
 
+        .add-to-cart-btn:hover {
+            background-color: #ff2f2f;;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,18 +56,25 @@
                         <div class="row">
                             <div class="col-xl-4 col-lg-5">
                                 <div class="header-offer-wrap">
-                                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
-                                    </p>
+                                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="header-top-right">
-                                    <div class="social-style-1 social-style-1-mrg">
-                                        <a href="#!"><i class="icon-social-twitter"></i></a>
-                                        <a href="#!"><i class="icon-social-facebook"></i></a>
-                                        <a href="#!"><i class="icon-social-instagram"></i></a>
-                                        <a href="#!"><i class="icon-social-youtube"></i></a>
-                                        <a href="#!"><i class="icon-social-pinterest"></i></a>
+                            <div class="col-xl-8 col-lg-7 d-flex justify-content-end">
+                                <%
+                                    Object userObj = session.getAttribute("user");
+                                    User user = (User) userObj;
+                                    if (user != null) { %>
+                                <p style="color: red; margin: auto; display: inline-block">
+                                    <%= "Welcome " + user.getUsername() + "!" %>
+                                </p>
+                                <% } %>
+                                <div class="header-top-right d-flex align-items-center">
+                                    <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
+                                        <a href="#"><i class="icon-social-twitter"></i></a>
+                                        <a href="#"><i class="icon-social-facebook"></i></a>
+                                        <a href="#"><i class="icon-social-instagram"></i></a>
+                                        <a href="#"><i class="icon-social-youtube"></i></a>
+                                        <a href="#"><i class="icon-social-pinterest"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +84,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="${pageContext.request.contextPath}/product?action=home"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                    <a href="${pageContext.request.contextPath}/product?action=home"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-7">
@@ -73,15 +93,8 @@
                                         <ul>
                                             <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
                                             </li>
-                                            <%
-                                                Object userObj = session.getAttribute("user");
-                                                User user = (User) userObj;
-                                                if (user == null) {
-                                            %>
                                             <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
-                                                    <% } else if (user.getRole().equals("user")) { %>
-                                            <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
-                                                <% } %>
+                                            </li>
                                             </li>
                                             <li><a href="#aboutUs">ABOUT US </a>
                                             </li>
@@ -105,9 +118,7 @@
                                         </div>
                                     </div>
                                     <div class="same-style-2">
-                                        <%
-                                            if (userObj == null) {
-                                        %>
+                                        <% if (user == null) { %>
                                         <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
                                         <% } else if (user.getRole().equals("user")) { %>
                                         <a href="${pageContext.request.contextPath}/user?action=account"><i class="icon-user"></i></a>
@@ -145,20 +156,17 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-fixed-img">
-
-                            <div class="easyzoom-style">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/product-9.jpg">
-                                        <img src="assets/images/product/product-9.jpg" alt="">
-                                    </a>
+                            <div class="img-con">
+                                <div class="img">
+                                    <img style="width: 100%; height: 100%" src="${pageContext.request.contextPath}/${product.getImage()}" alt="">
                                 </div>
-                                <a class="easyzoom-pop-up img-popup" href="assets/images/product/product-9.jpg"><i class="icon-size-fullscreen"></i></a>
+<%--                                <a class="easyzoom-pop-up img-popup" href="/shop/assets/images/product/product-9.jpg"><i class="icon-size-fullscreen"></i></a>--%>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-content pro-details-content-mrg">
-                            <h2>Simple Black T-Shirt</h2>
+                            <h2><c:out value="${product.getName()}"/></h2>
                             <div class="product-ratting-review-wrap">
                                 <div class="product-ratting-digit-wrap">
                                     <div class="product-ratting">
@@ -172,37 +180,35 @@
                                         <span>5.0</span>
                                     </div>
                                 </div>
-                                <div class="product-review-order">
-                                    <span>62 Reviews</span>
-                                    <span>242 orders</span>
-                                </div>
                             </div>
                             <p>Seamlessly predominate enterprise metrics without performance based process improvements.</p>
-                            <div class="pro-details-quality">
-                                <span>Quantity:</span>
-                                <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                                </div>
-                            </div>
-                            <div class="product-details-meta">
-                                <ul>
-                                    <li><span>Categories:</span> <a href="#">Woman</a></li>
-                                </ul>
-                            </div>
-                            <div class="pro-details-action-wrap">
-                                <div class="pro-details-add-to-cart">
-                                    <a title="Add to Cart" href="#">Add To Cart </a>
-                                </div>
-                                <div class="pro-details-action">
-                                    <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
-                                    <div class="product-dec-social">
-                                        <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
-                                        <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
-                                        <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
-                                        <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                            <form action="cart?action=add?id=${product.getId()}" method="post">
+                                <div class="pro-details-quality">
+                                    <span>Quantity:</span>
+                                    <div class="cart-plus-minus">
+                                        <input class="cart-plus-minus-box" type="text" name="quantity" value="1">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="product-details-meta">
+                                    <ul>
+                                        <li><span>Categories:</span> <a href="#"><c:out value="${product.getCategory().getName()}"/></a></li>
+                                    </ul>
+                                </div>
+                                <div class="pro-details-action-wrap">
+                                    <div class="pro-details-add-to-cart">
+                                        <button class="add-to-cart-btn" title="Add to Cart">Add To Cart </button>
+                                    </div>
+                                    <div class="pro-details-action">
+                                        <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
+                                        <div class="product-dec-social">
+                                            <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
+                                            <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
+                                            <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
+                                            <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -214,76 +220,18 @@
                     <div class="col-lg-12">
                         <div class="dec-review-topbar nav mb-45">
                             <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
-                            <a data-bs-toggle="tab" href="#des-details2">Specification</a>
-                            <a data-bs-toggle="tab" href="#des-details3">Meterials </a>
                             <a data-bs-toggle="tab" href="#des-details4">Reviews and Ratting </a>
                         </div>
                         <div class="tab-content dec-review-bottom">
                             <div id="des-details1" class="tab-pane active">
                                 <div class="description-wrap">
-                                    <p>Crafted in premium watch quality, fenix Chronos is the first Garmin timepiece to combine a durable metal case with integrated performance GPS to support navigation and sport. In the tradition of classic tool watches it features a tough design and a set of modern meaningful tools.</p>
-                                    <p> advanced performance metrics for endurance sports, Garmin quality navigation features and smart notifications. In fenix Chronos top-tier performance meets sophisticated design in a highly evolved timepiece that fits your style anywhere, anytime. Solid brushed 316L stainless steel case with brushed stainless steel bezel and integrated EXOTM antenna for GPS + GLONASS support. High-strength scratch resistant sapphire crystal. Brown vintage leather strap with hand-sewn contrast stitching and nubuck inner lining and quick release mechanism.</p>
+                                    <p><c:out value="${product.getDescription()}"/></p>
                                 </div>
                             </div>
-                            <div id="des-details2" class="tab-pane">
-                                <div class="specification-wrap table-responsive">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="title width1">Name</td>
-                                                <td>Salwar Kameez</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">SKU</td>
-                                                <td>0x48e2c</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Models</td>
-                                                <td>FX 829 v1</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Categories</td>
-                                                <td>Digital Print</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Size</td>
-                                                <td>60’’ x 40’’</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Brand </td>
-                                                <td>Individual Collections</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Color</td>
-                                                <td>Black, White</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div id="des-details3" class="tab-pane">
-                                <div class="specification-wrap table-responsive">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="title width1">Top</td>
-                                                <td>Cotton Digital Print Chain Stitch Embroidery Work</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Bottom</td>
-                                                <td>Cotton Cambric</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="title width1">Dupatta</td>
-                                                <td>Digital Printed Cotton Malmal With Chain Stitch</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+
                             <div id="des-details4" class="tab-pane">
                                 <div class="review-wrapper">
-                                    <h2>1 review for Sleeve Button Cowl Neck</h2>
+                                    <h2>1 review for <c:out value="${product.getName()}"/></h2>
                                     <div class="single-review">
                                         <div class="review-content">
                                             <div class="review-top-wrap">
@@ -370,198 +318,13 @@
                 </div>
             </div>
         </div>
-        <div class="related-product pb-115">
-            <div class="container">
-                <div class="section-title mb-45 text-center">
-                    <h2>Related Product</h2>
-                </div>
-                <div class="related-product-active">
-                    <div class="product-plr-1">
-                        <div class="single-product-wrap">
-                            <div class="product-img product-img-zoom mb-15">
-                                <a>
-                                    <img src="assets/images/product/product-12.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content-wrap-2 text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap-2 product-content-position text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                                <div class="pro-add-to-cart">
-                                    <button title="Add to Cart">Add To Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-plr-1">
-                        <div class="single-product-wrap">
-                            <div class="product-img product-img-zoom mb-15">
-                                <a>
-                                    <img src="assets/images/product/product-11.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content-wrap-2 text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap-2 product-content-position text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                                <div class="pro-add-to-cart">
-                                    <button title="Add to Cart">Add To Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-plr-1">
-                        <div class="single-product-wrap">
-                            <div class="product-img product-img-zoom mb-15">
-                                <a>
-                                    <img src="assets/images/product/product-4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content-wrap-2 text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap-2 product-content-position text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                                <div class="pro-add-to-cart">
-                                    <button title="Add to Cart">Add To Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-plr-1">
-                        <div class="single-product-wrap">
-                            <div class="product-img product-img-zoom mb-15">
-                                <a>
-                                    <img src="assets/images/product/product-10.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content-wrap-2 text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap-2 product-content-position text-center">
-                                <div class="product-rating-wrap">
-                                    <div class="product-rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star gray"></i>
-                                    </div>
-                                    <span>(2)</span>
-                                </div>
-                                <h3><a href="product-details.html">Basic Joggin Shorts</a></h3>
-                                <div class="product-price-2">
-                                    <span>$20.50</span>
-                                </div>
-                                <div class="pro-add-to-cart">
-                                    <button title="Add to Cart">Add To Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="about-us-area pt-85">
             <div class="container">
                 <div class="border-bottom-1 about-content-pb">
                     <div class="row">
                         <div class="col-lg-3 col-md-3">
                             <div class="about-us-logo">
-                                <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                                <img src="/shop/assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -612,7 +375,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="contact-info-wrap" id="contacInfo">
                             <div class="footer-logo">
-                                <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                <a href="#"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                             <div class="single-contact-info">
                                 <span>Our Location</span>
@@ -656,23 +419,23 @@
     <!-- All JS is here
 ============================================ -->
 
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/slick.js"></script>
-    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/jquery-ui.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/sticky-sidebar.js"></script>
-    <script src="assets/js/plugins/easyzoom.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/ajax-mail.js"></script>
+    <script src="/shop/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/shop/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+    <script src="/shop/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+    <script src="/shop/assets/js/vendor/popper.min.js"></script>
+    <script src="/shop/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/shop/assets/js/plugins/slick.js"></script>
+    <script src="/shop/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/shop/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/shop/assets/js/plugins/wow.js"></script>
+    <script src="/shop/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/shop/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/shop/assets/js/plugins/sticky-sidebar.js"></script>
+    <script src="/shop/assets/js/plugins/easyzoom.js"></script>
+    <script src="/shop/assets/js/plugins/scrollup.js"></script>
+    <script src="/shop/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+    <script src="/shop/assets/js/main.js"></script>
 
 </body>
 
