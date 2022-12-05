@@ -63,16 +63,17 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.jsp"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                    <a href="${pageContext.request.contextPath}/product?action=home"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-7">
                                 <div class="main-menu main-menu-padding-1 main-menu-lh-1">
                                     <nav>
                                         <ul>
-                                            <li><a href="index.jsp">HOME </a>
+                                            <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
                                             </li>
-                                            <li><a href="shop.jsp">SHOP </a>
+                                            <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
+                                            </li>
                                             </li>
                                             <li><a href="#aboutUs">ABOUT US </a>
                                             </li>
@@ -96,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="same-style-2">
-                                        <a href="login-register.jsp"><i class="icon-user"></i></a>
+                                        <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
 <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
                                     </div>
                                     <div class="same-style-2 header-cart">
@@ -158,7 +159,7 @@
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
                                                         <a href="product-details-fixed-img.jsp">
-                                                            <img src="${pageContext.request.contextPath}/shop/assets/images/product/Basic-Sneaker.jpg" alt="">
+                                                            <img src="/shop/assets/images/product/product-1.jpg" alt="">
                                                         </a>
                                                         <span class="pro-badge left bg-red">-20%</span>
                                                     </div>

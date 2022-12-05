@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body onload="displayMess()">
 
 <div class="main-wrapper">
     <header class="header-area">
@@ -131,18 +131,18 @@
                             </a>
                         </div>
                         <div class="tab-content">
-                            <div id="lg1" class="tab-pane active">
+                            <div id="lg1" class="mess tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="/user?action=login" method="post">
                                             <input type="text" name="account" placeholder="Username or Email"
                                                    required>
-                                            <input type="password" name="password" id="Password"
+                                            <input type="password" name="password" id="loginPass"
                                                    placeholder="Password" required>
                                             <span>
                                                 <i class="fa fa-eye fa-lg" id="toggleLoginPass"
-                                                       style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
-                                                       onclick="showLoginPass()">
+                                                   style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
+                                                   onclick="showLoginPass()">
                                                 </i>
                                             </span>
                                             <div class="button-box">
@@ -153,19 +153,20 @@
                                                 <%--                                                    </div>--%>
                                                 <button type="submit">Login</button>
                                             </div>
+                                            <p id="log-mess" style="color: red" class="mt-3"><c:out value="${logMess == null ? '' : logMess}"/></p>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div id="lg2" class="tab-pane">
+                            <div id="lg2" class="mess tab-pane">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="/user?action=register" method="post">
-                                            <input type="text" name="user-name" pattern="^\S*$" title="User name can not contain space" placeholder="Username" required>
+                                            <input type="text" name="username" pattern="^\S*$" title="User name can not contain space" placeholder="Username" required>
                                             <input type="password" pattern="^\S*{6,8}$"
                                                    title="Password must be 6 -8 characters without space"
                                                    id="createPass"
-                                                   name="user-password" placeholder="Password" required
+                                                   name="password" placeholder="Password" required
                                                    onchange="confirmPassword()">
                                             </span>
                                             <i class="fa fa-eye fa-lg" id="toggleCreatePass"
@@ -180,16 +181,17 @@
                                                style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
                                                onclick="showConfirmPass()"></i>
                                             </span>
-                                            <input type="tel" name="user-phone-number"
+                                            <input type="tel" name="phone-number"
                                                    pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
                                                    title="Not a valid phone number"
                                                    placeholder="Phone number"
                                                    required>
-                                            <input type="email" name="user-email" placeholder="Email" required>
-                                            <input type="text" name="user-address" placeholder="Address" required>
+                                            <input type="email" name="email" placeholder="Email" required>
+                                            <input type="text" name="address" placeholder="Address" required>
                                             <div class="button-box">
                                                 <button type="submit">Register</button>
                                             </div>
+                                            <p id="reg-mess" style="color: red" class="mt-3"><c:out value="${regMess == null ? '' : regMess}"/></p>
                                         </form>
                                     </div>
                                 </div>
@@ -206,7 +208,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <div class="about-us-logo">
-                            <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                            <img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
@@ -262,7 +264,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="contact-info-wrap" id="contacInfo">
                         <div class="footer-logo">
-                            <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
+                            <a href="#"><img src="/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
                                              alt="logo"></a>
                         </div>
                         <div class="single-contact-info">
@@ -368,6 +370,30 @@
             pass.type = 'password';
             togglePass.className = 'fa fa-eye fa-lg';
         }
+    }
+
+    function displayMess() {
+        let logMess = document.getElementById("log-mess");
+        let regMess = document.getElementById("reg-mess");
+        let logMessElement = document.getElementById("lg1");
+        let regMessElement = document.getElementById("lg2");
+        let messElement = document.getElementsByClassName("mess");
+        for (const mess of messElement) {
+            mess.classList.remove("active");
+        }
+        if (logMess.innerText !== "") {
+            logMessElement.classList.add("active");
+        } else if (regMess.innerText !== "") {
+            regMessElement.classList.add("active");
+            if (regMess.innerText === "Register successfully") {
+                regMess.style.color = "green";
+            } else {
+                regMess.style.color = "red";
+            }
+        } else {
+            logMessElement.classList.add("active");
+        }
+
     }
 </script>
 <!-- Main JS -->
