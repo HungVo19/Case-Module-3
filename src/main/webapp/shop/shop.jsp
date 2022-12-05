@@ -1,3 +1,4 @@
+<%@ page import="com.example.online_electronics_store.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -53,9 +54,17 @@
                                     <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="header-top-right">
-                                    <div class="social-style-1 social-style-1-mrg">
+                            <div class="col-xl-8 col-lg-7 d-flex justify-content-end">
+                                <%
+                                    Object userObj = session.getAttribute("user");
+                                    User user = (User) userObj;
+                                    if (user != null) { %>
+                                    <p style="color: red; margin: auto; display: inline-block">
+                                        <%= "Welcome " + user.getUsername() + "!" %>
+                                    </p>
+                                <% } %>
+                                <div class="header-top-right d-flex align-items-center">
+                                    <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
                                         <a href="#"><i class="icon-social-twitter"></i></a>
                                         <a href="#"><i class="icon-social-facebook"></i></a>
                                         <a href="#"><i class="icon-social-instagram"></i></a>
@@ -164,7 +173,7 @@
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
-                                                        <a href="product-details-fixed-img.jsp">
+                                                        <a href="product-details.jsp">
                                                             <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
                                                         <c:if test="${!p.isStockStatus()}">
@@ -199,7 +208,7 @@
                                                             </div>
                                                             <span>(5)</span>
                                                         </div>
-                                                        <h3><a href="product-details-fixed-img.jsp"><c:out value="${p.getName()}"/></a></h3>
+                                                        <h3><a href="product-details.jsp"><c:out value="${p.getName()}"/></a></h3>
                                                         <div class="product-price-2">
                                                             <span class="new-price"><c:out value="${p.getPrice()}"/></span>
                                                         </div>

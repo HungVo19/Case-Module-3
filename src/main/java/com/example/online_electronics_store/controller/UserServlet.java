@@ -74,10 +74,15 @@ public class UserServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            response.sendRedirect("/product");
+            if (user.getRole().equals("user")) {
+                response.sendRedirect("/product");
+            } else if (user.getRole().equals("admin")) {
+                response.sendRedirect("http://localhost:8080/shop/admin-page.jsp");
+            }
+
         } else {
             request.setAttribute("logMess", "Wrong username / email or password");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("shop/login-register.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8080/shop/login-register.jsp");
             dispatcher.forward(request, response);
         }
     }

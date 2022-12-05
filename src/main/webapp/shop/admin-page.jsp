@@ -36,78 +36,79 @@
 <body>
 
 <div class="main-wrapper">
-  <header class="header-area">
-    <div class="container">
-      <div class="header-large-device">
-        <div class="header-top header-top-ptb-1 border-bottom-1">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5">
-              <div class="header-offer-wrap">
-                <p><i class="icon-user"></i> GROUP ONE  e-commerce shop <span>ADMIN</span> page</p>
-              </div>
-            </div>
-            <div class="col-xl-8 col-lg-7">
-              <div class="header-top-right">
-                <div class="social-style-1 social-style-1-mrg">
-                  <a href="#"><i class="icon-social-twitter"></i></a>
-                  <a href="#"><i class="icon-social-facebook"></i></a>
-                  <a href="#"><i class="icon-social-instagram"></i></a>
-                  <a href="#"><i class="icon-social-youtube"></i></a>
-                  <a href="#"><i class="icon-social-pinterest"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="header-bottom">
-          <div class="row align-items-center">
-            <div class="col-xl-2 col-lg-9">
-              <div class="logo">
-                <a href="${pageContext.request.contextPath}/shop/index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
-              </div>
-            </div>
-            <div class="col-xl-8 col-lg-7">
-              <div class="main-menu main-menu-padding-1 main-menu-lh-1">
-                <nav>
-                  <ul>
-                    <li><a ></a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div class="col-xl-2 col-lg-3">
-              <div class="header-action header-action-flex header-action-mrg-right">
-                <div class="same-style-2 header-search-1">
-                  <a class="search-toggle" href="#">
-                    <i class="icon-magnifier s-open"></i>
-                    <i class="icon_close s-close"></i>
-                  </a>
-                  <div class="search-wrap-1">
-                    <form action="#">
-                      <input placeholder="Search product" type="text">
-                      <button class="button-search"><i class="icon-magnifier"></i></button>
-                    </form>
+    <header class="header-area">
+        <div class="container">
+            <div class="header-large-device">
+                <div class="header-top header-top-ptb-1 border-bottom-1">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="header-offer-wrap">
+                                <p><i class="icon-user"></i> GROUP ONE  e-commerce shop <span>ADMIN</span> page</p>
+                            </div>
+                        </div>
+                    <div class="col-xl-8 col-lg-7">
+                      <div class="header-top-right">
+                        <div class="social-style-1 social-style-1-mrg">
+                          <a href="#"><i class="icon-social-twitter"></i></a>
+                          <a href="#"><i class="icon-social-facebook"></i></a>
+                          <a href="#"><i class="icon-social-instagram"></i></a>
+                          <a href="#"><i class="icon-social-youtube"></i></a>
+                          <a href="#"><i class="icon-social-pinterest"></i></a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div class="header-bottom">
+                    <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-9">
+                            <div class="logo">
+                                <a href="${pageContext.request.contextPath}/shop/index.jsp">
+                                    <img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-1">
+                                <nav>
+                                    <ul>
+                                        <li><a></a></li>
+                                    </ul>
+                                </nav>
+                             </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3">
+                            <div class="header-action header-action-flex header-action-mrg-right">
+                                <div class="same-style-2 header-search-1">
+                                    <a class="search-toggle" href="#">
+                                        <i class="icon-magnifier s-open"></i>
+                                        <i class="icon_close s-close"></i>
+                                    </a>
+                                    <div class="search-wrap-1">
+                                        <form action="#">
+                                            <input placeholder="Search product" type="text">
+                                            <button class="button-search"><i class="icon-magnifier"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
+    </header>
+    <div class="breadcrumb-area bg-gray">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li class="active"><h3 style="color: red">ADMIN PAGE</h3> </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </header>
-  <div class="breadcrumb-area bg-gray">
-    <div class="container">
-      <div class="breadcrumb-content text-center">
-        <ul>
-          <li class="active"><h3 style="color: red">ADMIN PAGE</h3> </li>
-        </ul>
-      </div>
-    </div>
-  </div>
   <!-- my account wrapper start -->
-  <div class="my-account-wrapper pt-120 pb-120">
+    <div class="my-account-wrapper pt-120 pb-120">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -180,9 +181,9 @@
     </div>
   </div>
   <!-- my account wrapper end -->
-  <div class="subscribe-area bg-gray pt-15 pb-15">
+    <div class="subscribe-area bg-gray pt-15 pb-15">
   </div>
-  <footer class="footer-area bg-gray pb-30">
+    <footer class="footer-area bg-gray pb-30">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-md-6">
