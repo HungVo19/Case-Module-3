@@ -132,11 +132,11 @@
 
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/Simple-Black-T-Shirt.jpg">
-                                        <img src="assets/images/product/Simple-Black-T-Shirt.jpg" alt="">
+                                    <a href="assets/images/product/product-9.jpg">
+                                        <img src="assets/images/product/product-9.jpg" alt="">
                                     </a>
                                 </div>
-                                <a class="easyzoom-pop-up img-popup" href="assets/images/product/Simple-Black-T-Shirt.jpg"><i class="icon-size-fullscreen"></i></a>
+                                <a class="easyzoom-pop-up img-popup" href="assets/images/product/product-9.jpg"><i class="icon-size-fullscreen"></i></a>
                             </div>
                         </div>
                     </div>
@@ -364,7 +364,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/GRONE-Simple-Backpack.jpg" alt="">
+                                    <img src="assets/images/product/product-12.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -408,7 +408,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/Simple-Blue-T-Shirt.jpg" alt="">
+                                    <img src="assets/images/product/product-11.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -452,7 +452,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/GRONE-Rounded-Sunglasses.jpg" alt="">
+                                    <img src="assets/images/product/product-4.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
@@ -496,7 +496,7 @@
                         <div class="single-product-wrap">
                             <div class="product-img product-img-zoom mb-15">
                                 <a>
-                                    <img src="assets/images/product/Basic-Sneaker.jpg" alt="">
+                                    <img src="assets/images/product/product-10.jpg" alt="">
                                 </a>
                             </div>
                             <div class="product-content-wrap-2 text-center">
