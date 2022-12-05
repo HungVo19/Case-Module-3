@@ -71,7 +71,6 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void sortProducts(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
-//        String path = ProductService.getInstance().renderDefault(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/shop.jsp");
         String condition = request.getParameter("condition");
         List<Product> sortedList = ProductDAO.getInstance().sort(condition);

@@ -157,10 +157,10 @@
                             <div class="product-sorting-wrapper">
                                 <div class="product-show shorting-style">
                                     <label>Sort by :</label>
-                                    <select>
-                                        <option value="">Default</option>
-                                        <option value=""> Name</option>
-                                        <option value=""> price</option>
+                                    <select onchange="sort(this)">
+                                        <option >Default</option>
+                                        <option value="/product?action=sort&condition=name"> name</option>
+                                        <option value="/product?action=sort&condition=price"> price</option>
                                     </select>
                                 </div>
                             </div>
