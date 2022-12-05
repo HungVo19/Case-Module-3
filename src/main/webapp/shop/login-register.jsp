@@ -137,7 +137,7 @@
                                         <form action="/user?action=login" method="post">
                                             <input type="text" name="account" placeholder="Username or Email"
                                                    required>
-                                            <input type="password" name="password" id="Password"
+                                            <input type="password" name="password" id="loginPass"
                                                    placeholder="Password" required>
                                             <span>
                                                 <i class="fa fa-eye fa-lg" id="toggleLoginPass"
