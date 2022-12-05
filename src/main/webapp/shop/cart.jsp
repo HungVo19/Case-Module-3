@@ -143,7 +143,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/images/product/Simple-Black-T-Shirt.jpg" alt=""></a>
+                                                <a href="#"><img src="assets/images/product/product-9.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name"><a href="#">Simple Black T-Shirt</a></td>
                                             <td class="product-price-cart"><span class="amount">$260.00</span></td>

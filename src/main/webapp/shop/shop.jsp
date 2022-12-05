@@ -157,7 +157,7 @@
                                             <div class="single-product-wrap mb-35">
                                                 <div class="product-img product-img-zoom mb-15">
                                                     <a href="product-details-fixed-img.jsp">
-                                                        <img src="assets/images/product/Make-Thing-Happen-T-Shirt.jpg" alt="">
+                                                        <img src="assets/images/product/product-2.jpg" alt="">
                                                     </a>
                                                     <span class="pro-badge left bg-red">-20%</span>
                                                 </div>
