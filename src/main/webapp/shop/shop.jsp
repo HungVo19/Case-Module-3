@@ -1,3 +1,4 @@
+<%@ page import="com.example.online_electronics_store.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -42,193 +43,195 @@
 
 <body>
 
-<div class="main-wrapper">
-    <header class="header-area">
-        <div class="container">
-            <div class="header-large-device">
-                <div class="header-top header-top-ptb-1 border-bottom-1">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="header-offer-wrap">
-                                <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="header-top-right">
-                                <div class="social-style-1 social-style-1-mrg">
-                                    <a href="#"><i class="icon-social-twitter"></i></a>
-                                    <a href="#"><i class="icon-social-facebook"></i></a>
-                                    <a href="#"><i class="icon-social-instagram"></i></a>
-                                    <a href="#"><i class="icon-social-youtube"></i></a>
-                                    <a href="#"><i class="icon-social-pinterest"></i></a>
+    <div class="main-wrapper">
+        <header class="header-area">
+            <div class="container">
+                <div class="header-large-device">
+                    <div class="header-top header-top-ptb-1 border-bottom-1">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="header-offer-wrap">
+                                    <p><i class="icon-paper-plane"></i> FREE SHIPPING world wide for all orders over <span>$199</span></p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-bottom">
-                    <div class="row align-items-center">
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="logo">
-                                <a href="${pageContext.request.contextPath}/product?action=home"><img
-                                        src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png"
-                                        alt="logo"></a>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="main-menu main-menu-padding-1 main-menu-lh-1">
-                                <nav>
-                                    <ul>
-                                        <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
-                                        </li>
-                                        <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
-                                        </li>
-                                        </li>
-                                        <li><a href="#aboutUs">ABOUT US </a>
-                                        </li>
-                                        <li><a href="#contacInfo">CONTACT </a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3">
-                            <div class="header-action header-action-flex header-action-mrg-right">
-                                <div class="same-style-2 header-search-1">
-                                    <a class="search-toggle" href="#">
-                                        <i class="icon-magnifier s-open"></i>
-                                        <i class="icon_close s-close"></i>
-                                    </a>
-                                    <div class="search-wrap-1">
-                                        <form action="#">
-                                            <input placeholder="Search product" type="text">
-                                            <button class="button-search"><i class="icon-magnifier"></i></button>
-                                        </form>
+                            <div class="col-xl-8 col-lg-7 d-flex justify-content-end">
+                                <%
+                                    Object userObj = session.getAttribute("user");
+                                    User user = (User) userObj;
+                                    if (user != null) { %>
+                                    <p style="color: red; margin: auto; display: inline-block">
+                                        <%= "Welcome " + user.getUsername() + "!" %>
+                                    </p>
+                                <% } %>
+                                <div class="header-top-right d-flex align-items-center">
+                                    <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
+                                        <a href="#"><i class="icon-social-twitter"></i></a>
+                                        <a href="#"><i class="icon-social-facebook"></i></a>
+                                        <a href="#"><i class="icon-social-instagram"></i></a>
+                                        <a href="#"><i class="icon-social-youtube"></i></a>
+                                        <a href="#"><i class="icon-social-pinterest"></i></a>
                                     </div>
                                 </div>
-                                <div class="same-style-2">
-                                    <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
-                                    <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="${pageContext.request.contextPath}/product?action=home"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                                 </div>
-                                <div class="same-style-2 header-cart">
-                                    <a href="cart.jsp">
-                                        <i class="icon-basket-loaded"></i>
-                                        <%--                                            <span class="pro-count red">02</span>--%>
-                                    </a>
+                            </div>
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="main-menu main-menu-padding-1 main-menu-lh-1">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
+                                            </li>
+                                            <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
+                                            </li>
+                                            </li>
+                                            <li><a href="#aboutUs">ABOUT US </a>
+                                            </li>
+                                            <li><a href="#contacInfo">CONTACT </a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="header-action header-action-flex header-action-mrg-right">
+                                    <div class="same-style-2 header-search-1">
+                                        <a class="search-toggle" href="#">
+                                            <i class="icon-magnifier s-open"></i>
+                                            <i class="icon_close s-close"></i>
+                                        </a>
+                                        <div class="search-wrap-1">
+                                            <form action="#">
+                                                <input placeholder="Search product" type="text">
+                                                <button class="button-search"><i class="icon-magnifier"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="same-style-2">
+                                        <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
+<%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
+                                    </div>
+                                    <div class="same-style-2 header-cart">
+                                        <a href="cart.jsp">
+                                            <i class="icon-basket-loaded"></i>
+<%--                                            <span class="pro-count red">02</span>--%>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="breadcrumb-area bg-gray">
-        <div class="container">
-            <div class="breadcrumb-content text-center">
-                <ul>
-                    <li>
-                        <a href="index.jsp">Home</a>
-                    </li>
-                    <li class="active">Shop</li>
-                </ul>
+        <div class="breadcrumb-area bg-gray">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <ul>
+                        <li>
+                            <a href="index.jsp">Home</a>
+                        </li>
+                        <li class="active">Shop </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="shop-area pt-120 pb-120">
-        <div class="container">
-            <div class="row flex-row-reverse">
-                <div class="col-lg-9">
-                    <div class="shop-topbar-wrapper">
-                        <div class="shop-topbar-left">
-                            <div class="view-mode nav">
-                                <a class="active" href="#shop-1" data-bs-toggle="tab"><i class="icon-grid"></i></a>
-                                <%--                                    <a href="#shop-2" data-bs-toggle="tab"><i class="icon-menu"></i></a>--%>
+        <div class="shop-area pt-120 pb-120">
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-9">
+                        <div class="shop-topbar-wrapper">
+                            <div class="shop-topbar-left">
+                                <div class="view-mode nav">
+                                    <a class="active" href="#shop-1" data-bs-toggle="tab"><i class="icon-grid"></i></a>
+<%--                                    <a href="#shop-2" data-bs-toggle="tab"><i class="icon-menu"></i></a>--%>
+                                </div>
+<%--                                <p>Showing 1 - 20 of 30 results </p>--%>
                             </div>
-                            <%--                                <p>Showing 1 - 20 of 30 results </p>--%>
-                        </div>
-                        <div class="product-sorting-wrapper">
-                            <div class="product-show shorting-style">
-                                <label>Sort by :</label>
-                                <select name="sortSelection id=sortSelection" onchange=sort(this)>
-                                    <option>Default</option>
-                                    <option value="/product?action=sort&condition=name"> name</option>
-                                    <option value="/product?action=sort&condition=price"> price</option>
-                                </select>
+                            <div class="product-sorting-wrapper">
+                                <div class="product-show shorting-style">
+                                    <label>Sort by :</label>
+                                    <select>
+                                        <option value="">Default</option>
+                                        <option value=""> Name</option>
+                                        <option value=""> price</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="shop-bottom-area">
-                        <div class="tab-content jump">
-                            <div id="shop-1" class="tab-pane active">
-                                <div class="row">
-                                    <c:forEach items="${products}" var="p">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                            <div class="single-product-wrap mb-35">
-                                                <div class="product-img product-img-zoom mb-15">
-                                                    <a href="product-details-fixed-img.jsp">
-                                                        <img src="${pageContext.request.contextPath}/${p.getImage()}"
-                                                             alt="img">
-                                                    </a>
-                                                    <c:if test="${!p.isStockStatus()}">
-                                                        <span class="pro-badge left bg-red">Out of stock</span>
-                                                    </c:if>
+                        <div class="shop-bottom-area">
+                            <div class="tab-content jump">
+                                <div id="shop-1" class="tab-pane active">
+                                    <div class="row">
+                                        <c:forEach items="${products}" var="p">
+                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                                <div class="single-product-wrap mb-35">
+                                                    <div class="product-img product-img-zoom mb-15">
+                                                        <a href="product-details.jsp">
+                                                            <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
+                                                        </a>
+                                                        <c:if test="${!p.isStockStatus()}">
+                                                            <span class="pro-badge left bg-red">Out of stock</span>
+                                                        </c:if>
 
-                                                </div>
-                                                <div class="product-content-wrap-2 text-center">
-                                                    <div class="product-rating-wrap">
-                                                        <div class="product-rating">
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
+                                                    </div>
+                                                    <div class="product-content-wrap-2 text-center">
+                                                        <div class="product-rating-wrap">
+                                                            <div class="product-rating">
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                            </div>
+                                                            <span>(5)</span>
                                                         </div>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                    <h3><a href="product-details.html"><c:out
-                                                            value="${p.getName()}"/></a></h3>
-                                                    <div class="product-price-2">
-                                                        <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap-2 product-content-position text-center">
-                                                    <div class="product-rating-wrap">
-                                                        <div class="product-rating">
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
-                                                            <i class="icon_star"></i>
+                                                        <h3><a href="product-details.html"><c:out value="${p.getName()}"/></a></h3>
+                                                        <div class="product-price-2">
+                                                            <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
                                                         </div>
-                                                        <span>(5)</span>
                                                     </div>
-                                                    <h3><a href="product-details-fixed-img.jsp"><c:out
-                                                            value="${p.getName()}"/></a></h3>
-                                                    <div class="product-price-2">
-                                                        <span class="new-price"><c:out value="${p.getPrice()}"/></span>
-                                                    </div>
-                                                    <div class="pro-add-to-cart">
-                                                        <button title="Add to Cart">Add To Cart</button>
+                                                    <div class="product-content-wrap-2 product-content-position text-center">
+                                                        <div class="product-rating-wrap">
+                                                            <div class="product-rating">
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                                <i class="icon_star"></i>
+                                                            </div>
+                                                            <span>(5)</span>
+                                                        </div>
+                                                        <h3><a href="product-details.jsp"><c:out value="${p.getName()}"/></a></h3>
+                                                        <div class="product-price-2">
+                                                            <span class="new-price"><c:out value="${p.getPrice()}"/></span>
+                                                        </div>
+                                                        <div class="pro-add-to-cart">
+                                                            <button title="Add to Cart">Add To Cart</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </c:forEach>
+                                        </c:forEach>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pro-pagination-style text-center mt-10">
-                            <ul>
-                                <%--                                    <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>--%>
-                                <c:forEach begin="1" end="${pages}" var="i">
-                                    <c:if test="${i == index}">
-                                        <li><a class="active" href="/product?action=view&page=${i}">${i}</a></li>
-                                    </c:if>
-                                    <c:if test="${i != index}">
-                                        <li><a href="/product?action=view&page=${i}">${i}</a></li>
-                                    </c:if>
+                            <div class="pro-pagination-style text-center mt-10">
+                                <ul>
+<%--                                    <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>--%>
+                                    <c:forEach begin="1" end="${pages}" var="i">
+                                        <c:if test="${i == index}">
+                                            <li><a class="active" href="/product?action=view&page=${i}">${i}</a></li>
+                                        </c:if>
+                                        <c:if test="${i != index}">
+                                            <li><a href="/product?action=view&page=${i}">${i}</a></li>
+                                        </c:if>
 
                                 </c:forEach>
 
