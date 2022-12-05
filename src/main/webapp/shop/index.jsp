@@ -22,19 +22,19 @@
 <!-- All CSS is here
 ============================================ -->
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/bootstrap.min.css">
-<link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
-<link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
-<link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
-<link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
-<link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
-<link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
-<link rel="stylesheet" href="/shop/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/vendor/signericafat.css">
+<link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
+<link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
+<link rel="stylesheet" href="assets/css/vendor/elegant.css">
+<link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
+<link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+<link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
+<link rel="stylesheet" href="assets/css/plugins/slick.css">
+<link rel="stylesheet" href="assets/css/plugins/animate.css">
+<link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <div class="main-wrapper">
     <header class="header-area transparent-bar section-padding-1">
         <div class="container-fluid">
@@ -64,14 +64,14 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                <a href="${pageContext.request.contextPath}/product?action=home"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7">
                             <div class="main-menu main-menu-padding-1 main-menu-lh-1">
                                 <nav>
                                     <ul>
-                                        <li><a href="${pageContext.request.contextPath}/">HOME </a>
+                                        <li><a href="${pageContext.request.contextPath}/product?action=home">HOME </a>
                                         </li>
                                         <li><a href="${pageContext.request.contextPath}/product">SHOP </a>
                                         </li>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="same-style-2">
-                                    <a href="login-register.jsp"><i class="icon-user"></i></a>
+                                    <a href="${pageContext.request.contextPath}/user"><i class="icon-user"></i></a>
                                     <%--                                        <a href="my-account.jsp"><i class="icon-user"></i></a>--%>
                                 </div>
                                 <div class="same-style-2 header-cart">
@@ -125,13 +125,13 @@
                                 <h1 class="animated" style="color: #ff2f2f">Christmas Holiday<br>Sale</h1>
                                 <p class="animated">Celebrate the season with us.</p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-1" href="${pageContext.request.contextPath}/product">Shop Now</a>
+                                    <a class="animated btn-1-padding-1" href="/product">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="/shop/assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
+                                <img class="animated" src="assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="${pageContext.request.contextPath}/shop/assets/images/slider/hm-1-slider-2.png" alt="">
+                                <img class="animated" src="assets/images/slider/hm-1-slider-2.png" alt="">
                             </div>
                         </div>
                     </div>

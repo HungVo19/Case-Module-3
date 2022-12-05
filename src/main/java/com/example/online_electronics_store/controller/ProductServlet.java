@@ -21,6 +21,9 @@ public class ProductServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "home":
+                    toHomePage(response);
+                    break;
                 case "view":
                     displayByPage(request, response);
                     break;
@@ -56,5 +59,9 @@ public class ProductServlet extends HttpServlet {
         String path = ProductService.getInstance().renderPage(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher(path);
         dispatcher.forward(request, response);
+    }
+
+    private void toHomePage(HttpServletResponse response) throws SQLException, ServletException, IOException {
+        response.sendRedirect("/shop/index.jsp");
     }
 }

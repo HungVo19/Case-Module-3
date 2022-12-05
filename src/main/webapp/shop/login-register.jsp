@@ -16,19 +16,19 @@
     <!-- All CSS is here
 	============================================ -->
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/shop/assets/css/style.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="/shop/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 </head>

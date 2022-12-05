@@ -63,7 +63,7 @@
           <div class="row align-items-center">
             <div class="col-xl-2 col-lg-9">
               <div class="logo">
-                <a href="index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                <a href="${pageContext.request.contextPath}/shop/index.jsp"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
               </div>
             </div>
             <div class="col-xl-8 col-lg-7">
