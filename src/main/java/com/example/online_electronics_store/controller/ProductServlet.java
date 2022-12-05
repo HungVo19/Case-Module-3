@@ -1,6 +1,8 @@
 package com.example.online_electronics_store.controller;
 
+import com.example.online_electronics_store.dao.impl.CategoryDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
+import com.example.online_electronics_store.model.Category;
 import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.service.impl.ProductService;
 
@@ -26,6 +28,9 @@ public class ProductServlet extends HttpServlet {
                     break;
                 case "view":
                     displayByPage(request, response);
+                    break;
+                case "sort":
+                    sortProducts(request,response);
                     break;
 //                case "signup":
 //                    signup(request, response);
@@ -63,5 +68,16 @@ public class ProductServlet extends HttpServlet {
 
     private void toHomePage(HttpServletResponse response) throws SQLException, ServletException, IOException {
         response.sendRedirect("/shop/index.jsp");
+    }
+
+    private void sortProducts(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
+//        String path = ProductService.getInstance().renderDefault(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/shop.jsp");
+        String condition = request.getParameter("condition");
+        List<Product> sortedList = ProductDAO.getInstance().sort(condition);
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products",sortedList);
+        request.setAttribute("categories",categories);
+        dispatcher.forward(request,response);
     }
 }

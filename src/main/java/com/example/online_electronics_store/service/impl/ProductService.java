@@ -73,4 +73,5 @@ public class ProductService implements IProductService {
         request.setAttribute("categories", categories);
         return  "/shop/shop.jsp";
     }
+
 }
