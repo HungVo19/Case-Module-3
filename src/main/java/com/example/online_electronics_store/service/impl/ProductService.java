@@ -79,4 +79,5 @@ public class ProductService implements IProductService {
         Product product = ProductDAO.getInstance().findById(id);
         request.setAttribute("product", product);
     }
+
 }
