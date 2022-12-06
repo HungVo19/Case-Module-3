@@ -1,5 +1,7 @@
 package com.example.online_electronics_store.controller;
 
+import com.example.online_electronics_store.dao.impl.ProductDAO;
+import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.model.User;
 import com.example.online_electronics_store.service.impl.UserService;
 
@@ -8,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
@@ -77,7 +80,11 @@ public class UserServlet extends HttpServlet {
             if (user.getRole().equals("user")) {
                 response.sendRedirect("/product");
             } else if (user.getRole().equals("admin")) {
-                response.sendRedirect("http://localhost:8080/shop/admin-page.jsp");
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8080/admin/index.jsp");
+//                List<Product> products = ProductDAO.getInstance().findAll();
+//                request.setAttribute("products",products);
+//                dispatcher.forward(request,response);
+                response.sendRedirect("http://localhost:8080/admin/index.jsp");
             }
 
         } else {

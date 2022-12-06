@@ -9,9 +9,16 @@ public class Product {
    private Boolean stockStatus;
    private Category category;
 
-   public Product() {
-
+   public Product(String name, Double price, String description, String image, Boolean stockStatus, Category category) {
+      this.name = name;
+      this.price = price;
+      this.description = description;
+      this.image = image;
+      this.stockStatus = stockStatus;
+      this.category = category;
    }
+
+   public Product(){}
 
    public Product(Long id, String name, Double price, String description, String image, Boolean stockStatus, Category category) {
       this.id = id;

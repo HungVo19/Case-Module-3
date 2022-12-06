@@ -30,7 +30,10 @@ public class ProductServlet extends HttpServlet {
                     displayByPage(request, response);
                     break;
                 case "sort":
-                    sortProducts(request,response);
+                    sortProducts(request, response);
+                    break;
+                case "viewByAdmin":
+                    displayForAdmin(request, response);
                     break;
 //                case "signup":
 //                    signup(request, response);
@@ -51,7 +54,33 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+                try {
+                    createProduct(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "update":
+                try {
+                    updateProduct(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "delete":
+                try {
+                    deleteProduct(request,response);
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+        }
     }
 
     private void displayDefault(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -76,13 +105,49 @@ public class ProductServlet extends HttpServlet {
         response.sendRedirect("/shop/index.jsp");
     }
 
-    private void sortProducts(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
+    private void sortProducts(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/shop.jsp");
         String condition = request.getParameter("condition");
         List<Product> sortedList = ProductDAO.getInstance().sort(condition);
         List<Category> categories = CategoryDAO.getInstance().findAll();
-        request.setAttribute("products",sortedList);
-        request.setAttribute("categories",categories);
-        dispatcher.forward(request,response);
+        request.setAttribute("products", sortedList);
+        request.setAttribute("categories", categories);
+        dispatcher.forward(request, response);
     }
+
+    private void displayForAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/product.jsp");
+        List<Product> products = ProductDAO.getInstance().findAll();
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products", products);
+        request.setAttribute("categories", categories);
+        dispatcher.forward(request, response);
+    }
+
+    private void createProduct(HttpServletRequest request,HttpServletResponse response) throws SQLException, IOException {
+        String name = request.getParameter("name");
+        Double price = Double.parseDouble(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+        boolean stock = false;
+        if (request.getParameter("stock").equals("true")) {
+            stock = true;
+        }
+        Long categoryId = Long.parseLong(request.getParameter("category"));
+        Product product = new Product(name,price,description,image,stock,CategoryDAO.getInstance().findById(categoryId));
+        ProductDAO.getInstance().insert(product);
+        response.sendRedirect("http://localhost:8080/product?action=viewByAdmin");
+    }
+
+    private void deleteProduct(HttpServletRequest request,HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        ProductDAO.getInstance().delete(id);
+        response.sendRedirect("http://localhost:8080/product?action=viewByAdmin");
+    }
+
+    private void updateProduct(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException {
+        ProductService.getInstance().update(request);
+        response.sendRedirect("http://localhost:8080/product?action=viewByAdmin");
+    }
+
 }

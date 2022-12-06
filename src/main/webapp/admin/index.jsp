@@ -76,7 +76,7 @@
                         </a>
                         <ul class="collapse submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
                             <li class="active">
-                                <a href="index.jsp"> <i class="flaticon-package"></i> Product </a>
+                                <a href="${pageContext.request.contextPath}/product?action=viewByAdmin"> <i class="flaticon-package"></i> Product </a>
                             </li>
                             <li class="active">
                                 <a href="index.jsp"> <i class="flaticon-user-1"></i> User </a>

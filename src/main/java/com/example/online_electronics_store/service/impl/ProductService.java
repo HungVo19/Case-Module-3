@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ProductService implements IProductService {
     private static ProductService instance;
+
     private ProductService() {
     }
 
@@ -24,9 +25,10 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean create(HttpServletRequest request) {
+    public boolean create(HttpServletRequest request) throws SQLException {
         return false;
     }
+
 
     @Override
     public void render(HttpServletRequest request, List<Product> lists) {
@@ -34,8 +36,19 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void update(HttpServletRequest request) {
-
+    public void update(HttpServletRequest request) throws SQLException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        String name = request.getParameter("name");
+        Double price = Double.parseDouble(request.getParameter("price"));
+        String description = request.getParameter("description").trim();
+        String image = request.getParameter("image");
+        boolean stock = false;
+        if (request.getParameter("stock").equals("true")) {
+            stock = true;
+        }
+        Category category = CategoryDAO.getInstance().findById(Long.parseLong(request.getParameter("category")));
+        Product product = new Product(name,price,description,image,stock,category);
+        ProductDAO.getInstance().update(id,product);
     }
 
     @Override
@@ -71,7 +84,7 @@ public class ProductService implements IProductService {
         request.setAttribute("products", productsPage);
         request.setAttribute("pages", pages);
         request.setAttribute("categories", categories);
-        return  "/shop/shop.jsp";
+        return "/shop/shop.jsp";
     }
 
     public void renderDetails(HttpServletRequest request) throws SQLException {
