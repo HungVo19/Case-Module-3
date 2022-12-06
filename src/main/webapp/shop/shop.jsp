@@ -65,9 +65,9 @@
                                     Object userObj = session.getAttribute("user");
                                     User user = (User) userObj;
                                     if (user != null) { %>
-                                <p style="color: red; margin: auto; display: inline-block">
-                                    <%= "Welcome " + user.getUsername() + "!" %>
-                                </p>
+                                    <p style="color: red; margin: auto; display: inline-block">
+                                        <%= "Welcome " + user.getUsername() + "!" %>
+                                    </p>
                                 <% } %>
                                 <div class="header-top-right d-flex align-items-center">
                                     <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
@@ -130,7 +130,7 @@
                                     <div class="same-style-2 header-cart">
                                         <a href="cart.jsp">
                                             <i class="icon-basket-loaded"></i>
-                                            <%--                                            <span class="pro-count red">02</span>--%>
+<%--                                            <span class="pro-count red">02</span>--%>
                                         </a>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
-                                                        <a href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}">
+                                                        <a href="product-details.jsp">
                                                             <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
                                                         <c:if test="${!p.isStockStatus()}">
@@ -284,8 +284,10 @@
                                     <span>Range:  $100.00 - 1.300.00 </span>
                                     <div id="slider-range"></div>
                                     <div class="price-slider-amount">
-                                        <label for="minPrice"></label><input type="number" id="minPrice" name="minPrice" placeholder="$0"/>
-                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="maxPrice" placeholder="$100" />
+                                        <label for="minPrice"></label><input type="number" id="minPrice" name="minPrice"
+                                                                             placeholder="$0"/>
+                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="maxPrice"
+                                                                             placeholder="$100"/>
                                     </div>
                                     <div class="price-slider-amount">
                                         <button type="submit">Filter</button>
@@ -424,6 +426,12 @@
 <script src="assets/js/plugins/ajax-mail.js"></script>
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
+<script>
+    function sort(obj) {
+        let path = obj.value;
+        window.location.href = path;
+    }
+</script>
 
 </body>
 
