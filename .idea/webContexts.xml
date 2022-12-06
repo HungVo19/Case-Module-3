@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Ecommerce-Shop/norda/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Ecommerce-Shop/norda" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/admin/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/shop/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/shop" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/shop/login-register.jsp" value="file://$PROJECT_DIR$/src/main/webapp/shop" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/shop/shop.jsp" value="file://$PROJECT_DIR$/src/main/webapp/shop" />
