@@ -4,19 +4,21 @@ import com.example.online_electronics_store.dao.DBConnection;
 import com.example.online_electronics_store.dao.ICartDetailsDAO;
 import com.example.online_electronics_store.model.Cart;
 import com.example.online_electronics_store.model.CartDetails;
+import com.example.online_electronics_store.model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartDetailsDAO implements ICartDetailsDAO {
     private final String SELECT_LIST_CART_DETAILS_BY_CART_ID = "select * from cart_detail where cart_id = ?;";
     private final String INSERT_CART_DETAILS = "insert into cart_detail (cart_id, product_id, quantity) values (?,?,?);";
-    private final String UPDATE_CART_DETAILS = "update cart_detail set quantity = ? where cart_id = ? and product_id = ?);";
+    private final String UPDATE_CART_DETAILS = "update cart_detail set quantity = ? where cart_id = ? and product_id = ?;";
     private final String DELETE_CART_DETAILS = "delete from cart_detail where cart_id = ?;";
-    private final String DELETE_CART_DETAILS_BY_CART_AND_PRODUCT = "delete from cart_detail where cart_id = ? and product_id = ?;";
+    private final String REMOVE_PRODUCT_FROM_CART = "delete from cart_detail where cart_id = ? and product_id = ?";
     DBConnection dbConn = DBConnection.getInstance();
     private static CartDetailsDAO instance;
 
@@ -54,6 +56,13 @@ public class CartDetailsDAO implements ICartDetailsDAO {
     public void insert(CartDetails cartDetails) throws SQLException {
         try (Connection connection = dbConn.getConnection()) {
             List<CartDetails> cartDetailsList = findByItemId(cartDetails.getCart());
+            if (cartDetailsList.isEmpty()) {
+                PreparedStatement statement = connection.prepareStatement(INSERT_CART_DETAILS);
+                setStatement(cartDetails, statement);
+                statement.executeUpdate();
+                statement.close();
+                return;
+            }
             for (CartDetails c : cartDetailsList) {
                 if (c.getCart().getId() == cartDetails.getCart().getId() &&
                     c.getProduct().getId() == cartDetails.getProduct().getId()) {
@@ -65,12 +74,13 @@ public class CartDetailsDAO implements ICartDetailsDAO {
                     statement.executeUpdate();
                     statement.close();
                     break;
+                } else {
+                    PreparedStatement statement = connection.prepareStatement(INSERT_CART_DETAILS);
+                    setStatement(cartDetails, statement);
+                    statement.executeUpdate();
+                    statement.close();
                 }
             }
-            PreparedStatement statement = connection.prepareStatement(INSERT_CART_DETAILS);
-            setStatement(cartDetails, statement);
-            statement.executeUpdate();
-            statement.close();
         }
     }
 
@@ -106,7 +116,7 @@ public class CartDetailsDAO implements ICartDetailsDAO {
                         result = statement.executeUpdate();
                         statement.close();
                     } else {
-                        PreparedStatement statement = connection.prepareStatement(DELETE_CART_DETAILS_BY_CART_AND_PRODUCT);
+                        PreparedStatement statement = connection.prepareStatement(REMOVE_PRODUCT_FROM_CART);
                         statement.setLong(1, c.getCart().getId());
                         statement.setLong(2, c.getProduct().getId());
                         result = statement.executeUpdate();
@@ -120,7 +130,16 @@ public class CartDetailsDAO implements ICartDetailsDAO {
 
     @Override
     public List<CartDetails> getList(ResultSet result) throws SQLException {
-        return null;
+        List<CartDetails> cartDetailsList = new ArrayList<>();
+        while (result.next()) {
+            Long cartId = result.getLong("cart_id");
+            Cart cart = CartDAO.getInstance().findById(cartId);
+            Long productId = result.getLong("product_id");
+            Product product = ProductDAO.getInstance().findById(productId);
+            Integer quantity = result.getInt("quantity");
+            cartDetailsList.add(new CartDetails(cart, product, quantity));
+        }
+        return cartDetailsList;
     }
 
     @Override
@@ -128,5 +147,48 @@ public class CartDetailsDAO implements ICartDetailsDAO {
         statement.setLong(1, cartDetails.getCart().getId());
         statement.setLong(2, cartDetails.getProduct().getId());
         statement.setInt(3, cartDetails.getQuantity());
+    }
+
+    public int getProductQuantity(List<CartDetails> cartDetailsList) {
+        if (cartDetailsList.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        for (CartDetails details : cartDetailsList) {
+            count += details.getQuantity();
+        }
+        return count;
+    }
+
+    public Double getTotalOfCart(List<CartDetails> cartDetailsList) {
+        if (cartDetailsList.isEmpty()) {
+            return 0d;
+        }
+        Double total = 0d;
+        for (CartDetails details : cartDetailsList) {
+            total += (details.getProduct().getPrice() * details.getQuantity());
+        }
+        return total;
+    }
+
+    public void updateCart(List<CartDetails> details) throws SQLException {
+        for (CartDetails c : details) {
+            try (Connection connection = dbConn.getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE_CART_DETAILS)) {
+                statement.setInt(1, c.getQuantity());
+                statement.setLong(2, c.getCart().getId());
+                statement.setLong(3, c.getProduct().getId());
+                statement.executeUpdate();
+            }
+        }
+    }
+
+    public void remove(CartDetails cartDetails) throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_PRODUCT_FROM_CART)) {
+            statement.setLong(1, cartDetails.getCart().getId());
+            statement.setLong(2, cartDetails.getProduct().getId());
+            statement.executeUpdate();
+        }
     }
 }

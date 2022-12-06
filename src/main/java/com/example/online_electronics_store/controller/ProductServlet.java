@@ -17,6 +17,15 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        controller(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        controller(request, response);
+    }
+
+    private void controller(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -41,26 +50,15 @@ public class ProductServlet extends HttpServlet {
                 case "display_admin":
                     displayAsAdmin(request, response);
                     break;
-//                case "signup":
-//                    signup(request, response);
-//                    break;
-//                case "login":
-//                    login(request, response);
-//                    break;
-//                case "update":
-//                    // update
-//                    break;
+                case "price":
+                    displayByPrice(request, response);
+                    break;
                 default:
                     displayDefault(request, response);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     private void displayDefault(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -104,6 +102,12 @@ public class ProductServlet extends HttpServlet {
     private void displayAsAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         ProductService.getInstance().renderProductAsAdmin(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher("shop/admin-page.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void displayByPrice(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ProductService.getInstance().renderByPrice(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/shop.jsp");
         dispatcher.forward(request, response);
     }
 }

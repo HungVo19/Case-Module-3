@@ -1,4 +1,9 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
@@ -115,10 +120,19 @@
                                     <% } %>
                                 </div>
                                 <div class="same-style-2 header-cart">
-                                    <a href="cart.jsp">
+                                    <% if (user != null) { %>
+                                    <a href="/cart">
                                         <i class="icon-basket-loaded"></i>
-                                        <%--                                            <span class="pro-count red">02</span>--%>
+                                        <%
+                                            Cart cart = CartDAO.getInstance().findByUser(user);
+                                            List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                            int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                            if (count > 0) {
+                                        %>
+                                        <span class="pro-count red"><%= count%></span>
+                                        <% } %>
                                     </a>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

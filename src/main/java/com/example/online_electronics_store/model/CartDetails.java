@@ -14,6 +14,11 @@ public class CartDetails {
         this.quantity = quantity;
     }
 
+    public CartDetails(Cart cart, Product product) {
+        this.cart = cart;
+        this.product = product;
+    }
+
     public Cart getCart() {
         return cart;
     }

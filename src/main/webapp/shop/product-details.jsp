@@ -1,4 +1,9 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
@@ -127,10 +132,19 @@
                                         <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
-                                        <a href="cart.jsp">
+                                        <% if (user != null) { %>
+                                        <a href="/cart">
                                             <i class="icon-basket-loaded"></i>
-                                            <%--                                            <span class="pro-count red">02</span>--%>
+                                            <%
+                                                Cart cart = CartDAO.getInstance().findByUser(user);
+                                                List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                                int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                                if (count > 0) {
+                                            %>
+                                            <span class="pro-count red"><%= count%></span>
+                                            <% } %>
                                         </a>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +196,7 @@
                                 </div>
                             </div>
                             <p>Seamlessly predominate enterprise metrics without performance based process improvements.</p>
-                            <form action="cart?action=add?id=${product.getId()}" method="post">
+                            <form action="cart?action=user_add&product_id=${product.getId()}" method="post">
                                 <div class="pro-details-quality">
                                     <span>Quantity:</span>
                                     <div class="cart-plus-minus">
@@ -195,18 +209,23 @@
                                     </ul>
                                 </div>
                                 <div class="pro-details-action-wrap">
-                                    <div class="pro-details-add-to-cart">
-                                        <button class="add-to-cart-btn" title="Add to Cart">Add To Cart </button>
-                                    </div>
-                                    <div class="pro-details-action">
-                                        <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
-                                        <div class="product-dec-social">
-                                            <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
-                                            <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
-                                            <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
-                                            <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                    <c:if test="${product.isStockStatus()}">
+                                        <div class="pro-details-add-to-cart">
+                                            <button class="add-to-cart-btn" title="Add to Cart">Add To Cart </button>
                                         </div>
-                                    </div>
+                                        <div class="pro-details-action">
+                                            <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
+                                            <div class="product-dec-social">
+                                                <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
+                                                <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
+                                                <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
+                                                <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${!product.isStockStatus()}">
+                                        <p style="color: red; font-size: 20px; letter-spacing: 1.5px">Out of stock!</p>
+                                    </c:if>
                                 </div>
                             </form>
                         </div>

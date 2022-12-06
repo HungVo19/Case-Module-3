@@ -2,6 +2,7 @@ package com.example.online_electronics_store.dao.impl;
 
 import com.example.online_electronics_store.dao.DBConnection;
 import com.example.online_electronics_store.dao.IUserDAO;
+import com.example.online_electronics_store.model.Cart;
 import com.example.online_electronics_store.model.User;
 
 import java.sql.Connection;
@@ -56,6 +57,7 @@ public class UserDAO implements IUserDAO {
             PreparedStatement statement = connection.prepareStatement(INSERT_USER)) {
             setStatement(user, statement);
             statement.executeUpdate();
+            CartDAO.getInstance().insert(new Cart(user));
         }
     }
 

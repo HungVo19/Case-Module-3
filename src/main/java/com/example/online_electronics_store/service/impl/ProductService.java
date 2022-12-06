@@ -92,4 +92,13 @@ public class ProductService implements IProductService {
         List<Product> products = ProductDAO.getInstance().findAll();
         request.setAttribute("products", products);
     }
+
+    public void renderByPrice(HttpServletRequest request) throws SQLException {
+        Double start = Double.parseDouble(request.getParameter("min_price"));
+        Double end = Double.parseDouble(request.getParameter("max_price"));
+        List<Product> products = ProductDAO.getInstance().findByPrice(start, end);
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products", products);
+        request.setAttribute("categories", categories);
+    }
 }

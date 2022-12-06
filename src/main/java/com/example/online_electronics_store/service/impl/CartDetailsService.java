@@ -1,6 +1,11 @@
 package com.example.online_electronics_store.service.impl;
 
+import com.example.online_electronics_store.dao.impl.CartDAO;
+import com.example.online_electronics_store.dao.impl.CartDetailsDAO;
+import com.example.online_electronics_store.dao.impl.ProductDAO;
+import com.example.online_electronics_store.model.Cart;
 import com.example.online_electronics_store.model.CartDetails;
+import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.model.User;
 import com.example.online_electronics_store.service.ICartDetailsService;
 
@@ -28,9 +33,35 @@ public class CartDetailsService implements ICartDetailsService {
         return false;
     }
 
-    @Override
-    public void render(HttpServletRequest request, List<CartDetails> lists) throws SQLException {
+    public Long insertCart(HttpServletRequest request) throws SQLException {
+        Long id = Long.parseLong(request.getParameter("product_id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Product product = ProductDAO.getInstance().findById(id);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null && product.isStockStatus()) {
+            Cart cart = CartDAO.getInstance().findByUser(user);
+            CartDetails cartDetails = new CartDetails(cart, product, quantity);
+            CartDetailsDAO.getInstance().insert(cartDetails);
+        } else {
 
+        }
+        return id;
+    }
+
+    @Override
+    public void render(HttpServletRequest request, List<CartDetails> lists) throws SQLException, ClassNotFoundException {
+
+    }
+
+    public void renderCart(HttpServletRequest request) throws SQLException, ClassNotFoundException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            Cart cart = CartDAO.getInstance().findByUser(user);
+            List<CartDetails> carts = CartDetailsDAO.getInstance().findByItemId(cart);
+            request.setAttribute("carts", carts);
+        }
     }
 
     @Override
@@ -45,9 +76,6 @@ public class CartDetailsService implements ICartDetailsService {
 
     @Override
     public CartDetails getObject(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Object userObj = session.getAttribute("user");
-        User user = (User) userObj;
         return null;
     }
 }

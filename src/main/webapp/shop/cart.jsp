@@ -1,4 +1,11 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -15,19 +22,19 @@
     <!-- All CSS is here
 	============================================ -->
 
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="/shop/assets/css/style.css">
 
 </head>
 
@@ -112,10 +119,19 @@
                                         <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
-                                        <a href="cart.jsp">
+                                        <% if (user != null) { %>
+                                        <a href="/cart">
                                             <i class="icon-basket-loaded"></i>
-                                            <%--                                            <span class="pro-count red">02</span>--%>
+                                            <%
+                                                Cart cart = CartDAO.getInstance().findByUser(user);
+                                                List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                                int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                                if (count > 0) {
+                                            %>
+                                            <span class="pro-count red"><%= count%></span>
+                                            <% } %>
                                         </a>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -141,36 +157,45 @@
                 <h3 class="cart-page-title">Your cart items</h3>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <form action="#">
+                        <form action="/cart?action=update" method="post">
                             <div class="table-content table-responsive cart-table-content">
-                                <table>
+                                <table style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Image</th>
                                             <th>Product Name</th>
-                                            <th>Until Price</th>
-                                            <th>Qty</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
                                             <th>Subtotal</th>
-                                            <th>action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/images/product/product-9.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Simple Black T-Shirt</a></td>
-                                            <td class="product-price-cart"><span class="amount">$260.00</span></td>
-                                            <td class="product-quantity pro-details-quality">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$110.00</td>
-                                            <td class="product-remove">
-                                                <a href="#"><i class="icon_close"></i></a>
-                                            </td>
-                                        </tr>
+                                        <form action="">
+                                            <% int i = 1;%>
+                                            <c:forEach items="${carts}" var="c">
+                                                <tr>
+                                                    <td class="product-thumbnail">
+                                                        <a href="#"><img src="${pageContext.request.contextPath}/${c.getProduct().getImage()}" alt=""></a>
+                                                    </td>
+                                                    <td class="product-name"><a href="#"><c:out value="${c.getProduct().getName()}"/></a></td>
+                                                    <td class="product-price-cart">$<span class="amount p-amount p-amount-${c.getProduct().getId()}"><c:out value="${c.getProduct().getPrice()}"/></span></td>
+                                                    <td class="product-quantity pro-details-quality">
+                                                        <input type="text" name="p-<%= i%>" value="${c.getProduct().getId()}" hidden>
+                                                        <input style="width: 60px; text-align: center; padding: 0" oninput="subTotal(${c.getProduct().getId()})"
+                                                               class="p-quantity p-quantity-${c.getProduct().getId()} cart-plus-minus-box" type="text" name="q-<%= i%>" value="${c.getQuantity()}">
+                                                            <%--                                                    <div class="cart-plus-minus">--%>
+                                                            <%--                                                        <input oninput="subTotal()" class="p-quantity cart-plus-minus-box" type="text" name="qtybutton" value="${c.getQuantity()}">--%>
+                                                            <%--                                                    </div>--%>
+                                                        <% i++;%>
+                                                    </td>
+                                                    <td class="product-subtotal ">$<span id="subtotal-${c.getProduct().getId()}">${c.getProduct().getPrice() * c.getQuantity()}</span></td>
+                                                    <td class="product-remove">
+                                                        <a href="cart?action=delete&id=${c.getProduct().getId()}"><i class="icon_close"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </form>
                                     </tbody>
                                 </table>
                             </div>
@@ -178,11 +203,12 @@
                                 <div class="col-lg-12">
                                     <div class="cart-shiping-update-wrapper">
                                         <div class="cart-shiping-update">
-                                            <a href="#">Continue Shopping</a>
+                                            <a href="${pageContext.request.contextPath}/product">Continue Shopping</a>
                                         </div>
                                         <div class="cart-clear">
+                                            <input type="text" name="num" value="<%= i%>" hidden>
                                             <button>Update Cart</button>
-                                            <a href="#">Clear Cart</a>
+                                            <a href="cart?action=clear">Clear Cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +222,18 @@
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                             </div>
-                            <h5>Total products <span>$260.00</span></h5>
+                            <h5>Total products
+                                <span>$
+                                    <span id="cart-total">
+                                    <%
+                                        Cart cart = CartDAO.getInstance().findByUser(user);
+                                        List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                        Double total = CartDetailsDAO.getInstance().getTotalOfCart(cartDetailsList);
+                                    %>
+                                    <%= total%>
+                                    </span>
+                                </span>
+                            </h5>
                             <div class="total-shipping">
                                 <h5>Total shipping</h5>
                                 <ul>
@@ -204,7 +241,7 @@
                                     <li>Express <span>$0</span></li>
                                 </ul>
                             </div>
-                            <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
+                            <h4 class="grand-totall-title">Grand Total <span>$ <span id="grand-total"><%= total%></span></span></h4>
                             <a href="checkout.jsp">Proceed to Checkout</a>
                         </div>
                     </div>
@@ -217,7 +254,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3">
                             <div class="about-us-logo">
-                                <img src="assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
+                                <img src="/shop/assets/images/group-one-logo/group-one-logo-ver-7.png" alt="logo">
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -268,7 +305,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="contact-info-wrap" id="contacInfo">
                             <div class="footer-logo">
-                                <a href="#"><img src="assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
+                                <a href="#"><img src="/shop/assets/images/group-one-logo/group-one-logo-ver-7-edited.png" alt="logo"></a>
                             </div>
                             <div class="single-contact-info">
                                 <span>Our Location</span>
@@ -311,24 +348,40 @@
 
     <!-- All JS is here
 ============================================ -->
-
-    <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-    <script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/slick.js"></script>
-    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/jquery-ui.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/sticky-sidebar.js"></script>
-    <script src="assets/js/plugins/easyzoom.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/ajax-mail.js"></script>
+    <script>
+        function subTotal(number) {
+            let quantity = document.getElementsByClassName("p-quantity-" + number);
+            let amount = document.getElementsByClassName("p-amount-" + number);
+            let subTotal = Number(quantity[0].value) * Number(amount[0].innerText);
+            document.getElementById("subtotal-" + number).innerText = subTotal.toString();
+            let qtyArr = document.getElementsByClassName("p-quantity");
+            let amountArr = document.getElementsByClassName("p-amount");
+            let cartTotal = document.getElementById("cart-total");
+            let grandTotal = document.getElementById("grand-total");
+            let total = 0;
+            for (let i = 0; i < qtyArr.length; i++) {
+                total += qtyArr[i].value * amountArr[i].innerText;
+            }
+            cartTotal.innerHTML = grandTotal.innerHTML = total.toString();
+        }
+    </script>
+    <script src="/shop/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/shop/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+    <script src="/shop/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+    <script src="/shop/assets/js/vendor/popper.min.js"></script>
+    <script src="/shop/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/shop/assets/js/plugins/slick.js"></script>
+    <script src="/shop/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/shop/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/shop/assets/js/plugins/wow.js"></script>
+    <script src="/shop/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/shop/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/shop/assets/js/plugins/sticky-sidebar.js"></script>
+    <script src="/shop/assets/js/plugins/easyzoom.js"></script>
+    <script src="/shop/assets/js/plugins/scrollup.js"></script>
+    <script src="/shop/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+    <script src="/shop/assets/js/main.js"></script>
 
 </body>
 
