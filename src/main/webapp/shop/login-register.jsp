@@ -146,7 +146,7 @@
             <div class="breadcrumb-content text-center">
                 <ul>
                     <li>
-                        <a href="index.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/product?action=home">Home</a>
                     </li>
                     <li class="active">login - register</li>
                 </ul>
@@ -171,7 +171,7 @@
                             <div id="lg1" class="mess tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="/user?action=login" method="post">
+                                        <form action="${pageContext.request.contextPath}/user?action=login" method="post">
                                             <input type="text" name="account" placeholder="Username or Email"
                                                    required>
                                             <input type="password" name="password" id="loginPass"
@@ -205,7 +205,7 @@
                                                    id="createPass"
                                                    name="password" placeholder="Password" required
                                                    onchange="confirmPassword()">
-                                            </span>
+                                            <span>
                                             <i class="fa fa-eye fa-lg" id="toggleCreatePass"
                                                style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
                                                onclick="showCreatePass()"></i>
@@ -213,7 +213,7 @@
                                             <input type="password" name="confirm-user-password" id="confirmPass"
                                                    placeholder="Confirm password" required
                                                    onchange="confirmPassword()">
-                                            </span>
+                                            <span>
                                             <i class="fa fa-eye fa-lg" id="toggleConfirmPass"
                                                style="position: relative;float: right; margin-top: -55px;margin-right: 10px; color: lightgray; cursor: pointer"
                                                onclick="showConfirmPass()"></i>

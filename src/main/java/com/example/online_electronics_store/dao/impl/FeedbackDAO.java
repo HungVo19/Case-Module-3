@@ -16,6 +16,8 @@ import java.util.List;
 
 public class FeedbackDAO implements IFeedbackDAO {
     private final String SELECT_BY_PRODUCT = "select * from feedback where product_id = ?;";
+    private final String INSERT_FEEDBACK = "insert into feedback (user_id, product_id, comment, date) values (?,?,?,?);";
+    private final String UPDATE_FEEDBACK = "update feedback set comment = ?, date = ? where user_id = ? and product_id = ?;";
     private final String CANCEL_ORDER = "delete from order_detail where order_id = ?;";
     DBConnection dbConn = DBConnection.getInstance();
     private static FeedbackDAO instance;
@@ -50,12 +52,27 @@ public class FeedbackDAO implements IFeedbackDAO {
 
     @Override
     public void insert(Feedback feedback) throws SQLException, ClassNotFoundException {
-
+        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(INSERT_FEEDBACK)) {
+            statement.setLong(1, feedback.getUser().getId());
+            statement.setLong(2, feedback.getProduct().getId());
+            statement.setString(3, feedback.getComment());
+            Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
+            statement.setTimestamp(4, timestamp);
+            statement.executeUpdate();
+        }
     }
 
     @Override
     public boolean update(Product id, Feedback feedback) throws SQLException, ClassNotFoundException {
-        return false;
+        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(UPDATE_FEEDBACK)) {
+            statement.setString(1, feedback.getComment());
+            Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
+            statement.setTimestamp(2, timestamp);
+            statement.setLong(3, feedback.getUser().getId());
+            statement.setLong(4, feedback.getProduct().getId());
+            statement.executeUpdate();
+        }
+        return true;
     }
 
     @Override

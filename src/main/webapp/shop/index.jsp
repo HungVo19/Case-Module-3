@@ -159,7 +159,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
+                                <img class="animated" src="/shop/assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
                             </div>
                         </div>
                     </div>

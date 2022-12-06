@@ -145,7 +145,7 @@
             <div class="breadcrumb-content text-center">
                 <ul>
                     <li>
-                        <a href="index.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/product?action=home">Home</a>
                     </li>
                     <li class="active">Checkout</li>
                 </ul>

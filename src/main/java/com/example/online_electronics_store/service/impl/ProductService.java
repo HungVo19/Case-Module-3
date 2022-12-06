@@ -1,8 +1,10 @@
 package com.example.online_electronics_store.service.impl;
 
 import com.example.online_electronics_store.dao.impl.CategoryDAO;
+import com.example.online_electronics_store.dao.impl.FeedbackDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
 import com.example.online_electronics_store.model.Category;
+import com.example.online_electronics_store.model.Feedback;
 import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.service.IProductService;
 
@@ -77,7 +79,9 @@ public class ProductService implements IProductService {
     public void renderDetails(HttpServletRequest request) throws SQLException {
         Long id = Long.parseLong(request.getParameter("id"));
         Product product = ProductDAO.getInstance().findById(id);
+        List<Feedback> feedbacks = FeedbackDAO.getInstance().findByProduct(product);
         request.setAttribute("product", product);
+        request.setAttribute("feedbacks", feedbacks);
     }
 
     public void renderByCategory(HttpServletRequest request) throws SQLException {

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IService<E> {
-    boolean create(HttpServletRequest request) throws ServletException, IOException, SQLException;
+    boolean create(HttpServletRequest request) throws ServletException, IOException, SQLException, ClassNotFoundException;
     void render(HttpServletRequest request, List<E> lists) throws SQLException, ClassNotFoundException;
     void update(HttpServletRequest request) throws SQLException;
     void delete(HttpServletRequest request);
-    E getObject(HttpServletRequest request);
+    E getObject(HttpServletRequest request) throws SQLException;
 }

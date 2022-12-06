@@ -35,8 +35,11 @@ public class UserServlet extends HttpServlet {
                 case "login":
                     login(request, response);
                     break;
+                case "logout":
+                    logout(request, response);
+                    break;
                 case "update":
-                    // update
+                    update(request, response);
                     break;
                 case "view":
                     break;
@@ -79,7 +82,6 @@ public class UserServlet extends HttpServlet {
             } else if (user.getRole().equals("admin")) {
                 toAdmin(request, response);
             }
-
         } else {
             request.setAttribute("logMess", "Wrong username / email or password");
             RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8080/shop/login-register.jsp");
@@ -93,5 +95,21 @@ public class UserServlet extends HttpServlet {
 
     private void toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("shop/my-account.jsp");
+    }
+
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        toLoginPage(response);
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        if (UserService.getInstance().updateAcc(request)) {
+            request.setAttribute("mess", "success");
+        } else {
+            request.setAttribute("mess", "fail");
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/my-account.jsp");
+        dispatcher.forward(request, response);
     }
 }

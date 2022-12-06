@@ -18,7 +18,7 @@ public class UserDAO implements IUserDAO {
     private final String SELECT_USER_BY_EMAIL = "select * from user where email = ?;";
     private final String SELECT_ALL_USER = "select * from user;";
     private final String INSERT_USER = "insert into user (role, username, password, phone_number, email, address) values ('user',?,?,?,?,?);";
-    private final String UPDATE_USER = "update user set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?);";
+    private final String UPDATE_USER = "update user set phone_number = ?, email = ?, address = ? where id = ?;";
     private final String DELETE_USER = "delete from user where id = ?;";
     DBConnection dbConn = DBConnection.getInstance();
     private static UserDAO instance;
@@ -65,8 +65,10 @@ public class UserDAO implements IUserDAO {
     public boolean update(Long id, User user) throws SQLException {
         try (Connection connection = dbConn.getConnection();
             PreparedStatement statement = connection.prepareStatement(UPDATE_USER)) {
-            setStatement(user, statement);
-            statement.setLong(6, id);
+            statement.setString(1, user.getPhoneNumber());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getAddress());
+            statement.setLong(4, id);
             return statement.executeUpdate() > 0;
         }
     }

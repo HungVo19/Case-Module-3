@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Norda - Minimal eCommerce HTML Template</title>
+    <title>Cart</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -145,7 +145,7 @@
                 <div class="breadcrumb-content text-center">
                     <ul>
                         <li>
-                            <a href="index.jsp">Home</a>
+                            <a href="${pageContext.request.contextPath}/product?action=home">Home</a>
                         </li>
                         <li class="active">Cart Page </li>
                     </ul>
@@ -191,7 +191,7 @@
                                                     </td>
                                                     <td class="product-subtotal ">$<span id="subtotal-${c.getProduct().getId()}">${c.getProduct().getPrice() * c.getQuantity()}</span></td>
                                                     <td class="product-remove">
-                                                        <a href="cart?action=delete&id=${c.getProduct().getId()}"><i class="icon_close"></i></a>
+                                                        <a href="${pageContext.request.contextPath}/cart?action=delete&id=${c.getProduct().getId()}"><i class="icon_close"></i></a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -208,7 +208,7 @@
                                         <div class="cart-clear">
                                             <input type="text" name="num" value="<%= i%>" hidden>
                                             <button>Update Cart</button>
-                                            <a href="cart?action=clear">Clear Cart</a>
+                                            <a href="${pageContext.request.contextPath}/cart?action=clear">Clear Cart</a>
                                         </div>
                                     </div>
                                 </div>
