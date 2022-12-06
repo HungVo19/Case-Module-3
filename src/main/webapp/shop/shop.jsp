@@ -184,7 +184,7 @@
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
-                                                        <a href="product-details.jsp">
+                                                        <a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}">
                                                             <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
                                                         <c:if test="${!p.isStockStatus()}">
@@ -270,7 +270,7 @@
                             <div class="shop-catigory">
                                 <ul>
                                     <c:forEach items="${categories}" var="c">
-                                        <li><a href="#!">
+                                        <li><a href="/product?action=filter&category_id=${c.getId()}">
                                             <c:out value="${c.getName()}"/>
                                         </a></li>
                                     </c:forEach>
@@ -281,17 +281,18 @@
                             <form action="#" method="post">
                                 <h4 class="sidebar-widget-title">Price Filter </h4>
                                 <div class="price-filter">
-                                    <span>Range:  $100.00 - 1.300.00 </span>
-                                    <div id="slider-range"></div>
-                                    <div class="price-slider-amount">
-                                        <label for="minPrice"></label><input type="number" id="minPrice" name="minPrice"
-                                                                             placeholder="$0"/>
-                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="maxPrice"
-                                                                             placeholder="$100"/>
-                                    </div>
-                                    <div class="price-slider-amount">
-                                        <button type="submit">Filter</button>
-                                    </div>
+                                    <form action="/product?action=price" method="post">
+                                        <span>Range:  $0.00 - 100.00 </span>
+                                        <div class="price-slider-amount">
+                                            <label for="minPrice"></label><input type="number" id="minPrice" name="min_price"
+                                                                                 placeholder="Min value:"/>
+                                            <label for="maxPrice"></label><input type="number" id="maxPrice" name="max_price"
+                                                                                 placeholder="Max value:"/>
+                                        </div>
+                                        <div class="price-slider-amount">
+                                            <button type="submit">Filter</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </form>
                         </div>

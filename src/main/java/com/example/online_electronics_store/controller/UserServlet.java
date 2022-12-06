@@ -77,7 +77,7 @@ public class UserServlet extends HttpServlet {
             if (user.getRole().equals("user")) {
                 response.sendRedirect("/product");
             } else if (user.getRole().equals("admin")) {
-                response.sendRedirect("http://localhost:8080/shop/admin-page.jsp");
+                toAdmin(request, response);
             }
 
         } else {
@@ -87,8 +87,8 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void toAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("shop/admin-page.jsp");
+    private void toAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.sendRedirect("/product?action=display_admin");
     }
 
     private void toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {

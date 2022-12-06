@@ -16,19 +16,19 @@
   <!-- All CSS is here
   ============================================ -->
 
-  <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
-  <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
-  <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
-  <link rel="stylesheet" href="assets/css/vendor/elegant.css">
-  <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
-  <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-  <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
-  <link rel="stylesheet" href="assets/css/plugins/slick.css">
-  <link rel="stylesheet" href="assets/css/plugins/animate.css">
-  <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-  <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/signericafat.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/cerebrisans.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/simple-line-icons.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/elegant.css">
+  <link rel="stylesheet" href="/shop/assets/css/vendor/linear-icon.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/nice-select.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/easyzoom.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/slick.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/animate.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/magnific-popup.css">
+  <link rel="stylesheet" href="/shop/assets/css/plugins/jquery-ui.css">
+  <link rel="stylesheet" href="/shop/assets/css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
 </head>
@@ -118,9 +118,9 @@
             <div class="row">
               <div class="col-lg-3 col-md-4">
                 <div class="myaccount-tab-menu nav" role="tablist">
-                  <a href="#dashboad" class="active" data-bs-toggle="tab"><i class="fa fa-dashboard"></i>
-                    Dashboard</a>
+                  <a href="#dashboad" class="active" data-bs-toggle="tab"><i class="fa fa-dashboard"></i>Dashboard</a>
                   <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
+                  <a href="#products" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Product</a>
                   <a href="login-register.jsp"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>
               </div>
@@ -171,6 +171,46 @@
                       </div>
                     </div>
                   </div>
+                  <div class="tab-pane fade" id="products" role="tabpanel">
+                        <div class="myaccount-content">
+                            <h3>Orders</h3>
+                            <div class="myaccount-table table-responsive text-center">
+                                <table class="table table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${products}" var="p">
+                                            <tr>
+                                                <th><c:out value="${p.getId()}"/></th>
+                                                <td><c:out value="${p.getName()}"/></td>
+                                                <td><c:out value="${p.getPrice()}"/></td>
+                                                <td><c:out value="${p.getCategory().getName()}"/></td>
+                                                <td>Edit, Delete</td>
+                                            </tr>
+                                        </c:forEach>
+<%--                                    <tr>--%>
+<%--                                        <td>1</td>--%>
+<%--                                        <td>Aug 22, 2022</td>--%>
+<%--                                        <td>Pending</td>--%>
+<%--                                        <td>$3000</td>--%>
+<%--                                        <td>--%>
+<%--                                            <a href="#" class="me-2"><i class="fas fa-eye"></i></a>--%>
+<%--                                            <a href="#" class="me-2"><i class="fas fa-edit"></i></a>--%>
+<%--                                            <a href="#" class="me-2"><i class="fas fa-trash-alt"></i></a>--%>
+<%--                                        </td>--%>
+<%--                                    </tr>--%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                   <!-- Single Tab Content End -->
                 </div>
               </div> <!-- My Account Tab Content End -->
@@ -223,23 +263,23 @@
 <!-- All JS is here
 ============================================ -->
 
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-<script src="assets/js/vendor/popper.min.js"></script>
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<script src="assets/js/plugins/slick.js"></script>
-<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-<script src="assets/js/plugins/wow.js"></script>
-<script src="assets/js/plugins/jquery-ui.js"></script>
-<script src="assets/js/plugins/magnific-popup.js"></script>
-<script src="assets/js/plugins/sticky-sidebar.js"></script>
-<script src="assets/js/plugins/easyzoom.js"></script>
-<script src="assets/js/plugins/scrollup.js"></script>
-<script src="assets/js/plugins/ajax-mail.js"></script>
+<script src="/shop/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="/shop/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="/shop/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="/shop/assets/js/vendor/popper.min.js"></script>
+<script src="/shop/assets/js/vendor/bootstrap.min.js"></script>
+<script src="/shop/assets/js/plugins/slick.js"></script>
+<script src="/shop/assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="/shop/assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="/shop/assets/js/plugins/wow.js"></script>
+<script src="/shop/assets/js/plugins/jquery-ui.js"></script>
+<script src="/shop/assets/js/plugins/magnific-popup.js"></script>
+<script src="/shop/assets/js/plugins/sticky-sidebar.js"></script>
+<script src="/shop/assets/js/plugins/easyzoom.js"></script>
+<script src="/shop/assets/js/plugins/scrollup.js"></script>
+<script src="/shop/assets/js/plugins/ajax-mail.js"></script>
 <!-- Main JS -->
-<script src="assets/js/main.js"></script>
+<script src="/shop/assets/js/main.js"></script>
 
 </body>
 

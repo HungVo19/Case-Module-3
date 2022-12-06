@@ -79,4 +79,17 @@ public class ProductService implements IProductService {
         Product product = ProductDAO.getInstance().findById(id);
         request.setAttribute("product", product);
     }
+
+    public void renderByCategory(HttpServletRequest request) throws SQLException {
+        Long id = Long.parseLong(request.getParameter("category_id"));
+        List<Product> productsFilterByCategory = ProductDAO.getInstance().findByCategory(id);
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products", productsFilterByCategory);
+        request.setAttribute("categories", categories);
+    }
+
+    public void renderProductAsAdmin(HttpServletRequest request) throws SQLException {
+        List<Product> products = ProductDAO.getInstance().findAll();
+        request.setAttribute("products", products);
+    }
 }

@@ -32,6 +32,15 @@ public class ProductServlet extends HttpServlet {
                 case "sort":
                     sortProducts(request,response);
                     break;
+                case "details":
+                    displayDetail(request, response);
+                    break;
+                case "filter":
+                    displayByCategory(request, response);
+                    break;
+                case "display_admin":
+                    displayAsAdmin(request, response);
+                    break;
 //                case "signup":
 //                    signup(request, response);
 //                    break;
@@ -72,7 +81,7 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void toHomePage(HttpServletResponse response) throws SQLException, ServletException, IOException {
+    private void toHomePage(HttpServletResponse response) throws SQLException, IOException {
         response.sendRedirect("/shop/index.jsp");
     }
 
@@ -81,8 +90,20 @@ public class ProductServlet extends HttpServlet {
         String condition = request.getParameter("condition");
         List<Product> sortedList = ProductDAO.getInstance().sort(condition);
         List<Category> categories = CategoryDAO.getInstance().findAll();
-        request.setAttribute("products",sortedList);
-        request.setAttribute("categories",categories);
+        request.setAttribute("products", sortedList);
+        request.setAttribute("categories", categories);
         dispatcher.forward(request,response);
+    }
+
+    private void displayByCategory(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ProductService.getInstance().renderByCategory(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/shop.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void displayAsAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ProductService.getInstance().renderProductAsAdmin(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/admin-page.jsp");
+        dispatcher.forward(request, response);
     }
 }
