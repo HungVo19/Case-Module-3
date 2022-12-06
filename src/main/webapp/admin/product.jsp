@@ -111,13 +111,6 @@
                 <div class="row layout-spacing">
                     <div class="col-lg-12">
                         <div class="statbox widget box box-shadow">
-<%--                            <div class="widget-header">--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">--%>
-<%--                                        <h4>Style 3</h4>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                             <div class="widget-content widget-content-area">
                                 <div class="table-responsive mb-4">
                                     <table id="customer-info-detail-3" class="table style-3 table-bordered  table-hover">
@@ -125,134 +118,39 @@
                                             <tr>
                                                 <th class="checkbox-column text-center"> Record Id </th>
                                                 <th class="align-center">Image</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Email</th>
-                                                <th>Mobile No.</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Description</th>
+                                                <th>Stock Status</th>
                                                 <th class="align-center">Status</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${products}" var="p">
                                             <tr>
-                                                <td class="checkbox-column text-center"> 1 </td>
                                                 <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
+                                                    <span><img src="<c:out value="${p.getImage()}"/>" class="" alt="profile"></span>
                                                 </td>
-                                                <td>Donna</td>
-                                                <td>Rogers</td>
-                                                <td>donna@yahoo.com</td>
-                                                <td>555-555-5555</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-success">Approved</span></td>
+                                                <td><c:out value="${p.getName()}"/></td>
+                                                <td><c:out value="${p.getPrice()}"/></td>
+                                                <td><c:out value="${p.getDescription()}"/></td>
+                                                <td><c:out value="${p.getDescription()}"/></td>
+                                                <td class="align-center">
+                                                    <c:if test="${p.isStockStatus()}">
+                                                        <span class="shadow-none badge badge-success">In Stock</span>
+                                                    </c:if>
+                                                        <span class="shadow-none badge badge-warning">Out of Stock</span>
+                                                </td>
                                                 <td class="text-center">
                                                     <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings"><i class="flaticon-settings-4  bg-primary p-1 text-white br-6 mb-1"></i></a> </li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 2 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                               <td>Andy</td>
-                                                <td>King</td>
-                                                <td>andyking@gmail.com</td>
-                                                <td>555-555-6666</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-warning">Suspended</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 3 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                                <td>Alma</td>
-                                                <td>Clarke</td>
-                                                <td>Alma@live.com</td>
-                                                <td>777-555-5555</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-danger">Closed</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 4 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                                <td>Vincent</td>
-                                                <td>Carpenter</td>
-                                                <td>vinnyc@outlook.com</td>
-                                                <td>555-666-5555</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-success">Approved</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 5 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                                <td>Kristen</td>
-                                                <td>Beck</td>
-                                                <td>kristen@adobe.com</td>
-                                                <td>444-444-4444</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-warning">Suspended</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 6 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                                <td>Oscar</td>
-                                                <td>Garner</td>
-                                                <td>oscar@gmail.com</td>
-                                                <td>111-111-1111</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-danger">Closed</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="checkbox-column text-center"> 7 </td>
-                                                <td class="align-center">
-                                                    <span><img src="assets/img/90x90.jpg" class="" alt="profile"></span>
-                                                </td>
-                                                <td>Nia</td>
-                                                <td>Hillyer</td>
-                                                <td>niaHill@yahoo.com</td>
-                                                <td>111-666-1111</td>
-                                                <td class="align-center"><span class="shadow-none badge badge-success">Approved</span></td>
-                                                <td class="text-center">
-                                                    <ul class="table-controls">
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="flaticon-edit  p-1 br-6 mb-1"></i></a></li>
-                                                        <li><a href="javascript:void(0);" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="flaticon-delete  p-1 br-6 mb-1"></i></a></li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
