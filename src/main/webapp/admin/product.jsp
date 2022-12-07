@@ -45,7 +45,7 @@
                 <span class="flaticon-user-12"></span>
             </a>
             <div class="dropdown-menu  position-absolute" aria-labelledby="userProfileDropdown">
-                <a class="dropdown-item" href="../shop/login-register.jsp">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/user?action=logout">
                     <i class="mr-1 flaticon-power-button"></i> <span>Log Out</span>
                 </a>
             </div>
@@ -154,7 +154,7 @@
                         <tbody>
                         <c:forEach items="${products}" var="p">
                             <tr>
-                                <td class="text-center" style="width: 50px">
+                                <td class="text-center" style="width: 20px">
                                     <c:out value="${p.getId()}"/>
                                 </td>
                                 <td class="align-center">
@@ -258,10 +258,6 @@
                                                 </div>
                                                 <input type="hidden" name="id" value="${p.getId()}">
                                                 <div class="modal-body">
-                                                        <%--                                                <div class="align-center">--%>
-                                                        <%--                                                    <img src="${pageContext.request.contextPath}/${p.getImage()}"--%>
-                                                        <%--                                                         class="" alt="profile">--%>
-                                                        <%--                                                </div>--%>
                                                     <div class="form-group">
                                                         <label>Name</label>
                                                         <input type="text" name="name" class="form-control"

@@ -45,7 +45,7 @@
                 <span class="flaticon-user-12"></span>
             </a>
             <div class="dropdown-menu  position-absolute" aria-labelledby="userProfileDropdown">
-                <a class="dropdown-item" href="../shop/login-register.jsp">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/user?action=logout">
                     <i class="mr-1 flaticon-power-button"></i> <span>Log Out</span>
                 </a>
             </div>
@@ -77,7 +77,8 @@
 
             <ul class="list-unstyled menu-categories" id="accordionExample">
                 <li class="menu">
-                    <a href="${pageContext.request.contextPath}/user?action=showAdminDashboard" aria-expanded="true" class="dropdown-toggle">
+                    <a href="${pageContext.request.contextPath}/user?action=showAdminDashboard" aria-expanded="true"
+                       class="dropdown-toggle">
                         <div class="">
                             <i class="flaticon-computer-6 ml-3"></i>
                             <span>Dashboard</span>
@@ -89,10 +90,12 @@
                                     class="flaticon-package"></i> Product </a>
                         </li>
                         <li class="active">
-                            <a href="${pageContext.request.contextPath}/user?action=viewByAdmin"> <i class="flaticon-user-1"></i> User </a>
+                            <a href="${pageContext.request.contextPath}/user?action=viewByAdmin"> <i
+                                    class="flaticon-user-1"></i> User </a>
                         </li>
                         <li class="active">
-                            <a href="index.jsp"> <i class="flaticon-menu-dot-fill"></i> Category </a>
+                            <a href="${pageContext.request.contextPath}/category?action=viewByAdmin"> <i
+                                    class="flaticon-menu-dot-fill"></i> Category </a>
                         </li>
                     </ul>
                 </li>
@@ -112,9 +115,11 @@
                     <h3>DataTables</h3>
                     <div class="crumbs">
                         <ul id="breadcrumbs" class="breadcrumb">
-                            <li><a href="${pageContext.request.contextPath}/admin/index.jsp"><i
+                            <li><a><i
                                     class="flaticon-home-fill"></i></a></li>
-                            <li><a href="${pageContext.request.contextPath}/user?action=showAdminDashboard">Dashboard</a></li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/user?action=showAdminDashboard">Dashboard</a>
+                            </li>
                             <li><a href="#" style="font-weight: bold">Category</a></li>
                         </ul>
                     </div>
@@ -129,14 +134,15 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <a href="#addProductModal" class="btn btn-success" data-toggle="modal"><i
-                                class="flaticon-plus">&#xE147;</i>
-                            <span>Add New</span></a>
+                            <a href="#addProductModal" class="btn btn-success" data-toggle="modal"><i
+                                    class="flaticon-plus">&#xE147;</i>
+                                <span>Add New</span></a>
                     </div>
                 </div>
             </div>
 
             <div class="widget-content widget-content-area">
+
                 <div class="table-responsive mb-4">
                     <table id="customer-info-detail-3" class="table style-3 table-bordered  table-hover">
                         <thead>
@@ -154,118 +160,35 @@
                                 </td>
                                 <td><c:out value="${c.getName()}"/></td>
                                 <td class="align-center">
-                                    <ul class="table-controls">
-                                        <li><a href="#v${c.getId()}" data-toggle="modal" title="View"
-                                               data-original-title="Settings"><i data-toggle="tooltip"
-                                                                                 class="flaticon-settings-4  bg-primary p-1 text-white br-6 mb-1"></i></a>
-                                        </li>
-                                        <li><a href="#e${c.getId()}" data-toggle="modal" data-placement="top" title=""
-                                               data-original-title="Edit"><i
-                                                class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a>
-                                        </li>
-                                        <li><a href="#d${c.getId()}" data-toggle="modal" data-placement="top" title=""
-                                               data-original-title="Delete"><i
-                                                class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a>
-                                        </li>
-                                    </ul>
+                                    <a href="#e${c.getId()}" data-toggle="modal" data-placement="top" title=""
+                                       data-original-title="Edit"><i
+                                            class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a>
+                                    <a href="#d${c.getId()}" data-toggle="modal" data-placement="top" title=""
+                                       data-original-title="Delete"><i
+                                            class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a>
                                 </td>
-                                <div id="v${c.getId()}" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Category Information</h4>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-hidden="true">&times;
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control"
-                                                           value="${c.getName()}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="button" class="btn btn-info" data-dismiss="modal"
-                                                       value="Close">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div id="e${c.getId()}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <form action="${pageContext.request.contextPath}/category?action=update"
                                                   method="post" id="formEdit${c.getId()}">
+                                                <input type="hidden" name="id" value="${c.getId()}">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Update Cate</h4>
+                                                    <h4 class="modal-title">Update Category</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">&times;
                                                     </button>
                                                 </div>
-                                                <input type="hidden" name="id" value="${p.getId()}">
                                                 <div class="modal-body">
-                                                        <%--                                                <div class="align-center">--%>
-                                                        <%--                                                    <img src="${pageContext.request.contextPath}/${p.getImage()}"--%>
-                                                        <%--                                                         class="" alt="profile">--%>
-                                                        <%--                                                </div>--%>
                                                     <div class="form-group">
-                                                        <label>Name</label>
-                                                        <input type="text" name="name" class="form-control"
-                                                               value="${p.getName()}" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Price</label>
-                                                        <input type='number' step='0.01' name="price"
-                                                               class="form-control"
-                                                               value="${p.getPrice()}" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea class="form-control" name="description" rows="5"
-                                                                  required>
-                                                                ${p.getDescription()}
-                                                        </textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Image</label>
-                                                        <input type="text" class="form-control" name="image"
-                                                               value="${p.getImage()}" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Stock Status</label>
-                                                        <select name="stock" class="form-control">
-                                                            <c:if test="${p.isStockStatus()}">
-                                                                <option value="true">In Stock</option>
-                                                                <option value="false">Out of Stock</option>
-                                                            </c:if>
-                                                            <c:if test="${!p.isStockStatus()}">
-                                                                <option value="false">Out of Stock</option>
-                                                                <option value="true">In Stock</option>
-                                                            </c:if>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Category</label>
-                                                        <select name="category" class="form-control">
-                                                            <c:forEach items="${categories}" var="c">
-                                                                <c:if test="${c.getId() != p.getCategory().getId()}">
-                                                                    <option value="${c.getId()}"><c:out
-                                                                            value="${c.getName()}"/></option>
-                                                                </c:if>
-                                                                <c:if test="${c.getId() == p.getCategory().getId()}">
-                                                                    <option selected value="${c.getId()}"><c:out
-                                                                            value="${c.getName()}"/></option>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </select>
+                                                        <input class="form-control" type="text" name="name" value="${c.getName()}">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="button" class="btn btn-default" data-dismiss="modal"
                                                            value="Cancel">
-                                                    <input type="submit" class="btn btn-success" value="Save" id="edit${p.getId()}">
+                                                    <input type="submit" class="btn btn-success" value="Save"
+                                                           id="edit${c.getId()}">
                                                 </div>
                                             </form>
                                         </div>
@@ -274,15 +197,15 @@
                                 <div id="d${c.getId()}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="${pageContext.request.contextPath}/product?action=delete"
-                                                  method="post" id="formDelete${p.getId()}">
+                                            <form action="${pageContext.request.contextPath}/category?action=delete"
+                                                  method="post" id="formDelete${c.getId()}">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Delete Product</h4>
+                                                    <h4 class="modal-title">Delete Category</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">&times;
                                                     </button>
                                                 </div>
-                                                <input type="hidden" name="id" value="${p.getId()}">
+                                                <input type="hidden" name="id" value="${c.getId()}">
                                                 <div class="modal-body">
                                                     <p>Are you sure you want to delete this Product ?</p>
                                                     <p class="text-warning"><small>This action cannot be undone.</small>
@@ -292,7 +215,7 @@
                                                     <input type="button" class="btn btn-default" data-dismiss="modal"
                                                            value="Cancel">
                                                     <input type="submit" class="btn btn-danger" value="Delete"
-                                                           id="delete${p.getId()}">
+                                                           id="delete${c.getId()}">
                                                 </div>
                                             </form>
                                         </div>
@@ -301,7 +224,7 @@
                                 </div>
                             </tr>
                             <script>
-                                document.querySelector('#edit${p.getId()}').addEventListener('click', (event) => {
+                                document.querySelector('#edit${c.getId()}').addEventListener('click', (event) => {
                                     event.preventDefault();
                                     let timerInterval
                                     Swal.fire({
@@ -322,11 +245,10 @@
                                         }
                                     }).then((result) => {
                                         /* Read more about handling dismissals below */
-                                        document.querySelector('#formEdit${p.getId()}').submit();
+                                        document.querySelector('#formEdit${c.getId()}').submit();
                                     })
                                 })
-
-                                document.querySelector('#delete${p.getId()}').addEventListener('click', (event) => {
+                                document.querySelector('#delete${c.getId()}').addEventListener('click', (event) => {
                                     event.preventDefault();
                                     let timerInterval
                                     Swal.fire({
@@ -347,7 +269,7 @@
                                         }
                                     }).then((result) => {
                                         /* Read more about handling dismissals below */
-                                        document.querySelector('#formDelete${p.getId()}').submit();
+                                        document.querySelector('#formDelete${c.getId()}').submit();
                                     })
                                 })
                             </script>
@@ -367,7 +289,7 @@
 <div id="addProductModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="${pageContext.request.contextPath}/product?action=create" method="post" id="formCreate">
+            <form action="${pageContext.request.contextPath}/category?action=create" method="post" id="formCreate">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Products</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -376,33 +298,6 @@
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type='number' step='0.01' class="form-control" name="price" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" name="description" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="text" class="form-control" name="image" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Stock Status</label>
-                        <select name="stock" class="form-control">
-                            <option value="true">In Stock</option>
-                            <option value="false">Out of Stock</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select name="category" class="form-control">
-                            <c:forEach items="${categories}" var="c">
-                                <option id="${c.getId()}" value="${c.getId()}">${c.getName()}</option>
-                            </c:forEach>
-                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

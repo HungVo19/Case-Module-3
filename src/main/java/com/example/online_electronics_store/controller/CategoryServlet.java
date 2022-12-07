@@ -32,7 +32,16 @@ public class CategoryServlet extends HttpServlet {
         try {
             switch (action) {
                 case "viewByAdmin":
-                    displayForAdmin(request,response);
+                    displayForAdmin(request, response);
+                    break;
+                case "create":
+                    createCategory(request, response);
+                    break;
+                case "update":
+                    updateCategory(request, response);
+                    break;
+                case "delete":
+                    deleteCategory(request, response);
                     break;
             }
         } catch (SQLException e) {
@@ -42,10 +51,28 @@ public class CategoryServlet extends HttpServlet {
 
     private void displayForAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/category.jsp");
-        List<Product> products = ProductDAO.getInstance().findAll();
         List<Category> categories = CategoryDAO.getInstance().findAll();
-        request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         dispatcher.forward(request, response);
     }
+
+    private void createCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String name = request.getParameter("name");
+        CategoryDAO.getInstance().insert(new Category(name));
+        displayForAdmin(request, response);
+    }
+
+    private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        String name = request.getParameter("name");
+        CategoryDAO.getInstance().update(id, new Category(name));
+        displayForAdmin(request, response);
+    }
+
+    private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        CategoryDAO.getInstance().delete(id);
+        displayForAdmin(request, response);
+    }
+
 }

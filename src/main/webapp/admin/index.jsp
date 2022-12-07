@@ -35,7 +35,7 @@
                     <span class="flaticon-user-12"></span>
                 </a>
                 <div class="dropdown-menu  position-absolute" aria-labelledby="userProfileDropdown">
-                    <a class="dropdown-item" href="../shop/login-register.jsp">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user?action=logout">
                         <i class="mr-1 flaticon-power-button"></i> <span>Log Out</span>
                     </a>
                 </div>

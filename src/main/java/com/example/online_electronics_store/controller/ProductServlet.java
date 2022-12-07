@@ -45,25 +45,13 @@ public class ProductServlet extends HttpServlet {
                     displayForAdmin(request, response);
                     break;
                 case "create":
-                    try {
-                        createProduct(request,response);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    createProduct(request,response);
                     break;
                 case "update":
-                    try {
-                        updateProduct(request,response);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    updateProduct(request,response);
                     break;
                 case "delete":
-                    try {
-                        deleteProduct(request,response);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
+                    deleteProduct(request,response);
                     break;
                 case "details":
                     displayDetail(request, response);
@@ -80,7 +68,7 @@ public class ProductServlet extends HttpServlet {
                 default:
                     displayDefault(request, response);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

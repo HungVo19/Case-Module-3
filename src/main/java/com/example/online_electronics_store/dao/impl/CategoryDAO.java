@@ -16,7 +16,7 @@ public class CategoryDAO implements ICategoryDAO {
     private final String SELECT_CATEGORY_BY_NAME = "select * from category where name = ?;";
     private final String SELECT_ALL_CATEGORY = "select * from category;";
     private final String INSERT_CATEGORY = "insert into category (name) values (?);";
-    private final String UPDATE_CATEGORY = "update category set name = ? where id = ?);";
+    private final String UPDATE_CATEGORY = "update category set name = ? where id = ?;";
     private final String DELETE_CATEGORY = "delete from category where id = ?;";
     private final String SELECT_COUNT = "select count(id) from category;";
     DBConnection dbConn = DBConnection.getInstance();
