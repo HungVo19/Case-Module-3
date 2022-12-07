@@ -174,7 +174,7 @@
                                         <form action="${pageContext.request.contextPath}/user?action=login" method="post">
                                             <input type="text" name="account" placeholder="Username or Email"
                                                    required>
-                                            <input type="password" name="password" id="loginPass"
+                                            <input type="password" pattern="^\\w{6,8}$" name="password" id="loginPass"
                                                    placeholder="Password" required>
                                             <span>
                                                 <i class="fa fa-eye fa-lg" id="toggleLoginPass"
@@ -198,9 +198,9 @@
                             <div id="lg2" class="mess tab-pane">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="/user?action=register" method="post">
-                                            <input type="text" name="username" pattern="^\S*$" title="User name can not contain space" placeholder="Username" required>
-                                            <input type="password" pattern="^\S*{6,8}$"
+                                        <form action="${pageContext.request.contextPath}/user?action=register" method="post">
+                                            <input type="text" name="username" title="User name can not contain space" placeholder="Username" required>
+                                            <input type="password" pattern="^\w{6,8}$"
                                                    title="Password must be 6 -8 characters without space"
                                                    id="createPass"
                                                    name="password" placeholder="Password" required
