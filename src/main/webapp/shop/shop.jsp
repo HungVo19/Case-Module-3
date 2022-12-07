@@ -184,8 +184,8 @@
                                     <label>Sort by :</label>
                                     <select onchange="sort(this)">
                                         <option value="">Default</option>
-                                        <option value="/product?action=sort&condition=name"> name</option>
-                                        <option value="/product?action=sort&condition=price"> price</option>
+                                        <option value="/product?action=sort&condition=name">Name</option>
+                                        <option value="/product?action=sort&condition=price">Price</option>
                                     </select>
                                 </div>
                             </div>

@@ -237,7 +237,6 @@
                 </div>
             </div>
         </div>
-        <% if (user != null) { %>
         <div class="description-review-wrapper pb-110">
             <div class="container">
                 <div class="row">
@@ -264,53 +263,64 @@
                                                         <h5><span><c:out value="${f.getUser().getUsername()}"/></span> - <c:out value="${f.getDate()}"/></h5>
                                                     </div>
                                                     <div class="review-rating mt-2">
-                                                        <i class="yellow icon_star"></i>
-                                                        <i class="yellow icon_star"></i>
-                                                        <i class="yellow icon_star"></i>
-                                                        <i class="yellow icon_star"></i>
-                                                        <i class="yellow icon_star"></i>
+                                                        <c:forEach begin="1" end="${f.getRate()}" var="i">
+                                                            <i class="yellow icon_star"></i>
+                                                        </c:forEach>
+<%--                                                        <i class="yellow icon_star"></i>--%>
+<%--                                                        <i class="yellow icon_star"></i>--%>
+<%--                                                        <i class="yellow icon_star"></i>--%>
+<%--                                                        <i class="yellow icon_star"></i>--%>
+<%--                                                        <i class="yellow icon_star"></i>--%>
                                                     </div>
                                                 </div>
-                                                <p><c:out value="${f.getComment()}"/></p>
+                                                <p><c:out value="${f.getComment() == null ? '' : f.getComment()}"/></p>
                                             </div>
                                         </div>
                                     </c:forEach>
                                 </div>
+                                <% if (user != null) { %>
                                 <div class="ratting-form-wrapper">
+                                    <span>Rating</span>
+                                    <div class="ratting-form">
+                                        <form action="#!" method="post">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="star-box-wrap mt-0">
+                                                        <div class="single-ratting-star">
+                                                            <a href="review?action=rate&value=1&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="review?action=rate&value=2&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=2&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                     <span>Add a Review</span>
                                     <p>Your email address will not be published. Required fields are marked <span>*</span></p>
                                     <div class="ratting-form">
                                         <form action="review?action=comment&id=${product.getId()}" method="post">
                                             <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="star-box-wrap">
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                            <a href="#"><i class="icon_star"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-12">
                                                     <div class="rating-form-style mb-20">
                                                         <label>Your review <span>*</span></label>
@@ -326,13 +336,13 @@
                                         </form>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <% } %>
         <div class="about-us-area pt-85">
             <div class="container">
                 <div class="border-bottom-1 about-content-pb">

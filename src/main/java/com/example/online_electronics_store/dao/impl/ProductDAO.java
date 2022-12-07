@@ -40,7 +40,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public Product findById(Long id) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_ID)) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_ID)) {
             statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             return getList(result).get(0);

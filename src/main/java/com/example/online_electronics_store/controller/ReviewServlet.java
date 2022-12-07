@@ -1,6 +1,5 @@
 package com.example.online_electronics_store.controller;
 
-import com.example.online_electronics_store.model.Feedback;
 import com.example.online_electronics_store.service.impl.FeedbackService;
 
 import javax.servlet.*;
@@ -8,7 +7,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(name = "ReviewServlet", value = "/review")
 public class ReviewServlet extends HttpServlet {
@@ -30,7 +28,10 @@ public class ReviewServlet extends HttpServlet {
         try {
             switch (action) {
                 case "comment":
-                    createFeedBack(request, response);
+                    comment(request, response);
+                    break;
+                case "rate":
+                    rating(request, response);
                     break;
                 default:
             }
@@ -39,8 +40,13 @@ public class ReviewServlet extends HttpServlet {
         }
     }
 
-    private void createFeedBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException, ClassNotFoundException {
-        Long id = FeedbackService.getInstance().insert(request);
+    private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException, ClassNotFoundException {
+        Long id = FeedbackService.getInstance().comment(request);
+        response.sendRedirect("product?action=details&id=" + id);
+    }
+
+    private void rating(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        Long id = FeedbackService.getInstance().rate(request);
         response.sendRedirect("product?action=details&id=" + id);
     }
 }

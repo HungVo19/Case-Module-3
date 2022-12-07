@@ -17,8 +17,9 @@ import java.util.List;
 public class FeedbackDAO implements IFeedbackDAO {
     private final String SELECT_BY_PRODUCT = "select * from feedback where product_id = ?;";
     private final String INSERT_FEEDBACK = "insert into feedback (user_id, product_id, comment, date) values (?,?,?,?);";
+    private final String INSERT_RATE = "insert into feedback (user_id, product_id, rate, date) values (?,?,?,?);";
     private final String UPDATE_FEEDBACK = "update feedback set comment = ?, date = ? where user_id = ? and product_id = ?;";
-    private final String CANCEL_ORDER = "delete from order_detail where order_id = ?;";
+    private final String UPDATE_RATE = "update feedback set rate = ? where user_id = ? and product_id = ?;";
     DBConnection dbConn = DBConnection.getInstance();
     private static FeedbackDAO instance;
 
@@ -100,5 +101,25 @@ public class FeedbackDAO implements IFeedbackDAO {
     @Override
     public void setStatement(Feedback feedback, PreparedStatement statement) throws SQLException {
 
+    }
+
+    public void insertRate(Feedback feedback) throws SQLException {
+        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(INSERT_RATE)) {
+            statement.setLong(1, feedback.getUser().getId());
+            statement.setLong(2, feedback.getProduct().getId());
+            statement.setLong(3, feedback.getRate());
+            Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
+            statement.setTimestamp(4, timestamp);
+            statement.executeUpdate();
+        }
+    }
+
+    public void updateRate(Feedback feedback) throws SQLException {
+        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(UPDATE_RATE)) {
+            statement.setInt(1, feedback.getRate());
+            statement.setLong(2, feedback.getUser().getId());
+            statement.setLong(3, feedback.getProduct().getId());
+            statement.executeUpdate();
+        }
     }
 }

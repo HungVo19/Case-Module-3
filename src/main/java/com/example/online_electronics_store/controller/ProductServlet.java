@@ -45,25 +45,13 @@ public class ProductServlet extends HttpServlet {
                     displayForAdmin(request, response);
                     break;
                 case "create":
-                    try {
-                        createProduct(request,response);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    createProduct(request,response);
                     break;
                 case "update":
-                    try {
-                        updateProduct(request,response);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    updateProduct(request,response);
                     break;
                 case "delete":
-                    try {
-                        deleteProduct(request,response);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
+                    deleteProduct(request,response);
                     break;
                 case "details":
                     displayDetail(request, response);
@@ -71,50 +59,16 @@ public class ProductServlet extends HttpServlet {
                 case "filter":
                     displayByCategory(request, response);
                     break;
-                case "display_admin":
-                    displayAsAdmin(request, response);
-                    break;
                 case "price":
                     displayByPrice(request, response);
                     break;
                 default:
                     displayDefault(request, response);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String action = request.getParameter("action");
-//        if (action == null) {
-//            action = "";
-//        }
-//        switch (action) {
-//            case "create":
-//                try {
-//                    createProduct(request,response);
-//                } catch (SQLException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                break;
-//            case "update":
-//                try {
-//                    updateProduct(request,response);
-//                } catch (SQLException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                break;
-//            case "delete":
-//                try {
-//                    deleteProduct(request,response);
-//                } catch (SQLException | ClassNotFoundException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                break;
-//        }
-//    }
 
     private void displayDefault(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String path = ProductService.getInstance().renderDefault(request);
@@ -160,12 +114,6 @@ public class ProductServlet extends HttpServlet {
     private void displayByCategory(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
         ProductService.getInstance().renderByCategory(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher("shop/shop.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void displayAsAdmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        ProductService.getInstance().renderProductAsAdmin(request);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/admin-page.jsp");
         dispatcher.forward(request, response);
     }
 

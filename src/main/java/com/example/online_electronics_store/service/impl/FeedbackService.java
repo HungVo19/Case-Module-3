@@ -1,6 +1,5 @@
 package com.example.online_electronics_store.service.impl;
 
-import com.example.online_electronics_store.dao.impl.CartDetailsDAO;
 import com.example.online_electronics_store.dao.impl.FeedbackDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
 import com.example.online_electronics_store.model.Feedback;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class FeedbackService implements IFeedbackService {
     private static FeedbackService instance;
@@ -55,7 +55,7 @@ public class FeedbackService implements IFeedbackService {
         return null;
     }
 
-    public Long insert(HttpServletRequest request) throws ServletException, IOException, SQLException, ClassNotFoundException {
+    public Long comment(HttpServletRequest request) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String comment = request.getParameter("comment");
         Long id = Long.parseLong(request.getParameter("id"));
         Product product = ProductDAO.getInstance().findById(id);
@@ -69,10 +69,32 @@ public class FeedbackService implements IFeedbackService {
             return id;
         }
         for (Feedback f : feedbacks) {
-            if (f.getUser().getId() == user.getId()) {
+            if (Objects.equals(f.getUser().getId(), user.getId())) {
                 FeedbackDAO.getInstance().update(product, feedback);
             } else {
                 FeedbackDAO.getInstance().insert(feedback);
+            }
+        }
+        return id;
+    }
+    public Long rate(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Long id = Long.parseLong(request.getParameter("id"));
+        Product product = ProductDAO.getInstance().findById(id);
+        int rate = Integer.parseInt(request.getParameter("value"));
+        LocalDateTime dateTime = LocalDateTime.now();
+        Feedback feedback = new Feedback(user, product, rate, dateTime);
+        List<Feedback> feedbacks = FeedbackDAO.getInstance().findByProduct(product);
+        if (feedbacks.isEmpty()) {
+            FeedbackDAO.getInstance().insertRate(feedback);
+            return id;
+        }
+        for (Feedback f : feedbacks) {
+            if (Objects.equals(f.getUser().getId(), user.getId())) {
+                FeedbackDAO.getInstance().updateRate(feedback);
+            } else {
+                FeedbackDAO.getInstance().insertRate(feedback);
             }
         }
         return id;
