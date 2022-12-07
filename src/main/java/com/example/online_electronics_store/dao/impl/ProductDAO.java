@@ -24,6 +24,7 @@ public class ProductDAO implements IProductDAO {
     private final String UPDATE_PRODUCT = "update product set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?;";
     private final String DELETE_PRODUCT = "delete from product where id = ?;";
     private final String SORT_BY_CONDITION = "select * from product order by ";
+    private final String SELECT_PRODUCT_BY_SEARCH_NAME = "select * from product where name like ?;";
     DBConnection dbConn = DBConnection.getInstance();
     private static ProductDAO instance;
 
@@ -167,6 +168,15 @@ public class ProductDAO implements IProductDAO {
             PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_PRICE)) {
             statement.setDouble(1, start);
             statement.setDouble(2, end);
+            ResultSet result = statement.executeQuery();
+            return getList(result);
+        }
+    }
+
+    public List<Product> findBySearchName(String name) throws SQLException {
+        try(Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_SEARCH_NAME)) {
+            statement.setString(1,"%" + name + "%");
             ResultSet result = statement.executeQuery();
             return getList(result);
         }

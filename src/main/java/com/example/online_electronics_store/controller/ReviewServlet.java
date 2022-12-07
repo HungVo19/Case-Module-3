@@ -27,11 +27,8 @@ public class ReviewServlet extends HttpServlet {
         }
         try {
             switch (action) {
-                case "comment":
-                    comment(request, response);
-                    break;
-                case "rate":
-                    rating(request, response);
+                case "feedback":
+                    feedback(request, response);
                     break;
                 default:
             }
@@ -40,13 +37,8 @@ public class ReviewServlet extends HttpServlet {
         }
     }
 
-    private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException, ClassNotFoundException {
-        Long id = FeedbackService.getInstance().comment(request);
-        response.sendRedirect("product?action=details&id=" + id);
-    }
-
-    private void rating(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        Long id = FeedbackService.getInstance().rate(request);
+    private void feedback(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException, ClassNotFoundException {
+        Long id = FeedbackService.getInstance().feedback(request);
         response.sendRedirect("product?action=details&id=" + id);
     }
 }

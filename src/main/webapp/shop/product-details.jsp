@@ -1,9 +1,9 @@
-<%@ page import="com.example.online_electronics_store.model.User" %>
-<%@ page import="com.example.online_electronics_store.model.Cart" %>
 <%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
-<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
+<%@ page import="com.example.online_electronics_store.model.*" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.FeedbackDAO" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.ProductDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
@@ -116,8 +116,8 @@
                                             <i class="icon_close s-close"></i>
                                         </a>
                                         <div class="search-wrap-1">
-                                            <form action="#">
-                                                <input placeholder="Search product" type="text">
+                                            <form action="${pageContext.request.contextPath}/product?action=search" method="post">
+                                                <input placeholder="Search product" type="text" name="search">
                                                 <button class="button-search"><i class="icon-magnifier"></i></button>
                                             </form>
                                         </div>
@@ -180,18 +180,21 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-content pro-details-content-mrg">
+                            <%
+                                Product product = (Product) request.getAttribute("product");
+                                Double avg = FeedbackDAO.getInstance().findAvgRate(product);
+                                int count = avg.intValue();
+                            %>
                             <h2><c:out value="${product.getName()}"/></h2>
                             <div class="product-ratting-review-wrap">
                                 <div class="product-ratting-digit-wrap">
                                     <div class="product-ratting">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
+                                        <% for (int i = 0; i < count; i++) { %>
+                                            <i class="icon_star"></i>
+                                        <% } %>
                                     </div>
                                     <div class="product-digit">
-                                        <span>5.0</span>
+                                        <span><%= (double) Math.round(avg * 100) / 100 %></span>
                                     </div>
                                 </div>
                             </div>
@@ -266,11 +269,6 @@
                                                         <c:forEach begin="1" end="${f.getRate()}" var="i">
                                                             <i class="yellow icon_star"></i>
                                                         </c:forEach>
-<%--                                                        <i class="yellow icon_star"></i>--%>
-<%--                                                        <i class="yellow icon_star"></i>--%>
-<%--                                                        <i class="yellow icon_star"></i>--%>
-<%--                                                        <i class="yellow icon_star"></i>--%>
-<%--                                                        <i class="yellow icon_star"></i>--%>
                                                     </div>
                                                 </div>
                                                 <p><c:out value="${f.getComment() == null ? '' : f.getComment()}"/></p>
@@ -280,46 +278,50 @@
                                 </div>
                                 <% if (user != null) { %>
                                 <div class="ratting-form-wrapper">
-                                    <span>Rating</span>
+                                    <span>Add a Review</span>
+                                    <p>Your email address will not be published. Required fields are marked <span>*</span></p>
                                     <div class="ratting-form">
-                                        <form action="#!" method="post">
-                                            <div class="row">
+                                        <form action="review?action=feedback&id=${product.getId()}" method="post">
+                                            <span>Rating</span>
+                                            <div class="row mt-2">
                                                 <div class="col-lg-12">
+                                                    <%
+                                                        int rate = 0;
+                                                        Feedback feedback = FeedbackDAO.getInstance().findByUserAndProduct(user, product);
+                                                        if (feedback != null) {
+                                                            rate = feedback.getRate();
+                                                        }
+                                                    %>
+                                                    <input id="rate" type="text" name="rate" value="<%= rate%>" hidden>
                                                     <div class="star-box-wrap mt-0">
-                                                        <div class="single-ratting-star">
-                                                            <a href="review?action=rate&value=1&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        <div onclick="ratingProduct(1)" class="star star-1 single-ratting-star">
+                                                            <i class="icon_star"></i>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="review?action=rate&value=2&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=2&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        <div onclick="ratingProduct(2)" class="star star-2 single-ratting-star">
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=3&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        <div onclick="ratingProduct(3)" class="star star-3 single-ratting-star">
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=4&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        <div onclick="ratingProduct(4)" class="star star-4 single-ratting-star">
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
                                                         </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
-                                                            <a href="review?action=rate&value=5&id=${product.getId()}"><i class="icon_star"></i></a>
+                                                        <div onclick="ratingProduct(5)" class="star star-5 single-ratting-star">
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
+                                                            <i class="icon_star"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <span>Add a Review</span>
-                                    <p>Your email address will not be published. Required fields are marked <span>*</span></p>
-                                    <div class="ratting-form">
-                                        <form action="review?action=comment&id=${product.getId()}" method="post">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="rating-form-style mb-20">
@@ -461,7 +463,17 @@
     <script src="/shop/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="/shop/assets/js/main.js"></script>
-
+    <script>
+        function ratingProduct(number) {
+            let rateButtons = document.getElementsByClassName("star");
+            for (const rateBtn of rateButtons) {
+                rateBtn.style.color = "black";
+            }
+            let btn = document.getElementsByClassName("star-" + number);
+            btn[0].style.color = "orange";
+            document.getElementById("rate").value = number;
+        }
+    </script>
 </body>
 
 </html>

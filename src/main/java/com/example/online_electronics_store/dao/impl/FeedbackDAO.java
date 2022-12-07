@@ -13,13 +13,13 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FeedbackDAO implements IFeedbackDAO {
     private final String SELECT_BY_PRODUCT = "select * from feedback where product_id = ?;";
-    private final String INSERT_FEEDBACK = "insert into feedback (user_id, product_id, comment, date) values (?,?,?,?);";
-    private final String INSERT_RATE = "insert into feedback (user_id, product_id, rate, date) values (?,?,?,?);";
-    private final String UPDATE_FEEDBACK = "update feedback set comment = ?, date = ? where user_id = ? and product_id = ?;";
-    private final String UPDATE_RATE = "update feedback set rate = ? where user_id = ? and product_id = ?;";
+    private final String INSERT_FEEDBACK = "insert into feedback (user_id, product_id, rate, comment, date) values (?,?,?,?,?);";
+    private final String UPDATE_FEEDBACK = "update feedback set rate = ?, comment = ?, date = ? where user_id = ? and product_id = ?;";
+    private final String FIND_AVG_RATE_OF_PRODUCT = "select avg(rate) as avg from feedback where product_id = ?";
     DBConnection dbConn = DBConnection.getInstance();
     private static FeedbackDAO instance;
 
@@ -56,9 +56,10 @@ public class FeedbackDAO implements IFeedbackDAO {
         try (PreparedStatement statement = dbConn.getConnection().prepareStatement(INSERT_FEEDBACK)) {
             statement.setLong(1, feedback.getUser().getId());
             statement.setLong(2, feedback.getProduct().getId());
-            statement.setString(3, feedback.getComment());
+            statement.setInt(3, feedback.getRate());
+            statement.setString(4, feedback.getComment());
             Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
-            statement.setTimestamp(4, timestamp);
+            statement.setTimestamp(5, timestamp);
             statement.executeUpdate();
         }
     }
@@ -66,11 +67,12 @@ public class FeedbackDAO implements IFeedbackDAO {
     @Override
     public boolean update(Product id, Feedback feedback) throws SQLException, ClassNotFoundException {
         try (PreparedStatement statement = dbConn.getConnection().prepareStatement(UPDATE_FEEDBACK)) {
-            statement.setString(1, feedback.getComment());
+            statement.setInt(1, feedback.getRate());
+            statement.setString(2, feedback.getComment());
             Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
-            statement.setTimestamp(2, timestamp);
-            statement.setLong(3, feedback.getUser().getId());
-            statement.setLong(4, feedback.getProduct().getId());
+            statement.setTimestamp(3, timestamp);
+            statement.setLong(4, feedback.getUser().getId());
+            statement.setLong(5, feedback.getProduct().getId());
             statement.executeUpdate();
         }
         return true;
@@ -103,23 +105,25 @@ public class FeedbackDAO implements IFeedbackDAO {
 
     }
 
-    public void insertRate(Feedback feedback) throws SQLException {
-        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(INSERT_RATE)) {
-            statement.setLong(1, feedback.getUser().getId());
-            statement.setLong(2, feedback.getProduct().getId());
-            statement.setLong(3, feedback.getRate());
-            Timestamp timestamp = Timestamp.valueOf(feedback.getDate());
-            statement.setTimestamp(4, timestamp);
-            statement.executeUpdate();
+    public Feedback findByUserAndProduct(User user, Product product) throws SQLException {
+        List<Feedback> feedbacks = findByProduct(product);
+        for (Feedback feedback : feedbacks) {
+            if(Objects.equals(feedback.getUser().getId(), user.getId())) {
+                return feedback;
+            }
         }
+        return null;
     }
 
-    public void updateRate(Feedback feedback) throws SQLException {
-        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(UPDATE_RATE)) {
-            statement.setInt(1, feedback.getRate());
-            statement.setLong(2, feedback.getUser().getId());
-            statement.setLong(3, feedback.getProduct().getId());
-            statement.executeUpdate();
+    public double findAvgRate(Product product) throws SQLException {
+        double avg = 0;
+        try (PreparedStatement statement = dbConn.getConnection().prepareStatement(FIND_AVG_RATE_OF_PRODUCT)) {
+            statement.setLong(1, product.getId());
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                avg = result.getDouble("avg");
+            }
         }
+        return avg;
     }
 }

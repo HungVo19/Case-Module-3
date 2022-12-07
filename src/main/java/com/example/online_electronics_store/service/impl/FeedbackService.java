@@ -55,14 +55,15 @@ public class FeedbackService implements IFeedbackService {
         return null;
     }
 
-    public Long comment(HttpServletRequest request) throws ServletException, IOException, SQLException, ClassNotFoundException {
+    public Long feedback(HttpServletRequest request) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String comment = request.getParameter("comment");
+        int rate = Integer.parseInt(request.getParameter("rate"));
         Long id = Long.parseLong(request.getParameter("id"));
         Product product = ProductDAO.getInstance().findById(id);
         LocalDateTime dateTime = LocalDateTime.now();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        Feedback feedback = new Feedback(user, product, comment, dateTime);
+        Feedback feedback = new Feedback(user, product, rate, comment, dateTime);
         List<Feedback> feedbacks = FeedbackDAO.getInstance().findByProduct(product);
         if (feedbacks.isEmpty()) {
             FeedbackDAO.getInstance().insert(feedback);
@@ -71,32 +72,10 @@ public class FeedbackService implements IFeedbackService {
         for (Feedback f : feedbacks) {
             if (Objects.equals(f.getUser().getId(), user.getId())) {
                 FeedbackDAO.getInstance().update(product, feedback);
-            } else {
-                FeedbackDAO.getInstance().insert(feedback);
+                return id;
             }
         }
-        return id;
-    }
-    public Long rate(HttpServletRequest request) throws SQLException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Long id = Long.parseLong(request.getParameter("id"));
-        Product product = ProductDAO.getInstance().findById(id);
-        int rate = Integer.parseInt(request.getParameter("value"));
-        LocalDateTime dateTime = LocalDateTime.now();
-        Feedback feedback = new Feedback(user, product, rate, dateTime);
-        List<Feedback> feedbacks = FeedbackDAO.getInstance().findByProduct(product);
-        if (feedbacks.isEmpty()) {
-            FeedbackDAO.getInstance().insertRate(feedback);
-            return id;
-        }
-        for (Feedback f : feedbacks) {
-            if (Objects.equals(f.getUser().getId(), user.getId())) {
-                FeedbackDAO.getInstance().updateRate(feedback);
-            } else {
-                FeedbackDAO.getInstance().insertRate(feedback);
-            }
-        }
+        FeedbackDAO.getInstance().insert(feedback);
         return id;
     }
 }

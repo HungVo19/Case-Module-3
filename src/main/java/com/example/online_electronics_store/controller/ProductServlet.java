@@ -59,6 +59,9 @@ public class ProductServlet extends HttpServlet {
                 case "filter":
                     displayByCategory(request, response);
                     break;
+                case "search":
+                    displayBySearchName(request, response);
+                    break;
                 case "price":
                     displayByPrice(request, response);
                     break;
@@ -149,4 +152,9 @@ public class ProductServlet extends HttpServlet {
         response.sendRedirect("http://localhost:8080/product?action=viewByAdmin");
     }
 
+    private void displayBySearchName(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ProductService.getInstance().renderBySearchName(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/shop.jsp");
+        dispatcher.forward(request, response);
+    }
 }
