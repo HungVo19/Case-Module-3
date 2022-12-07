@@ -1,8 +1,10 @@
 package com.example.online_electronics_store.service.impl;
 
 import com.example.online_electronics_store.dao.impl.CategoryDAO;
+import com.example.online_electronics_store.dao.impl.FeedbackDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
 import com.example.online_electronics_store.model.Category;
+import com.example.online_electronics_store.model.Feedback;
 import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.service.IProductService;
 
@@ -90,7 +92,30 @@ public class ProductService implements IProductService {
     public void renderDetails(HttpServletRequest request) throws SQLException {
         Long id = Long.parseLong(request.getParameter("id"));
         Product product = ProductDAO.getInstance().findById(id);
+        List<Feedback> feedbacks = FeedbackDAO.getInstance().findByProduct(product);
         request.setAttribute("product", product);
+        request.setAttribute("feedbacks", feedbacks);
     }
 
+    public void renderByCategory(HttpServletRequest request) throws SQLException {
+        Long id = Long.parseLong(request.getParameter("category_id"));
+        List<Product> productsFilterByCategory = ProductDAO.getInstance().findByCategory(id);
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products", productsFilterByCategory);
+        request.setAttribute("categories", categories);
+    }
+
+    public void renderProductAsAdmin(HttpServletRequest request) throws SQLException {
+        List<Product> products = ProductDAO.getInstance().findAll();
+        request.setAttribute("products", products);
+    }
+
+    public void renderByPrice(HttpServletRequest request) throws SQLException {
+        Double start = Double.parseDouble(request.getParameter("min_price"));
+        Double end = Double.parseDouble(request.getParameter("max_price"));
+        List<Product> products = ProductDAO.getInstance().findByPrice(start, end);
+        List<Category> categories = CategoryDAO.getInstance().findAll();
+        request.setAttribute("products", products);
+        request.setAttribute("categories", categories);
+    }
 }

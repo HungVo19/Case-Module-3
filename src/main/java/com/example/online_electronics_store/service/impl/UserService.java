@@ -7,6 +7,7 @@ import com.example.online_electronics_store.service.Verify;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -53,13 +54,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getObject(HttpServletRequest request) {
+    public User getObject(HttpServletRequest request) throws SQLException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String phoneNumber = request.getParameter("phone-number");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        return new User(username, password, phoneNumber, email, address);
+        List<User> users = UserDAO.getInstance().findAll();
+        Long id = users.get(users.size() - 1).getId() + 1;
+        return new User(id, username, password, phoneNumber, email, address);
     }
 
     @Override
@@ -74,5 +77,21 @@ public class UserService implements IUserService {
             }
         }
         return null;
+    }
+
+    public boolean updateAcc(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("user");
+        Long id = u.getId();
+        String password = request.getParameter("new_password");
+        String phoneNumber = request.getParameter("phone_number");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        User user = new User(password, phoneNumber, email, address);
+        if (Verify.getInstance().verifyUpdate(user, id)) {
+            UserDAO.getInstance().update(id, user);
+            return true;
+        }
+        return false;
     }
 }

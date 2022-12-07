@@ -41,8 +41,11 @@ public class UserServlet extends HttpServlet {
                 case "login":
                     login(request, response);
                     break;
+                case "logout":
+                    logout(request, response);
+                    break;
                 case "update":
-                    // update
+                    update(request, response);
                     break;
                 case "view":
                     break;
@@ -96,8 +99,8 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void toAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("shop/admin-page.jsp");
+    private void toAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.sendRedirect("/product?action=display_admin");
     }
 
     private void toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -115,5 +118,21 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("totalU",totalUsers);
         request.setAttribute("totalO",totalOrders);
         dispatcher.forward(request,response);
+    }
+
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        toLoginPage(response);
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        if (UserService.getInstance().updateAcc(request)) {
+            request.setAttribute("mess", "success");
+        } else {
+            request.setAttribute("mess", "fail");
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/my-account.jsp");
+        dispatcher.forward(request, response);
     }
 }

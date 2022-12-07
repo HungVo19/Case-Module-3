@@ -15,7 +15,9 @@ import java.util.List;
 public class ProductDAO implements IProductDAO {
     private final String SELECT_PRODUCT_BY_ID = "select * from product where id = ?;";
     private final String SELECT_PRODUCT_BY_NAME = "select * from product where name = ?;";
+    private final String SELECT_PRODUCT_BY_CATEGORY = "select * from product where category_id = ?;";
     private final String SELECT_ALL_PRODUCT = "select * from product;";
+    private final String SELECT_PRODUCT_BY_PRICE = "select * from product where price between ? and ?;";
     private final String SELECT_PRODUCT_BY_INDEX = "select * from product order by id limit ?,6;";
     private final String SELECT_COUNT = "select count(id) from product;";
     private final String INSERT_PRODUCT = "insert into product (name, price, description, image, stock_status, category_id) values (?,?,?,?,?,?);";
@@ -148,6 +150,25 @@ public class ProductDAO implements IProductDAO {
                 count = result.getInt(1);
             }
             return count;
+        }
+    }
+
+    public List<Product> findByCategory(Long id) throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_CATEGORY)) {
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            return getList(result);
+        }
+    }
+
+    public List<Product> findByPrice(Double start, Double end) throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_PRICE)) {
+            statement.setDouble(1, start);
+            statement.setDouble(2, end);
+            ResultSet result = statement.executeQuery();
+            return getList(result);
         }
     }
 }

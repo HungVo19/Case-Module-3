@@ -1,4 +1,9 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -65,9 +70,9 @@
                                     Object userObj = session.getAttribute("user");
                                     User user = (User) userObj;
                                     if (user != null) { %>
-                                    <p style="color: red; margin: auto; display: inline-block">
-                                        <%= "Welcome " + user.getUsername() + "!" %>
-                                    </p>
+                                <p style="color: red; margin: auto; display: inline-block">
+                                    <%= "Welcome " + user.getUsername() + "!" %>
+                                </p>
                                 <% } %>
                                 <div class="header-top-right d-flex align-items-center">
                                     <div class="social-style-1 social-style-1-mrg ms-3 d-flex align-items-center">
@@ -128,10 +133,19 @@
                                         <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
-                                        <a href="cart.jsp">
+                                        <% if (user != null) { %>
+                                            <a href="/cart">
                                             <i class="icon-basket-loaded"></i>
-<%--                                            <span class="pro-count red">02</span>--%>
+                                            <%
+                                                Cart cart = CartDAO.getInstance().findByUser(user);
+                                                List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                                int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                                if (count > 0) {
+                                            %>
+                                            <span class="pro-count red"><%= count%></span>
+                                            <% } %>
                                         </a>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +160,7 @@
                 <div class="breadcrumb-content text-center">
                     <ul>
                         <li>
-                            <a href="index.jsp">Home</a>
+                            <a href="${pageContext.request.contextPath}/product?action=home">Home</a>
                         </li>
                         <li class="active">Shop </li>
                     </ul>
@@ -184,7 +198,7 @@
                                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="single-product-wrap mb-35">
                                                     <div class="product-img product-img-zoom mb-15">
-                                                        <a href="product-details.jsp">
+                                                        <a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}">
                                                             <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
                                                         </a>
                                                         <c:if test="${!p.isStockStatus()}">
@@ -203,7 +217,7 @@
                                                             </div>
                                                             <span>(5)</span>
                                                         </div>
-                                                        <h3><a href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
+                                                        <h3><a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
                                                         <div class="product-price-2">
                                                             <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
                                                         </div>
@@ -219,13 +233,13 @@
                                                             </div>
                                                             <span>(5)</span>
                                                         </div>
-                                                        <h3><a href="product-details.jsp"><c:out value="${p.getName()}"/></a></h3>
+                                                        <h3><a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
                                                         <div class="product-price-2">
                                                             <span class="new-price"><c:out value="${p.getPrice()}"/></span>
                                                         </div>
                                                         <div class="pro-add-to-cart">
                                                             <button style="border-radius: 50px" class="p-0" title="Add to Cart">
-                                                                <a class="add-to-cart-link" href="${pageContext.request.contextPath}/product?action=detail&id=${p.getId()}">Add To Cart</a>
+                                                                <a class="add-to-cart-link" href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}">Add To Cart</a>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -240,10 +254,10 @@
 <%--                                    <li><a class="prev" href="#"><i class="icon-arrow-left"></i></a></li>--%>
                                     <c:forEach begin="1" end="${pages}" var="i">
                                         <c:if test="${i == index}">
-                                            <li><a class="active" href="/product?action=view&page=${i}">${i}</a></li>
+                                            <li><a class="active" href="${pageContext.request.contextPath}/product?action=view&page=${i}">${i}</a></li>
                                         </c:if>
                                         <c:if test="${i != index}">
-                                            <li><a href="/product?action=view&page=${i}">${i}</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/product?action=view&page=${i}">${i}</a></li>
                                         </c:if>
                                     </c:forEach>
 
@@ -270,7 +284,7 @@
                             <div class="shop-catigory">
                                 <ul>
                                     <c:forEach items="${categories}" var="c">
-                                        <li><a href="#!">
+                                        <li><a href="/product?action=filter&category_id=${c.getId()}">
                                             <c:out value="${c.getName()}"/>
                                         </a></li>
                                     </c:forEach>
@@ -278,16 +292,15 @@
                             </div>
                         </div>
                         <div class="sidebar-widget shop-sidebar-border mb-40 pt-40">
-                            <form action="#" method="post">
+                            <form action="${pageContext.request.contextPath}/product?action=price" method="post">
                                 <h4 class="sidebar-widget-title">Price Filter </h4>
                                 <div class="price-filter">
-                                    <span>Range:  $100.00 - 1.300.00 </span>
-                                    <div id="slider-range"></div>
+                                    <span>Range:  $0.00 - 100.00 </span>
                                     <div class="price-slider-amount">
-                                        <label for="minPrice"></label><input type="number" id="minPrice" name="minPrice"
-                                                                             placeholder="$0"/>
-                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="maxPrice"
-                                                                             placeholder="$100"/>
+                                        <label for="minPrice"></label><input type="number" id="minPrice" name="min_price"
+                                                                             placeholder="Min value:"/>
+                                        <label for="maxPrice"></label><input type="number" id="maxPrice" name="max_price"
+                                                                             placeholder="Max value:"/>
                                     </div>
                                     <div class="price-slider-amount">
                                         <button type="submit">Filter</button>
@@ -409,23 +422,23 @@
 <!-- All JS is here
 ============================================ -->
 
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-<script src="assets/js/vendor/popper.min.js"></script>
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<script src="assets/js/plugins/slick.js"></script>
-<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-<script src="assets/js/plugins/wow.js"></script>
-<script src="assets/js/plugins/jquery-ui.js"></script>
-<script src="assets/js/plugins/magnific-popup.js"></script>
-<script src="assets/js/plugins/sticky-sidebar.js"></script>
-<script src="assets/js/plugins/easyzoom.js"></script>
-<script src="assets/js/plugins/scrollup.js"></script>
-<script src="assets/js/plugins/ajax-mail.js"></script>
+<script src="/shop/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="/shop/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="/shop/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="/shop/assets/js/vendor/popper.min.js"></script>
+<script src="/shop/assets/js/vendor/bootstrap.min.js"></script>
+<script src="/shop/assets/js/plugins/slick.js"></script>
+<script src="/shop/assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="/shop/assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="/shop/assets/js/plugins/wow.js"></script>
+<script src="/shop/assets/js/plugins/jquery-ui.js"></script>
+<script src="/shop/assets/js/plugins/magnific-popup.js"></script>
+<script src="/shop/assets/js/plugins/sticky-sidebar.js"></script>
+<script src="/shop/assets/js/plugins/easyzoom.js"></script>
+<script src="/shop/assets/js/plugins/scrollup.js"></script>
+<script src="/shop/assets/js/plugins/ajax-mail.js"></script>
 <!-- Main JS -->
-<script src="assets/js/main.js"></script>
+<script src="/shop/assets/js/main.js"></script>
 <script>
     function sort(obj) {
         let path = obj.value;

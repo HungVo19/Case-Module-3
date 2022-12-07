@@ -2,6 +2,7 @@ package com.example.online_electronics_store.dao.impl;
 
 import com.example.online_electronics_store.dao.DBConnection;
 import com.example.online_electronics_store.dao.IUserDAO;
+import com.example.online_electronics_store.model.Cart;
 import com.example.online_electronics_store.model.User;
 
 import java.sql.Connection;
@@ -17,7 +18,7 @@ public class UserDAO implements IUserDAO {
     private final String SELECT_USER_BY_EMAIL = "select * from user where email = ?;";
     private final String SELECT_ALL_USER = "select * from user;";
     private final String INSERT_USER = "insert into user (role, username, password, phone_number, email, address) values ('user',?,?,?,?,?);";
-    private final String UPDATE_USER = "update user set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?);";
+    private final String UPDATE_USER = "update user set phone_number = ?, email = ?, address = ? where id = ?;";
     private final String DELETE_USER = "delete from user where id = ?;";
     private final String SELECT_COUNT = "select count(id) from user;";
 
@@ -58,6 +59,7 @@ public class UserDAO implements IUserDAO {
             PreparedStatement statement = connection.prepareStatement(INSERT_USER)) {
             setStatement(user, statement);
             statement.executeUpdate();
+            CartDAO.getInstance().insert(new Cart(user));
         }
     }
 
@@ -65,8 +67,10 @@ public class UserDAO implements IUserDAO {
     public boolean update(Long id, User user) throws SQLException {
         try (Connection connection = dbConn.getConnection();
             PreparedStatement statement = connection.prepareStatement(UPDATE_USER)) {
-            setStatement(user, statement);
-            statement.setLong(6, id);
+            statement.setString(1, user.getPhoneNumber());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getAddress());
+            statement.setLong(4, id);
             return statement.executeUpdate() > 0;
         }
     }

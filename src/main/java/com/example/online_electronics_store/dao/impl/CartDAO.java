@@ -14,6 +14,7 @@ import java.util.List;
 
 public class CartDAO implements ICartDAO {
     private final String SELECT_CART_BY_USER = "select * from cart where user_id = ?;";
+    private final String SELECT_CART_BY_ID = "select * from cart where id = ?;";
     private final String INSERT_CART = "insert into cart (user_id) values (?);";
     private final String DELETE_CART = "delete from cart where id = ?;";
     DBConnection dbConn = DBConnection.getInstance();
@@ -32,7 +33,12 @@ public class CartDAO implements ICartDAO {
 
     @Override
     public Cart findById(Long id) throws SQLException {
-        return null;
+        try (Connection connection = dbConn.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SELECT_CART_BY_ID)) {
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            return getList(result).get(0);
+        }
     }
 
     @Override

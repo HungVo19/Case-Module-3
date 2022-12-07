@@ -12,6 +12,13 @@ public class Feedback {
     public Feedback() {
     }
 
+    public Feedback(User user, Product product, String comment, LocalDateTime date) {
+        this.user = user;
+        this.product = product;
+        this.comment = comment;
+        this.date = date;
+    }
+
     public Feedback(User user, Product product, Integer rate, String comment, LocalDateTime date) {
         this.user = user;
         this.product = product;

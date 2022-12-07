@@ -1,4 +1,9 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -115,10 +120,19 @@
                                     <% } %>
                                 </div>
                                 <div class="same-style-2 header-cart">
-                                    <a href="cart.jsp">
-                                        <i class="icon-basket-loaded"></i>
-                                        <%--                                            <span class="pro-count red">02</span>--%>
-                                    </a>
+                                    <% if (user != null) { %>
+                                        <a href="/cart">
+                                            <i class="icon-basket-loaded"></i>
+                                            <%
+                                                Cart cart = CartDAO.getInstance().findByUser(user);
+                                                List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                                int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                                if (count > 0) {
+                                            %>
+                                                <span class="pro-count red"><%= count%></span>
+                                                <% } %>
+                                        </a>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +159,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="hero-slider-img-1 slider-animated-1">
-                                <img class="animated" src="assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
+                                <img class="animated" src="/shop/assets/images/slider/hm-1-slider-5-adjusted.png" alt="">
                             </div>
                         </div>
                     </div>

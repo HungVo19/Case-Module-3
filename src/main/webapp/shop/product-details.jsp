@@ -1,4 +1,9 @@
 <%@ page import="com.example.online_electronics_store.model.User" %>
+<%@ page import="com.example.online_electronics_store.model.Cart" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDAO" %>
+<%@ page import="com.example.online_electronics_store.model.CartDetails" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
@@ -127,10 +132,19 @@
                                         <% } %>
                                     </div>
                                     <div class="same-style-2 header-cart">
-                                        <a href="cart.jsp">
+                                        <% if (user != null) { %>
+                                        <a href="/cart">
                                             <i class="icon-basket-loaded"></i>
-                                            <%--                                            <span class="pro-count red">02</span>--%>
+                                            <%
+                                                Cart cart = CartDAO.getInstance().findByUser(user);
+                                                List<CartDetails> cartDetailsList = CartDetailsDAO.getInstance().findByItemId(cart);
+                                                int count = CartDetailsDAO.getInstance().getProductQuantity(cartDetailsList);
+                                                if (count > 0) {
+                                            %>
+                                            <span class="pro-count red"><%= count%></span>
+                                            <% } %>
                                         </a>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +158,7 @@
                 <div class="breadcrumb-content text-center">
                     <ul>
                         <li>
-                            <a href="index.jsp">Home</a>
+                            <a href="${pageContext.request.contextPath}/product?action=home">Home</a>
                         </li>
                         <li class="active">product Details</li>
                     </ul>
@@ -182,7 +196,11 @@
                                 </div>
                             </div>
                             <p>Seamlessly predominate enterprise metrics without performance based process improvements.</p>
-                            <form action="cart?action=add?id=${product.getId()}" method="post">
+                            <% if (user != null) { %>
+                            <form action="cart?action=user_add&product_id=${product.getId()}" method="post">
+                            <% } else { %>
+                            <form action="/user" method="post">
+                            <% } %>
                                 <div class="pro-details-quality">
                                     <span>Quantity:</span>
                                     <div class="cart-plus-minus">
@@ -195,18 +213,23 @@
                                     </ul>
                                 </div>
                                 <div class="pro-details-action-wrap">
-                                    <div class="pro-details-add-to-cart">
-                                        <button class="add-to-cart-btn" title="Add to Cart">Add To Cart </button>
-                                    </div>
-                                    <div class="pro-details-action">
-                                        <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
-                                        <div class="product-dec-social">
-                                            <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
-                                            <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
-                                            <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
-                                            <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                    <c:if test="${product.isStockStatus()}">
+                                        <div class="pro-details-add-to-cart">
+                                            <button class="add-to-cart-btn" title="Add to Cart">Add To Cart </button>
                                         </div>
-                                    </div>
+                                        <div class="pro-details-action">
+                                            <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
+                                            <div class="product-dec-social">
+                                                <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
+                                                <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
+                                                <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
+                                                <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${!product.isStockStatus()}">
+                                        <p style="color: red; font-size: 20px; letter-spacing: 1.5px">Out of stock!</p>
+                                    </c:if>
                                 </div>
                             </form>
                         </div>
@@ -214,6 +237,7 @@
                 </div>
             </div>
         </div>
+        <% if (user != null) { %>
         <div class="description-review-wrapper pb-110">
             <div class="container">
                 <div class="row">
@@ -231,43 +255,33 @@
 
                             <div id="des-details4" class="tab-pane">
                                 <div class="review-wrapper">
-                                    <h2>1 review for <c:out value="${product.getName()}"/></h2>
-                                    <div class="single-review">
-                                        <div class="review-content">
-                                            <div class="review-top-wrap">
-                                                <div class="review-name">
-                                                    <h5><span>John Snow</span> - March 14, 2019</h5>
+                                    <h2><c:out value="${feedbacks.size()}"/> review for <c:out value="${product.getName()}"/></h2>
+                                    <c:forEach items="${feedbacks}" var="f">
+                                        <div class="single-review">
+                                            <div class="review-content">
+                                                <div class="review-top-wrap d-block">
+                                                    <div class="review-name">
+                                                        <h5><span><c:out value="${f.getUser().getUsername()}"/></span> - <c:out value="${f.getDate()}"/></h5>
+                                                    </div>
+                                                    <div class="review-rating mt-2">
+                                                        <i class="yellow icon_star"></i>
+                                                        <i class="yellow icon_star"></i>
+                                                        <i class="yellow icon_star"></i>
+                                                        <i class="yellow icon_star"></i>
+                                                        <i class="yellow icon_star"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="review-rating">
-                                                    <i class="yellow icon_star"></i>
-                                                    <i class="yellow icon_star"></i>
-                                                    <i class="yellow icon_star"></i>
-                                                    <i class="yellow icon_star"></i>
-                                                    <i class="yellow icon_star"></i>
-                                                </div>
+                                                <p><c:out value="${f.getComment()}"/></p>
                                             </div>
-                                            <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque</p>
                                         </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                                 <div class="ratting-form-wrapper">
                                     <span>Add a Review</span>
                                     <p>Your email address will not be published. Required fields are marked <span>*</span></p>
                                     <div class="ratting-form">
-                                        <form action="#">
+                                        <form action="review?action=comment&id=${product.getId()}" method="post">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="rating-form-style mb-20">
-                                                        <label>Name <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="rating-form-style mb-20">
-                                                        <label>Email <span>*</span></label>
-                                                        <input type="email">
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-12">
                                                     <div class="star-box-wrap">
                                                         <div class="single-ratting-star">
@@ -300,7 +314,7 @@
                                                 <div class="col-md-12">
                                                     <div class="rating-form-style mb-20">
                                                         <label>Your review <span>*</span></label>
-                                                        <textarea name="Your Review"></textarea>
+                                                        <textarea name="comment"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -318,6 +332,7 @@
                 </div>
             </div>
         </div>
+        <% } %>
         <div class="about-us-area pt-85">
             <div class="container">
                 <div class="border-bottom-1 about-content-pb">
