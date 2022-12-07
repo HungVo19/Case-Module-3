@@ -19,6 +19,8 @@ public class UserDAO implements IUserDAO {
     private final String INSERT_USER = "insert into user (role, username, password, phone_number, email, address) values ('user',?,?,?,?,?);";
     private final String UPDATE_USER = "update user set name = ?, price = ?, description = ?, image = ?, stock_status = ?, category_id = ? where id = ?);";
     private final String DELETE_USER = "delete from user where id = ?;";
+    private final String SELECT_COUNT = "select count(id) from user;";
+
     DBConnection dbConn = DBConnection.getInstance();
     private static UserDAO instance;
 
@@ -101,5 +103,16 @@ public class UserDAO implements IUserDAO {
         statement.setString(3, user.getPhoneNumber());
         statement.setString(4, user.getEmail());
         statement.setString(5, user.getAddress());
+    }
+    public int getTotalCount() throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_COUNT)) {
+            ResultSet result = statement.executeQuery();
+            int count = 0;
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+            return count;
+        }
     }
 }

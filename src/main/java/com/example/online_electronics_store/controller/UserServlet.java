@@ -1,6 +1,9 @@
 package com.example.online_electronics_store.controller;
 
+import com.example.online_electronics_store.dao.impl.CategoryDAO;
+import com.example.online_electronics_store.dao.impl.OrderDAO;
 import com.example.online_electronics_store.dao.impl.ProductDAO;
+import com.example.online_electronics_store.dao.impl.UserDAO;
 import com.example.online_electronics_store.model.Product;
 import com.example.online_electronics_store.model.User;
 import com.example.online_electronics_store.service.impl.UserService;
@@ -43,6 +46,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "view":
                     break;
+                case "showAdminDashboard":
+                    showAdminDashboard(request,response);
+                    break;
                 default:
                     toLoginPage(response);
             }
@@ -80,11 +86,7 @@ public class UserServlet extends HttpServlet {
             if (user.getRole().equals("user")) {
                 response.sendRedirect("/product");
             } else if (user.getRole().equals("admin")) {
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8080/admin/index.jsp");
-//                List<Product> products = ProductDAO.getInstance().findAll();
-//                request.setAttribute("products",products);
-//                dispatcher.forward(request,response);
-                response.sendRedirect("http://localhost:8080/admin/index.jsp");
+                showAdminDashboard(request,response);
             }
 
         } else {
@@ -100,5 +102,18 @@ public class UserServlet extends HttpServlet {
 
     private void toAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("shop/my-account.jsp");
+    }
+
+    private void showAdminDashboard(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
+        Integer totalProducts = ProductDAO.getInstance().getTotalCount();
+        Integer totalCategories = CategoryDAO.getInstance().getTotalCount();
+        Integer totalUsers = UserDAO.getInstance().getTotalCount();
+        Integer totalOrders = OrderDAO.getInstance().getTotalCount();
+        request.setAttribute("totalP",totalProducts);
+        request.setAttribute("totalC",totalCategories);
+        request.setAttribute("totalU",totalUsers);
+        request.setAttribute("totalO",totalOrders);
+        dispatcher.forward(request,response);
     }
 }

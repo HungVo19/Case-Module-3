@@ -15,6 +15,8 @@ public class OrderDAO implements IOrderDAO {
     private final String INSERT_ORDER = "insert into orders (user_id, date) values (?,?);";
 //    private final String UPDATE_ORDER = "update orders set user_id = ? where id = ?);";
     private final String DELETE_ORDER = "delete from orders where id = ?;";
+    private final String SELECT_COUNT = "select count(id) from orders;";
+
     DBConnection dbConn = DBConnection.getInstance();
     private static OrderDAO instance;
 
@@ -90,5 +92,17 @@ public class OrderDAO implements IOrderDAO {
     @Override
     public void setStatement(Order order, PreparedStatement statement) throws SQLException {
         statement.setLong(1, order.getUser().getId());
+    }
+
+    public int getTotalCount() throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_COUNT)) {
+            ResultSet result = statement.executeQuery();
+            int count = 0;
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+            return count;
+        }
     }
 }

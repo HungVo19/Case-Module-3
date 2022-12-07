@@ -18,6 +18,7 @@ public class CategoryDAO implements ICategoryDAO {
     private final String INSERT_CATEGORY = "insert into category (name) values (?);";
     private final String UPDATE_CATEGORY = "update category set name = ? where id = ?);";
     private final String DELETE_CATEGORY = "delete from category where id = ?;";
+    private final String SELECT_COUNT = "select count(id) from category;";
     DBConnection dbConn = DBConnection.getInstance();
     private static CategoryDAO instance;
 
@@ -102,5 +103,17 @@ public class CategoryDAO implements ICategoryDAO {
     @Override
     public void setStatement(Category category, PreparedStatement statement) throws SQLException {
         statement.setString(1, category.getName());
+    }
+
+    public int getTotalCount() throws SQLException {
+        try (Connection connection = dbConn.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_COUNT)) {
+            ResultSet result = statement.executeQuery();
+            int count = 0;
+            while (result.next()) {
+                count = result.getInt(1);
+            }
+            return count;
+        }
     }
 }

@@ -92,7 +92,7 @@
                             <a href="${pageContext.request.contextPath}/user?action=viewByAdmin"> <i class="flaticon-user-1"></i> User </a>
                         </li>
                         <li class="active">
-                            <a href="${pageContext.request.contextPath}/category?action=viewByAdmin"> <i class="flaticon-menu-dot-fill"></i> Category </a>
+                            <a href="index.jsp"> <i class="flaticon-menu-dot-fill"></i> Category </a>
                         </li>
                     </ul>
                 </li>
@@ -115,7 +115,7 @@
                             <li><a href="${pageContext.request.contextPath}/admin/index.jsp"><i
                                     class="flaticon-home-fill"></i></a></li>
                             <li><a href="${pageContext.request.contextPath}/user?action=showAdminDashboard">Dashboard</a></li>
-                            <li><a href="#" style="font-weight: bold">Product</a></li>
+                            <li><a href="#" style="font-weight: bold">Category</a></li>
                         </ul>
                     </div>
                 </div>
@@ -142,100 +142,47 @@
                         <thead>
                         <tr>
                             <th class="text-center"> Record Id</th>
-                            <th class="align-center">Image</th>
                             <th>Name</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th class="align-center">Stock Status</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${products}" var="p">
+                        <c:forEach items="${categories}" var="c">
                             <tr>
-                                <td class="text-center" style="width: 50px">
-                                    <c:out value="${p.getId()}"/>
+                                <td class="text-center">
+                                    <c:out value="${c.getId()}"/>
                                 </td>
-                                <td class="align-center">
-                                    <span><img style="height: 60px;width: 60px"
-                                               src="${pageContext.request.contextPath}/${p.getImage()}"
-                                               class="" alt="profile">
-                                    </span>
-                                </td>
-                                <td style="width: 100px"><c:out value="${p.getName()}"/></td>
-                                <td><c:out value="${p.getPrice()}"/></td>
-                                <td style="width: 250px"><c:out value="${p.getDescription()}"/></td>
-                                <td><c:out value="${p.getCategory().getName()}"/></td>
-                                <td class="align-center">
-                                    <c:if test="${p.isStockStatus()}">
-                                        <span class="shadow-none badge badge-success">In Stock</span>
-                                    </c:if>
-                                    <c:if test="${!p.isStockStatus()}">
-                                        <span class="shadow-none badge badge-danger">Out Stock</span>
-                                    </c:if>
-                                </td>
+                                <td><c:out value="${c.getName()}"/></td>
                                 <td class="align-center">
                                     <ul class="table-controls">
-                                        <li><a href="#v${p.getId()}" data-toggle="modal" title="View"
+                                        <li><a href="#v${c.getId()}" data-toggle="modal" title="View"
                                                data-original-title="Settings"><i data-toggle="tooltip"
                                                                                  class="flaticon-settings-4  bg-primary p-1 text-white br-6 mb-1"></i></a>
                                         </li>
-                                        <li><a href="#e${p.getId()}" data-toggle="modal" data-placement="top" title=""
+                                        <li><a href="#e${c.getId()}" data-toggle="modal" data-placement="top" title=""
                                                data-original-title="Edit"><i
                                                 class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a>
                                         </li>
-                                        <li><a href="#d${p.getId()}" data-toggle="modal" data-placement="top" title=""
+                                        <li><a href="#d${c.getId()}" data-toggle="modal" data-placement="top" title=""
                                                data-original-title="Delete"><i
                                                 class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a>
                                         </li>
                                     </ul>
                                 </td>
-                                <div id="v${p.getId()}" class="modal fade">
+                                <div id="v${c.getId()}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Product Information</h4>
+                                                <h4 class="modal-title">Category Information</h4>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-hidden="true">&times;
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="align-center">
-                                                    <img src="${pageContext.request.contextPath}/${p.getImage()}"
-                                                         class="" alt="profile">
-                                                </div>
                                                 <div class="form-group">
                                                     <label>Name</label>
                                                     <input type="text" class="form-control"
-                                                           value="${p.getName()}" readonly>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Price</label>
-                                                    <input type="text" class="form-control"
-                                                           value="${p.getPrice()}$" readonly>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" name="description" rows="5" readonly>
-                                                            ${p.getDescription()}
-                                                    </textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Stock Status</label>
-                                                    <c:if test="${p.isStockStatus()}">
-                                                        <input type="text" class="form-control" value="In Stock"
-                                                               readonly>
-                                                    </c:if>
-                                                    <c:if test="${!p.isStockStatus()}">
-                                                        <input type="text" class="form-control"
-                                                               value="Out of Stock" readonly>
-                                                    </c:if>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Category</label>
-                                                    <input type="text" class="form-control"
-                                                           value="${p.getCategory().getName()}" readonly>
+                                                           value="${c.getName()}" readonly>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -245,13 +192,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="e${p.getId()}" class="modal fade">
+                                <div id="e${c.getId()}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="${pageContext.request.contextPath}/product?action=update"
-                                                  method="post" id="formEdit${p.getId()}">
+                                            <form action="${pageContext.request.contextPath}/category?action=update"
+                                                  method="post" id="formEdit${c.getId()}">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Update Product</h4>
+                                                    <h4 class="modal-title">Update Cate</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">&times;
                                                     </button>
@@ -324,7 +271,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="d${p.getId()}" class="modal fade">
+                                <div id="d${c.getId()}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <form action="${pageContext.request.contextPath}/product?action=delete"
