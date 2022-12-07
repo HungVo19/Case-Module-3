@@ -105,8 +105,8 @@
                                             <i class="icon_close s-close"></i>
                                         </a>
                                         <div class="search-wrap-1">
-                                            <form action="#">
-                                                <input placeholder="Search product" type="text">
+                                            <form action="${pageContext.request.contextPath}/product?action=search" method="post">
+                                                <input placeholder="Search product" type="text" name="search">
                                                 <button class="button-search"><i class="icon-magnifier"></i></button>
                                             </form>
                                         </div>

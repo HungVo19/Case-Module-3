@@ -4,6 +4,8 @@
 <%@ page import="com.example.online_electronics_store.model.CartDetails" %>
 <%@ page import="com.example.online_electronics_store.dao.impl.CartDetailsDAO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.online_electronics_store.model.Product" %>
+<%@ page import="com.example.online_electronics_store.dao.impl.FeedbackDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -117,8 +119,8 @@
                                             <i class="icon_close s-close"></i>
                                         </a>
                                         <div class="search-wrap-1">
-                                            <form action="#">
-                                                <input placeholder="Search product" type="text">
+                                            <form action="${pageContext.request.contextPath}/product?action=search" method="post">
+                                                <input placeholder="Search product" type="text" name="search">
                                                 <button class="button-search"><i class="icon-magnifier"></i></button>
                                             </form>
                                         </div>
@@ -184,8 +186,8 @@
                                     <label>Sort by :</label>
                                     <select onchange="sort(this)">
                                         <option value="">Default</option>
-                                        <option value="/product?action=sort&condition=name"> name</option>
-                                        <option value="/product?action=sort&condition=price"> price</option>
+                                        <option value="/product?action=sort&condition=name">Name</option>
+                                        <option value="/product?action=sort&condition=price">Price</option>
                                     </select>
                                 </div>
                             </div>
@@ -194,58 +196,60 @@
                             <div class="tab-content jump">
                                 <div id="shop-1" class="tab-pane active">
                                     <div class="row">
-                                        <c:forEach items="${products}" var="p">
-                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                                <div class="single-product-wrap mb-35">
-                                                    <div class="product-img product-img-zoom mb-15">
-                                                        <a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}">
-                                                            <img src="${pageContext.request.contextPath}/${p.getImage()}" alt="img">
-                                                        </a>
-                                                        <c:if test="${!p.isStockStatus()}">
-                                                            <span class="pro-badge left bg-red">Out of stock</span>
-                                                        </c:if>
-
+                                        <%
+                                            List<Product> products = (List<Product>) request.getAttribute("products");
+                                            for (Product p : products) {
+                                        %>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                            <div class="single-product-wrap mb-35">
+                                                <div class="product-img product-img-zoom mb-15">
+                                                    <a href="${pageContext.request.contextPath}/product?action=details&id=<%= p.getId()%>">
+                                                        <img src="${pageContext.request.contextPath}/<%= p.getImage()%>" alt="img">
+                                                    </a>
+                                                    <% if (p.isStockStatus()) { %>
+                                                        <span class="pro-badge left bg-red">Out of stock</span>
+                                                    <% } %>
+                                                </div>
+                                                <div class="product-content-wrap-2 text-center">
+                                                    <div class="product-rating-wrap">
+                                                        <%
+                                                            Double avg = FeedbackDAO.getInstance().findAvgRate(p);
+                                                            int count = avg.intValue();
+                                                        %>
+                                                        <div class="product-rating">
+                                                            <% for (int i = 0; i < count; i++) { %>
+                                                                <i class="icon_star"></i>
+                                                            <% } %>
+                                                        </div>
+                                                        <span>(<%= (double) Math.round(avg * 100) / 100 %>)</span>
                                                     </div>
-                                                    <div class="product-content-wrap-2 text-center">
-                                                        <div class="product-rating-wrap">
-                                                            <div class="product-rating">
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                            </div>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                        <h3><a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
-                                                        <div class="product-price-2">
-                                                            <span class="new-price">$<c:out value="${p.getPrice()}"/></span>
-                                                        </div>
+                                                    <h3><a href="${pageContext.request.contextPath}/product?action=details&id=<%= p.getId()%>"><%= p.getName()%></a></h3>
+                                                    <div class="product-price-2">
+                                                        <span class="new-price">$<%= p.getPrice()%></span>
                                                     </div>
-                                                    <div class="product-content-wrap-2 product-content-position text-center">
-                                                        <div class="product-rating-wrap">
-                                                            <div class="product-rating">
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                                <i class="icon_star"></i>
-                                                            </div>
-                                                            <span>(5)</span>
+                                                </div>
+                                                <div class="product-content-wrap-2 product-content-position text-center">
+                                                    <div class="product-rating-wrap">
+                                                        <div class="product-rating">
+                                                            <% for (int i = 0; i < count; i++) { %>
+                                                            <i class="icon_star"></i>
+                                                            <% } %>
                                                         </div>
-                                                        <h3><a href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}"><c:out value="${p.getName()}"/></a></h3>
-                                                        <div class="product-price-2">
-                                                            <span class="new-price"><c:out value="${p.getPrice()}"/></span>
-                                                        </div>
-                                                        <div class="pro-add-to-cart">
-                                                            <button style="border-radius: 50px" class="p-0" title="Add to Cart">
-                                                                <a class="add-to-cart-link" href="${pageContext.request.contextPath}/product?action=details&id=${p.getId()}">Add To Cart</a>
-                                                            </button>
-                                                        </div>
+                                                        <span>(<%= (double) Math.round(avg * 100) / 100 %>)</span>
+                                                    </div>
+                                                    <h3><a href="${pageContext.request.contextPath}/product?action=details&id=<%= p.getId()%>"><%= p.getName()%></a></h3>
+                                                    <div class="product-price-2">
+                                                        <span class="new-price">$<%= p.getPrice()%></span>
+                                                    </div>
+                                                    <div class="pro-add-to-cart">
+                                                        <button style="border-radius: 50px" class="p-0" title="Add to Cart">
+                                                            <a class="add-to-cart-link" href="${pageContext.request.contextPath}/product?action=details&id=<%= p.getId()%>">Add To Cart</a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </c:forEach>
+                                        </div>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -271,8 +275,8 @@
                         <div class="sidebar-widget mb-40">
                             <h4 class="sidebar-widget-title">Search </h4>
                             <div class="sidebar-search">
-                                <form class="sidebar-search-form" action="#">
-                                    <input type="text" placeholder="Search here...">
+                                <form class="sidebar-search-form" action="${pageContext.request.contextPath}/product?action=search" method="post">
+                                    <input type="text" name="search" placeholder="Search here...">
                                     <button>
                                         <i class="icon-magnifier"></i>
                                     </button>
