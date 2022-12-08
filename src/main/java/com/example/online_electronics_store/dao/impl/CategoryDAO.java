@@ -35,7 +35,7 @@ public class CategoryDAO implements ICategoryDAO {
     @Override
     public Category findById(Long id) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
             statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             return getList(result).get(0);

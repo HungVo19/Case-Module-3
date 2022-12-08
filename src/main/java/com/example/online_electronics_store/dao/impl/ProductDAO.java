@@ -51,7 +51,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public List<Product> findAll() throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT)) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT)) {
             ResultSet result = statement.executeQuery();
             return getList(result);
         }
@@ -60,7 +60,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public void insert(Product product) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT)) {
+            PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT)) {
             setStatement(product, statement);
             statement.executeUpdate();
         }
@@ -69,7 +69,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public boolean update(Long id, Product product) throws SQLException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_PRODUCT)) {
+            PreparedStatement statement = connection.prepareStatement(UPDATE_PRODUCT)) {
             setStatement(product, statement);
             statement.setLong(7, id);
             return statement.executeUpdate() > 0;
@@ -79,7 +79,7 @@ public class ProductDAO implements IProductDAO {
     @Override
     public boolean delete(Long id) throws SQLException, ClassNotFoundException {
         try (Connection connection = dbConn.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT)) {
+            PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT)) {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         }

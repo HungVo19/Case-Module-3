@@ -206,7 +206,7 @@
                                                     <a href="${pageContext.request.contextPath}/product?action=details&id=<%= p.getId()%>">
                                                         <img src="${pageContext.request.contextPath}/<%= p.getImage()%>" alt="img">
                                                     </a>
-                                                    <% if (p.isStockStatus()) { %>
+                                                    <% if (!p.isStockStatus()) { %>
                                                         <span class="pro-badge left bg-red">Out of stock</span>
                                                     <% } %>
                                                 </div>
